@@ -103,3 +103,7 @@ section.sec2 {
   color: #fff;
   opacity: 0.9;
 }
+
+.branches p {
+  line-height: 1;
+}

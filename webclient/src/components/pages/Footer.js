@@ -51,9 +51,30 @@ const Footer = () => {
         <Button style={styles.button} onClick={() => getLocation()}>GET LOCATION</Button>
         </Col>
         <Col xs="12" xl="3">
-           
+           <h6 style={{ color: "#fff"}}>OFFICES</h6>
+           <Row>
+             <Col xs="6" xl="5" className="branches">
+               <p>Lagos</p>
+               <p>Port Harcourt</p>
+               <p>Abuja</p>
+               <p>Enugu</p>
+               <p>Delta</p>
+               <p>Kano</p>
+               <p>Jos</p>
+             </Col>
+             <Col xs="6" xl="5">
+                <p>United Kingdom</p>
+               <p>China</p>
+               <p>South Africa</p>
+               <p>Ivory Cost</p>
+               <p>Ghana</p>
+             </Col>
+           </Row>
         </Col>
-        <Col xs="12" xl="6"></Col>
+        <Col xs="12" xl="6">
+          <h6 style={{ color: "#fff" }}>Subscribe</h6>
+          <p>Don’t miss Swissdarl Freight & Logistics latest news and events. Subscribe to our newsletter channel and be informed</p>
+        </Col>
       </Row>
       </Container>
     </div>
