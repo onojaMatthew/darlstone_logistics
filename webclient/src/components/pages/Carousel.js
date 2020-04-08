@@ -60,7 +60,6 @@ const HomeCarousel = (props) => {
           width: "100%",
           height: 250
         }} />
-        <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
       </CarouselItem>
     );
   });

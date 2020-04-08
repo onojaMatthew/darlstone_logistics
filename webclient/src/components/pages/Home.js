@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Col, Row } from "antd"
+import { Button, Col, Row } from "reactstrap"
 import HomeCarousel from "./Carousel";
 
 const Home = () => {
@@ -19,7 +19,7 @@ const Home = () => {
       </section>
       <section className="sec2">
         <Row className="justify-content-center">
-          <Col xs="4" xl="6"
+          <Col xs="6" xl="4"
             style={{
               marginTop: -200,
               maxHeight: "200px"
@@ -29,9 +29,15 @@ const Home = () => {
           </Col>
         </Row>
         <Row className="justify-content-center">
-          <Col xs="4" xl="2">
+          <Col xs="4" xl="3">
             <Button style={{
-              
+              marginTop: 150,
+              background: "rgb(9, 7, 36)",
+              padding: 10,
+              fontSize: 19,
+              color: "#fff",
+              width: "100%",
+              borderRadius: 25
             }}>Request Quote</Button>
           </Col>
         </Row>

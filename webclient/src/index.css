@@ -45,7 +45,8 @@ section p {
     position: relative;
     margin: 0;
     padding: 0;
-    background: #ff3196;
+    background: rgb(9, 7, 36);
+    background-size: cover;
     width: 100%;
     min-height: 250px;
   }
@@ -64,4 +65,5 @@ section p {
 
 section.sec2 {
   background: #fff;
+  max-height: 200px;
 }
