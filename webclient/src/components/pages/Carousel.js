@@ -4,7 +4,6 @@ import {
   CarouselItem,
   CarouselControl,
   CarouselIndicators,
-  CarouselCaption
 } from 'reactstrap';
 import Logistic1 from "../../assets/logistic1.jpeg";
 import Logistic2 from "../../assets/logistic2.jpg";

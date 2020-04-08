@@ -67,3 +67,20 @@ section.sec2 {
   background: #fff;
   max-height: 200px;
 }
+
+.light {
+  background: rgb(9, 7, 36) !important;
+  color: #fff !important;
+  padding: 15px !important;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  /* width: 100%; */
+}
+
+.home {
+  overflow-x: hidden;
+  overflow-y: hidden;
+}

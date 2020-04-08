@@ -21,7 +21,7 @@ const Header = (props) => {
 
   return (
     <div>
-      <Navbar color="light" light expand="md" style={{ background: "rgb(9, 7, 36)"}}>
+      <Navbar className="light" expand="md">
         <NavbarBrand href="/">reactstrap</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
