@@ -18,11 +18,12 @@ const Home = () => {
         </svg>
       </section>
       <section className="sec2">
+        <div className="overlay">
         <Container>
           <Row>
             <Col xs="12" xl="4" 
               style={{ 
-                color: "#333",
+                color: "#fff",
                 fontSize: 16,
                 padding: 20,
                 paddingTop: 30,
@@ -31,7 +32,7 @@ const Home = () => {
             >
               <h4>How We Work</h4>
               <p style={{ 
-                  color: "#333",
+                  color: "#fff",
                   fontSize: 16,
                   textAlign: "justify",
                   lineHeight: 2
@@ -48,7 +49,7 @@ const Home = () => {
             >
               <HomeCarousel />
             </Col>
-            <Col xs="12" xl="4">
+            <Col xs="12" xl="4" className="pt-5">
             <img 
                 src={Graphic5} 
                 alt=""
@@ -70,6 +71,8 @@ const Home = () => {
             </Col>
           </Row>
         </Container>
+        </div>
+        
       </section>
     </div>
   )

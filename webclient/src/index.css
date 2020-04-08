@@ -77,8 +77,11 @@ section p {
 }
 
 section.sec2 {
-  background: #fff;
+  background: black url("./assets/homebackground.jpg") no-repeat;
   max-height: 200px;
+  background-size: cover;
+  background-attachment: fixed;
+  opacity: 0.9;
 }
 
 .light {
@@ -96,6 +99,13 @@ section.sec2 {
 .home {
   overflow-x: hidden;
   overflow-y: hidden;
+}
+
+.overlay {
+  background: #000;
+  opacity: 0.6;
+  background-size: cover;
+  height: 600px;
 }
 
 .footer {
