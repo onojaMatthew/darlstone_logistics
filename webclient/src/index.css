@@ -66,6 +66,33 @@ section p {
   }
 }
 
+.home-text h1 {
+  font-size: 28px;
+  margin-bottom: 15px;
+  transition: animate 
+}
+
+.home-text p {
+  font-size: 14px;
+}
+
+@keyframes zoominoutsinglefeatured {
+  0% {
+      transform: scale(1,1);
+  }
+  50% {
+      transform: scale(1.2,1.2);
+  }
+  100% {
+      transform: scale(1,1);
+  }
+}
+
+.single-featured-image-header img {
+animation: zoominoutsinglefeatured 15s forwards;
+}
+
+
 #curve {
   position: absolute;
   bottom: 0;
@@ -99,6 +126,11 @@ section.sec2 {
 .home {
   overflow-x: hidden;
   overflow-y: hidden;
+}
+
+.home-text h1, p {
+  transform: scale(1);
+  transition: an 0.15s ease-in-out 0.2s;
 }
 
 .overlay {
