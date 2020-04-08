@@ -88,8 +88,8 @@ section p {
   }
 }
 
-.single-featured-image-header img {
-animation: zoominoutsinglefeatured 15s forwards;
+.home-text h1, p {
+  animation: zoominoutsinglefeatured 15s forwards;
 }
 
 
