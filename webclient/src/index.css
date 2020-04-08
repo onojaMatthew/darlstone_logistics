@@ -50,13 +50,26 @@ section p {
     width: 100%;
     min-height: 250px;
   }
+  .home-text h1 {
+    font-size: 28px;
+    margin-bottom: 15px;
+  }
+  .home-text p {
+    font-size: 14px;
+  }
+  .carousel {
+    display: none;
+  }
+  .home {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
 }
 
 #curve {
   position: absolute;
   bottom: 0;
   width: 100%;
- 
 }
 
 #curve path {

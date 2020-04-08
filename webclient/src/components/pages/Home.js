@@ -8,7 +8,7 @@ const Home = () => {
     <div className="home">
       <section className="wave-container">
         <Row className="justify-content-center">
-          <Col xs="6" xl="6">
+          <Col xs="8" xl="6" className="home-text">
             <h1>Hello, world!</h1>
           < p>Check out my awesome waves!</p>
           </Col>
@@ -20,28 +20,15 @@ const Home = () => {
       <section className="sec2">
         <Container>
           <Row>
-            <Col xs="12" xl="4">
-            <img 
-                src={Graphic5} 
-                alt=""
-                style={{ maxWidth: "100%" }}
-              />
-            </Col>
-            <Col xs="6" xl="4"
-              style={{
-                marginTop: -200,
-                maxHeight: "200px"
+            <Col xs="12" xl="4" 
+              style={{ 
+                color: "#333",
+                fontSize: 16,
+                padding: 20,
+                paddingTop: 30,
+                textAlign: "center"
               }}
             >
-              <HomeCarousel />
-            </Col>
-            <Col xs="12" xl="4" style={{ 
-                  color: "#333",
-                  fontSize: 16,
-                  padding: 20,
-                  paddingTop: 30,
-                  textAlign: "center"
-                }}>
               <h4>How We Work</h4>
               <p style={{ 
                   color: "#333",
@@ -52,6 +39,21 @@ const Home = () => {
               >
                 At Darlstone Logistics, we are committed to providing smart and effective Logistics Solutions for every business. With timed deliveries that offer complete flexibility.
               </p>
+            </Col>
+            <Col xs="6" xl="4"
+              style={{
+                marginTop: -200,
+                maxHeight: "200px"
+              }}
+            >
+              <HomeCarousel />
+            </Col>
+            <Col xs="12" xl="4">
+            <img 
+                src={Graphic5} 
+                alt=""
+                style={{ maxWidth: "100%" }}
+              />
             </Col>
           </Row>
           <Row className="justify-content-center">

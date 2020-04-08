@@ -69,6 +69,7 @@ const HomeCarousel = (props) => {
       activeIndex={activeIndex}
       next={next}
       previous={previous}
+      className="carousel"
     >
       <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={goToIndex} />
       {slides}

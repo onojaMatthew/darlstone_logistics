@@ -10,6 +10,7 @@ import {
   NavLink,
   NavbarText
 } from 'reactstrap';
+import Logo from "../../assets/logo-dark.png"
 
 const Header = (props) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,20 +25,17 @@ const Header = (props) => {
     <div>
       <Navbar className="light" expand="md">
         <Container>
-        <NavbarBrand style={styles.link} href="/">reactstrap</NavbarBrand>
+        <NavbarBrand style={styles.link} href="/">
+          <img src={Logo} alt="Logo" height="50" />
+        </NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
-            <NavItem>
-              <NavLink style={styles.link} href="/">Logo</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink style={styles.link} href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
-            </NavItem>
+            
           </Nav>
           <NavbarText>
-            <NavLink>
-              Simple Text
+            <NavLink style={styles.link} href="/quote">
+              Request Quote
             </NavLink>
           </NavbarText>
         </Collapse>
