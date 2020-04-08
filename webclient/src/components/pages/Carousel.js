@@ -57,7 +57,8 @@ const HomeCarousel = (props) => {
       >
         <img src={item.src} alt={item.altText} style={{
           width: "100%",
-          height: 250
+          maxHeight: 200,
+          minHeight: 200
         }} />
       </CarouselItem>
     );

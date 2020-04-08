@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Col, Row, Container } from "reactstrap"
 import HomeCarousel from "./Carousel";
-import Graphic4 from "../../assets/graphic4.jpg"
+import Graphic5 from "../../assets/graphic5.jpg"
 
 const Home = () => {
   return(
@@ -22,7 +22,7 @@ const Home = () => {
           <Row>
             <Col xs="12" xl="4">
             <img 
-                src={Graphic4} 
+                src={Graphic5} 
                 alt=""
                 style={{ maxWidth: "100%" }}
               />
@@ -35,18 +35,29 @@ const Home = () => {
             >
               <HomeCarousel />
             </Col>
-            <Col xs="12" xl="4">
-              <img 
-                src={Graphic4} 
-                alt=""
-                style={{ maxWidth: "100%" }}
-              />
+            <Col xs="12" xl="4" style={{ 
+                  color: "#333",
+                  fontSize: 16,
+                  padding: 20,
+                  paddingTop: 30,
+                  textAlign: "center"
+                }}>
+              <h4>How We Work</h4>
+              <p style={{ 
+                  color: "#333",
+                  fontSize: 16,
+                  textAlign: "justify",
+                  lineHeight: 2
+                }}
+              >
+                At Darlstone Logistics, we are committed to providing smart and effective Logistics Solutions for every business. With timed deliveries that offer complete flexibility.
+              </p>
             </Col>
           </Row>
           <Row className="justify-content-center">
             <Col xs="4" xl="3">
               <Button style={{
-                marginTop: 150,
+                marginTop: 40,
                 background: "rgb(9, 7, 36)",
                 padding: 10,
                 fontSize: 19,
