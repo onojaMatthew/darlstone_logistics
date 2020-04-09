@@ -13,7 +13,7 @@ code {
     monospace;
 }
 
-section {
+.wave-container {
   position: relative;
   margin: 0;
   padding: 0;
@@ -41,7 +41,7 @@ section p {
 }
 
 @media only screen and (max-width: 480px) {
-  section {
+  .wave-container {
     position: relative;
     margin: 0;
     padding: 0;
@@ -84,15 +84,24 @@ section p {
       transform: scale(1.2,1.2);
   }
   100% {
-      transform: scale(1,1);
+      transform: scale(2,2);
   }
 }
 
-.home-text h1, p {
-  animation: zoominoutsinglefeatured 15s forwards;
+.home-text h1, .animate-p {
+  animation: zoominoutsinglefeatured 10s infinite;
 }
 
+.home-sideimg {
+  padding-top: 100px;
+}
 
+.how-we-work {
+  color: "#fff";
+  font-size: 16;
+  padding-top: 100px;
+  text-align: center
+}
 #curve {
   position: absolute;
   bottom: 0;
@@ -103,9 +112,9 @@ section p {
   fill: #fff;
 }
 
-section.sec2 {
+div.sec2 {
   background: black url("./assets/homebackground.jpg") no-repeat;
-  max-height: 200px;
+  max-height: 600px;
   background-size: cover;
   background-attachment: fixed;
   opacity: 0.9;
@@ -120,7 +129,6 @@ section.sec2 {
   left: 0;
   right: 0;
   z-index: 9999;
-  /* width: 100%; */
 }
 
 .home {
@@ -136,8 +144,9 @@ section.sec2 {
 .overlay {
   background: #000;
   opacity: 0.6;
-  background-size: cover;
+  background-size: contain;
   height: 600px;
+
 }
 
 .footer {
