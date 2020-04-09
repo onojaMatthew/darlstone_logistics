@@ -5,9 +5,9 @@ import {
   CarouselControl,
   CarouselIndicators,
 } from 'reactstrap';
-import Logistic1 from "../../assets/logistic1.jpeg";
+import Logistic1 from "../../assets/logistics4.jpeg";
 import Logistic2 from "../../assets/logistic2.jpg";
-import Logistic3 from "../../assets/logistic3.jpg";
+import Logistic3 from "../../assets/logistic3.jpeg";
 
 const items = [
   {
@@ -57,8 +57,8 @@ const HomeCarousel = (props) => {
       >
         <img src={item.src} alt={item.altText} style={{
           width: "100%",
-          maxHeight: 200,
-          minHeight: 200
+          maxHeight: 220,
+          minHeight: 220
         }} />
       </CarouselItem>
     );

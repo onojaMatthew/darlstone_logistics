@@ -64,6 +64,15 @@ section p {
     overflow-x: hidden;
     overflow-y: auto;
   }
+  .quote-container .btn-secondary {
+    margin-top: 20px !important;
+    margin-bottom: 40px !important;
+    background-color: "rgb(9, 7, 36)" !important;
+    font-size: 8px !important;
+    color: "#fff";
+    width: "100%";
+    border-radius: 25px;
+  }
 }
 
 .home-text h1 {
@@ -97,11 +106,23 @@ section p {
 }
 
 .how-we-work {
-  color: "#fff";
+  color: "#000";
   font-size: 16;
   padding-top: 100px;
   text-align: center
 }
+
+.quote-btn {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  background-color: "rgb(9, 7, 36)";
+  padding: 10px;
+  font-size: 10px;
+  color: "#fff";
+  width: "100%";
+  border-radius: 25px;
+}
+
 #curve {
   position: absolute;
   bottom: 0;
@@ -112,13 +133,13 @@ section p {
   fill: #fff;
 }
 
-div.sec2 {
-  background: black url("./assets/homebackground.jpg") no-repeat;
+/* section.sec2 {
+  background: rgb(179, 70, 70) url("./assets/homebackground.jpg") no-repeat;
   max-height: 600px;
   background-size: cover;
   background-attachment: fixed;
   opacity: 0.9;
-}
+} */
 
 .light {
   background: rgb(9, 7, 36) !important;
