@@ -23,6 +23,17 @@ const styles = {
     color: "#fff",
     width: "100%",
     borderRadius: 25
+  },
+  img: {
+    marginTop: -170,
+    maxWidth: "100%"
+  },
+  hww: {
+    color: "#000",
+    fontSize: 20,
+    textAlign: "justify",
+    lineHeight: 2,
+    marginTop: -50
   }
 }
 const Home = () => {
@@ -71,7 +82,13 @@ const Home = () => {
             <img 
                 src={Graphic5} 
                 alt=""
-                style={{ maxWidth: "100%" }}
+                style={navigator.userAgent.match(/Android/i) ? styles.img : 
+                  navigator.userAgent.match(/webOS/i) ? styles.img : 
+                  navigator.userAgent.match(/iPhone/i) ? styles.img : 
+                  navigator.userAgent.match(/iPad/i) ? styles.img : 
+                  navigator.userAgent.match(/BlackBerry/i) ? styles.img :
+                  navigator.userAgent.match(/Windows Phone/i) ? styles.img :
+                  { maxWidth: "100%" }}
               />
             </Col>
           </Row>
