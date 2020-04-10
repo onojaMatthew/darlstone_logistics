@@ -5,6 +5,8 @@ import CompanyInfo from "./Forms/CompanyInfo";
 import PickupInformation from "./Forms/PickupInformation";
 import PackageInfo from "./Forms/PackageInfo";
 import PaymentOption from "./Forms/PaymentOption";
+import RequestSummary from "./Forms/RequestSummary";
+import MyModal from "./Modal";
 
 const { Step } = Steps;
 
@@ -25,7 +27,7 @@ const Quote = () => {
   const [ destinationCity, setDestinationCity ] = useState("");
   const [ packageInfo, setPackageInfo ] = useState("");
   const [ numOfPieces, setNumOfPieces ] = useState("");
-  const [ wieght, setWeight ] = useState("");
+  const [ weight, setWeight ] = useState("");
   const [ dimension, setDimension ] = useState("");
   const [ specialInstruction, setSpecialInstruction ] = useState("");
   
@@ -36,6 +38,28 @@ const Quote = () => {
   const decreaseCount = () => {
     setCount(count - 1);
   }
+
+  const ConfirmForm = 
+  <RequestSummary
+    companyName={companyName}
+    contactFName={contactFName}
+    contactLName={contactLName}
+    email={email}
+    phone={phone}
+    pickupAddress={pickupAddress}
+    pickupCity={pickupCity}
+    pickupState={pickupState}
+    pickupZip={pickupZip}
+    destinationAddress={destinationAddress}
+    destinationCity={destinationCity}
+    destinationState={destinationState}
+    destinationZip={destinationZip}
+    packageInfo={packageInfo}
+    weight={weight}
+    dimension={dimension}
+    specialInstruction={specialInstruction}
+    numOfPieces={numOfPieces}
+  />;
 
   return (
     <div>
@@ -98,7 +122,7 @@ const Quote = () => {
             count === 2 ? 
             <PackageInfo
               packageInfo={packageInfo}
-              wieght={wieght}
+              weight={weight}
               dimension={dimension}
               specialInstruction={specialInstruction}
               numOfPieces={numOfPieces}
@@ -108,6 +132,9 @@ const Quote = () => {
               setDimension={setDimension}
               setSpecialInstruction={setSpecialInstruction}
             /> : 
+            count === 3 ?
+              <MyModal ConfirmForm={ConfirmForm} /> :
+              
             <PaymentOption />
           }
         </Col>

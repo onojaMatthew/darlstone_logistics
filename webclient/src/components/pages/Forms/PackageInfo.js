@@ -2,54 +2,63 @@ import React from "react";
 import { Input } from "antd";
 
 const PackageInfo = ({
-  
+  packageInfo,
+  weight,
+  dimension,
+  specialInstruction,
+  numOfPieces,
+  setPackageInfo,
+  setWeight,
+  setNumOfPieces,
+  setDimension,
+  setSpecialInstruction,
 }) => {
   return(
     <div>
       <div className="mb-3">
-        <label htmlFor="company">Company Name</label>
+        <label htmlFor="packInf">Package Information</label>
         <Input 
           placeholder="Company name"
-          value={companyName}
-          id="company"
-          onChange={(e) => setCompanyName(e.value)}
+          value={packageInfo}
+          id="packInf"
+          onChange={(e) => setPackageInfo(e.value)}
         />
       </div>
       <div className="mb-3">
-        <label htmlFor="firstName">Contact first name</label>
+        <label htmlFor="num">Number of Pieces</label>
         <Input 
-          placeholder="Contact first name"
-          value={contactFName}
-          id="firstName"
-          onChange={(e) => setContactFName(e.value)}
+          placeholder="Number of pieces"
+          value={numOfPieces}
+          id="num"
+          onChange={(e) => setNumOfPieces(e.value)}
         />
       </div>
       <div className="mb-3">
-        <label htmlFor="lastName">Contact last name</label>
+        <label htmlFor="weight">Weight</label>
         <Input 
-          placeholder="Contact last name"
-          value={contactLName}
-          id="lastName"
-          onChange={(e) => setContactLName(e.value)}
+          placeholder="Weight"
+          value={weight}
+          id="weight"
+          onChange={(e) => setWeight(e.value)}
         />
       </div>
       <div className="mb-3">
-        <label htmlFor="email">Email</label>
+        <label htmlFor="dimension">Dimension</label>
         <Input
-          id="email"
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setCompanyName(e.value)}
+          id="dimension"
+          type="text"
+          placeholder="Dimension"
+          value={dimension}
+          onChange={(e) => setDimension(e.value)}
         />
       </div>
       <div className="mb-3">
-        <label htmlFor="phone">Phone Number</label>
+        <label htmlFor="instruction">Special Instruction</label>
         <Input 
-          placeholder="Phone"
-          value={email}
-          id="phone"
-          onChange={(e) => setCompanyName(e.value)}
+          placeholder="Special instruction"
+          value={specialInstruction}
+          id="instruction"
+          onChange={(e) => setSpecialInstruction(e.value)}
         />
       </div>
     </div>

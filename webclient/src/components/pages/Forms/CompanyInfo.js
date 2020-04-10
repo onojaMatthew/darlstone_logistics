@@ -50,16 +50,16 @@ const CompanyInfo = ({
           type="email"
           placeholder="Email"
           value={email}
-          onChange={(e) => setCompanyName(e.value)}
+          onChange={(e) => setEmail(e.value)}
         />
       </div>
       <div className="mb-3">
         <label htmlFor="phone">Phone Number</label>
         <Input 
           placeholder="Phone"
-          value={email}
+          value={phone}
           id="phone"
-          onChange={(e) => setCompanyName(e.value)}
+          onChange={(e) => setPhone(e.value)}
         />
       </div>
       
