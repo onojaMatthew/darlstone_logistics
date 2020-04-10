@@ -7,3 +7,5 @@ const PaymentOption = () => {
     </div>
   );
 }
+
+export default PaymentOption;

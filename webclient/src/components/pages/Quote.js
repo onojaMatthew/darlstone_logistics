@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Col, Row } from "reactstrap";
-import { Steps } from "antd";
+import { Steps, Button } from "antd";
+import CompanyInfo from "./Forms/CompanyInfo";
+import PickupInformation from "./Forms/PickupInformation";
+import PackageInfo from "./Forms/PackageInfo";
+import PaymentOption from "./Forms/PaymentOption";
 
 const { Step } = Steps;
 
 const Quote = () => {
-  const [ current, setCurrent ] = useState(1);
+  const [ count, setCount ] = useState(0);
   const [ companyName, setCompanyName ] = useState("");
   const [ contactFName, setContactFName ] = useState("");
   const [ contactLName, setContactLName ] = useState("");
@@ -23,7 +27,16 @@ const Quote = () => {
   const [ numOfPieces, setNumOfPieces ] = useState("");
   const [ wieght, setWeight ] = useState("");
   const [ dimension, setDimension ] = useState("");
-  const [ specialInfo, setSpecialInfo ] = useState("");
+  const [ specialInstruction, setSpecialInstruction ] = useState("");
+  
+  const increaseCount = () => {
+    setCount(count + 1);
+  }
+
+  const decreaseCount = () => {
+    setCount(count - 1);
+  }
+
   return (
     <div>
       <section className="wave-container">
@@ -38,16 +51,90 @@ const Quote = () => {
         </svg>
       </section>
       <Row className="justify-content-center">
-        <Col xs="11" xl="9">
-          <Steps current={current}>
-            <Step title={current === 0 ? "In Progess" : "Finished"} description="Company Information" />
-            <Step title={current < 1 ? "Waiting" : current === 1 ? "In Progress" : "Finished"}  description="Pick-up and Delivery Information." />
-            <Step title={current < 2 ? "Waiting" : current === 2 ? "In Progress" : "Finished"} description="Package Information" />
-            <Step title={current < 3 ? "Waiting" : current === 3 ? "In Progress" : "Finished"} description="Payment Options" />
+        <Col xs="10" xl="9">
+          <Steps current={count} size="small">
+            <Step title={count === 0 ? "In Progess" : "Finished"} description="Company Information" />
+            <Step title={count < 1 ? "Waiting" : count === 1 ? "In Progress" : "Finished"}  description="Pick-up and Delivery Information." />
+            <Step title={count < 2 ? "Waiting" : count === 2 ? "In Progress" : "Finished"} description="Package Information" />
+            <Step title={count < 3 ? "Waiting" : count === 3 ? "In Progress" : "Finished"} description="Payment Options" />
           </Steps>
         </Col>
       </Row>
-      <Row className="justify-content-center"></Row>
+      <Row className="justify-content-center mt-4">
+        <Col xs="9" xl="5">
+          {count === 0 ? 
+            <CompanyInfo
+              companyName={companyName} 
+              setCompanyName={setCompanyName}
+              contactFName={contactFName}
+              setContactFName={setContactFName}
+              contactLName={contactLName}
+              setContactLName={setContactLName}
+              email={email}
+              setEmail={setEmail}
+              phone={phone}
+              setPhone={setPhone}
+            /> : 
+            count === 1 ? 
+            <PickupInformation 
+              pickupAddress={pickupAddress}
+              pickupCity={pickupCity}
+              pickupState={pickupState}
+              pickupZip={pickupZip}
+              destinationAddress={destinationAddress}
+              destinationCity={destinationCity}
+              destinationState={destinationState}
+              destinationZip={destinationZip}
+              setPickupAddress={setPickupAddress}
+              setPickupCity={setPickupCity}
+              setPickupState={setPickupState}
+              setPickupCity={setPickupCity}
+              setPickupZip={setPickupZip}
+              setDestination={setDestination}
+              setDestinationCity={setDestinationCity}
+              setDestinationState={setDestinationState}
+              setDestinationZip={setDestinationZip}
+            /> : 
+            count === 2 ? 
+            <PackageInfo
+              packageInfo={packageInfo}
+              wieght={wieght}
+              dimension={dimension}
+              specialInstruction={specialInstruction}
+              numOfPieces={numOfPieces}
+              setPackageInfo={setPackageInfo}
+              setWeight={setWeight}
+              setNumOfPieces={setNumOfPieces}
+              setDimension={setDimension}
+              setSpecialInstruction={setSpecialInstruction}
+            /> : 
+            <PaymentOption />
+          }
+        </Col>
+      </Row>
+      <Row className="justify-content-center mb-5 mt-5">
+        <Col xs="9" xl="6">
+          <Row>
+            <Col xs="6" xl="6">
+              <Button 
+                type="primary"
+                disabled={count === 0}
+                onClick={() => decreaseCount()}
+              >Previous</Button>
+            </Col>
+            <Col xs="6" xl="6">
+              <Button 
+                type="primary"
+                disabled={count === 3}
+                onClick={() => increaseCount()}
+                style={{
+                  float: "right"
+                }}
+              >Next</Button>
+            </Col>
+          </Row>
+        </Col>
+      </Row>
     </div>
   )
 }
