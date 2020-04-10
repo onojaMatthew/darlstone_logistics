@@ -1,5 +1,6 @@
 import React from "react";
 import { Input } from "antd";
+import { Row, Col } from "reactstrap";
 
 const CompanyInfo = ({
   companyName,
@@ -15,44 +16,57 @@ const CompanyInfo = ({
 }) => {
   return(
     <div>
+      <Row>
+        <Col xs="12" xl="6">
+          <div className="mb-3">
+            <label htmlFor="company">Company Name</label>
+            <Input 
+              placeholder="Company name"
+              value={companyName}
+              id="company"
+              onChange={(e) => setCompanyName(e.value)}
+            />
+          </div>
+        </Col>
+        <Col xs="12" xl="6">
+          <div className="mb-3">
+            <label htmlFor="firstName">Contact first name</label>
+            <Input 
+              placeholder="Contact first name"
+              value={contactFName}
+              id="firstName"
+              onChange={(e) => setContactFName(e.value)}
+            />
+          </div>
+        </Col>
+      </Row>
       
-      <div className="mb-3">
-        <label htmlFor="company">Company Name</label>
-        <Input 
-          placeholder="Company name"
-          value={companyName}
-          id="company"
-          onChange={(e) => setCompanyName(e.value)}
-        />
-      </div>
-      <div className="mb-3">
-        <label htmlFor="firstName">Contact first name</label>
-        <Input 
-          placeholder="Contact first name"
-          value={contactFName}
-          id="firstName"
-          onChange={(e) => setContactFName(e.value)}
-        />
-      </div>
-      <div className="mb-3">
-        <label htmlFor="lastName">Contact last name</label>
-        <Input 
-          placeholder="Contact last name"
-          value={contactLName}
-          id="lastName"
-          onChange={(e) => setContactLName(e.value)}
-        />
-      </div>
-      <div className="mb-3">
-        <label htmlFor="email">Email</label>
-        <Input
-          id="email"
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.value)}
-        />
-      </div>
+      
+      <Row>
+        <Col xs="12" xl="6">
+          <div className="mb-3">
+            <label htmlFor="lastName">Contact last name</label>
+            <Input 
+              placeholder="Contact last name"
+              value={contactLName}
+              id="lastName"
+              onChange={(e) => setContactLName(e.value)}
+            />
+          </div>
+        </Col>
+        <Col xs="12" xl="6">
+          <div className="mb-3">
+            <label htmlFor="email">Email</label>
+            <Input
+              id="email"
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.value)}
+            />
+          </div>
+        </Col>
+      </Row>
       <div className="mb-3">
         <label htmlFor="phone">Phone Number</label>
         <Input 

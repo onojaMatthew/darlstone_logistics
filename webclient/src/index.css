@@ -1,8 +1,10 @@
 @import '~antd/dist/antd.css';
 
-body {
+html, body {
   margin: 0;
   padding: 0;
+  max-width: 100%;
+  overflow-x: hidden;
   font-family: system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -60,14 +62,11 @@ section p {
   .carousel {
     display: none;
   }
-  .home {
+  .home, .quote {
     overflow-x: hidden;
     overflow-y: auto;
   }
-  .quote {
-    overflow-x: hidden;
-    overflow-y: hidden;
-  }
+ 
   .how-we-work h4 {
     color: "#000";
     font-size: 16;
@@ -142,10 +141,7 @@ section p {
   z-index: 9999;
 }
 
-.home {
-  overflow-x: hidden;
-  overflow-y: hidden;
-}
+
 
 .home-text h1, p {
   transform: scale(1);

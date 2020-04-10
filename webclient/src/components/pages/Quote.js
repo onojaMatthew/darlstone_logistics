@@ -39,30 +39,10 @@ const Quote = () => {
     setCount(count - 1);
   }
 
-  const ConfirmForm = 
-  <RequestSummary
-    companyName={companyName}
-    contactFName={contactFName}
-    contactLName={contactLName}
-    email={email}
-    phone={phone}
-    pickupAddress={pickupAddress}
-    pickupCity={pickupCity}
-    pickupState={pickupState}
-    pickupZip={pickupZip}
-    destinationAddress={destinationAddress}
-    destinationCity={destinationCity}
-    destinationState={destinationState}
-    destinationZip={destinationZip}
-    packageInfo={packageInfo}
-    weight={weight}
-    dimension={dimension}
-    specialInstruction={specialInstruction}
-    numOfPieces={numOfPieces}
-  />;
+  
 
   return (
-    <div>
+    <div className="quote">
       <section className="wave-container">
         <Row className="justify-content-center">
           <Col xs="8" xl="6" className="home-text">
@@ -85,7 +65,7 @@ const Quote = () => {
         </Col>
       </Row>
       <Row className="justify-content-center mt-4">
-        <Col xs="9" xl="5">
+        <Col xs="9" xl="8">
           {count === 0 ? 
             <CompanyInfo
               companyName={companyName} 
@@ -133,8 +113,27 @@ const Quote = () => {
               setSpecialInstruction={setSpecialInstruction}
             /> : 
             count === 3 ?
-              <MyModal ConfirmForm={ConfirmForm} /> :
-              
+            <RequestSummary
+            companyName={companyName}
+            contactFName={contactFName}
+            contactLName={contactLName}
+            email={email}
+            phone={phone}
+            pickupAddress={pickupAddress}
+            pickupCity={pickupCity}
+            pickupState={pickupState}
+            pickupZip={pickupZip}
+            destinationAddress={destinationAddress}
+            destinationCity={destinationCity}
+            destinationState={destinationState}
+            destinationZip={destinationZip}
+            packageInfo={packageInfo}
+            weight={weight}
+            dimension={dimension}
+            specialInstruction={specialInstruction}
+            numOfPieces={numOfPieces}
+          /> :
+
             <PaymentOption />
           }
         </Col>
