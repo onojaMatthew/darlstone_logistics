@@ -36,7 +36,7 @@ const styles = {
     marginTop: -50
   }
 }
-const Home = () => {
+const Home = (props) => {
   return(
     <div className="home">
       <section className="wave-container">
@@ -102,6 +102,7 @@ const Home = () => {
                 navigator.userAgent.match(/BlackBerry/i) ? styles.mobile :
                 navigator.userAgent.match(/Windows Phone/i) ? styles.mobile :
                 styles.desktop}
+                onClick={() => props.history.push("/request")}
               >
                 Request Quote
               </Button>

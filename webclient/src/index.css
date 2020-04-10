@@ -64,6 +64,10 @@ section p {
     overflow-x: hidden;
     overflow-y: auto;
   }
+  .quote {
+    overflow-x: hidden;
+    overflow-y: hidden;
+  }
   .how-we-work h4 {
     color: "#000";
     font-size: 16;
