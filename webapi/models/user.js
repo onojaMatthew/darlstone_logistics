@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 
 const { Schema } = mongoose;
 
-const communitySchema = new Schema({
+const userSchema = new Schema({
   
   address: { type: String },
   fullname: { type: String, required: true },
@@ -14,11 +14,11 @@ const communitySchema = new Schema({
   createdAt: { type: Date, default: Date.now }
 });
 
-communitySchema.methods.generateToken = function() {
+userSchema.methods.generateToken = function() {
   const token = jwt.sign({ _id: this._id, email: this.email, password: this.password }, process.env.SECRETKEY);
   return token;
 }
 
-const Community = mongoose.model("Community", communitySchema);
+const User = mongoose.model("User", userSchema);
 
-exports.Community = Community;
+exports.User = User;

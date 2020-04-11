@@ -4,14 +4,14 @@ import { Row, Col } from "reactstrap";
 
 const CompanyInfo = ({
   companyName,
-  setCompanyName,
-  contactFName,
-  setContactFName,
   contactLName,
-  setContactLName,
+  contactFName,
   email,
-  setEmail,
   phone,
+  setCompanyName,
+  setContactFName,
+  setContactLName,
+  setEmail,
   setPhone
 }) => {
   return(
