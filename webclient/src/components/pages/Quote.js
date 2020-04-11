@@ -6,6 +6,7 @@ import PickupInformation from "./Forms/PickupInformation";
 import PackageInfo from "./Forms/PackageInfo";
 import PaymentOption from "./Forms/PaymentOption";
 import RequestSummary from "./Forms/RequestSummary";
+import Ravepay from "./Ravepay";
 
 const { Step } = Steps;
 
@@ -29,6 +30,8 @@ const Quote = () => {
   const [ weight, setWeight ] = useState("");
   const [ dimension, setDimension ] = useState("");
   const [ specialInstruction, setSpecialInstruction ] = useState("");
+  const [ cardOption, setCardOption ] = useState(false);
+  const [ deliveryOption, setDeliveryOption ] = useState(false);
   
   const increaseCount = () => {
     setCount(count + 1);
@@ -38,8 +41,17 @@ const Quote = () => {
     setCount(count - 1);
   }
 
+  const onCardOption = (value) => {
+    setCardOption(value);
+    setDeliveryOption(false);
+  }
+
+  const onDeliveryOption = (value) => {
+    setCardOption(false);
+    setDeliveryOption(value);
+  }
   
-  console.log(companyName, contactFName, contactLName, email, phone,)
+  console.log(cardOption, " card option", deliveryOption, "Delivery option")
   return (
     <div className="quote">
       <section className="wave-container">
@@ -133,7 +145,10 @@ const Quote = () => {
             numOfPieces={numOfPieces}
           /> :
 
-            <PaymentOption />
+            <PaymentOption 
+              onCardOption={onCardOption}
+              onDeliveryOption={onDeliveryOption}
+            />
           }
         </Col>
       </Row>
@@ -160,6 +175,9 @@ const Quote = () => {
           </Row>
         </Col>
       </Row>
+      {cardOption === true ? 
+        <Ravepay /> : deliveryOption === true ? 
+        <Button type="primary">Submit</Button> : null}
     </div>
   )
 }
