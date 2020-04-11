@@ -70,22 +70,6 @@ exports.getUser = (req, res) => {
     });
 }
 
-exports.updateInfo = (req, res) => {
-  const { communityId } = req.params;
-  if (!communityId) return res.status(400).json({ error: "Invalid parameter values" });
-  Community.findByIdAndUpdate({ _id: communityId })
-    .then(community => {
-      if (!community) return res.status(400).json({ error: "User not found" });
-      if (req.body.phone) community.phone = req.body.phone;
-      if (req.body.address) community.address = req.body.address;
-      community.save();
-      res.json(community);
-    })
-    .catch(err => {
-      res.status(400).json({ error: err.message });
-    });
-}
-
 exports.getAllUsers = (req, res) => {
   User.find({})
     .then(users => {
@@ -97,7 +81,7 @@ exports.getAllUsers = (req, res) => {
     });
 }
 
-exports.deleteCommunity = (req, res) => {
+exports.deleteUser = (req, res) => {
   const { userId } = req.params;
 
   if (!userId) return res.status(400).json({ error: "Invalid parameter values" });

@@ -67,7 +67,6 @@ const io = require("socket.io")(server, {
     res.end();
   }
 });
-// io.set("Access-Control-Allow-Origin", "*")
 io.on("connection", socket => {
   socket.on("join", async ({ topicId, username, userId }, callback) => {
     const socketId = socket.id;
