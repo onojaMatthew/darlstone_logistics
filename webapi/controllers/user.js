@@ -1,5 +1,4 @@
 const bcrypt = require("bcrypt");
-const fs = require("fs")
 const { User } = require("../models/user");
 const Resize = require("../middlware/Resize");
 
@@ -21,7 +20,6 @@ exports.createCommunityAccount = (req, res) => {
             password: hashedPassword,
             fullname: req.body.fullname,
             phone: req.body.phone,
-            address: req.body.address,
           });
 
           newAccount.save();

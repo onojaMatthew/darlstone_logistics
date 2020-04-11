@@ -20,7 +20,7 @@ const quoteValidationRules = () => {
   ]
 }
 
-const useValidation = () => {
+const userValidationRules = () => {
   return [
     body("fullname").isLength({ min: 5 }),
     body("email").isEmail(),
