@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 // Import the Library
-import Rave, { VerifyTransaction } from 'react-flutterwave-rave'
+import Rave from 'react-flutterwave-rave'
  
 class Ravepay extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      key: "FLWPUBK-XXXXXXXXXXXXXXXXXXXXXXXXXXXX-X", // RavePay PUBLIC KEY
-      phone: "000000000000",
+      key: "FLWPUBK_TEST-118880f82de7711adda92a77ef895e1f-X", // RavePay PUBLIC KEY
+      phone: "0000000000000",
       amount: 2000,
       firstname: "Oluwole",
       lastname: "Adebiyi",
@@ -20,16 +20,10 @@ class Ravepay extends Component {
     this.close = this.close.bind(this);
   }
  
- 
   callback = (response) => {
- 
-    return VerifyTransaction({ live: false, txref: response.tx.txRef, SECKEY: "FLWSECK-XXXXXXXXXXXXXXXXXXXXXXXXXXXX-X" })
-    .then(function (resp) {
-      console.log(resp);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+    
+    console.log(response);
+    
     
   }
  
