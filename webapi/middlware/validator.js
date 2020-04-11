@@ -29,6 +29,12 @@ const userValidationRules = () => {
   ]
 }
 
+const loginValidationRules = () => {
+  return [
+    body("email").isEmail(),
+    body("password").isString().isLength({ min: 5 })
+  ]
+}
 const validate = (req, res, next) => {
   const errors = validationResult(req)
   if (errors.isEmpty()) {
@@ -45,5 +51,6 @@ const validate = (req, res, next) => {
 module.exports = {
   userValidationRules,
   quoteValidationRules,
+  loginValidationRules,
   validate,
 }

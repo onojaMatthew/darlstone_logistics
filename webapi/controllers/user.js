@@ -2,7 +2,7 @@ const bcrypt = require("bcrypt");
 const { User } = require("../models/user");
 const Resize = require("../middlware/Resize");
 
-exports.createCommunityAccount = (req, res) => {
+exports.createAccount = (req, res) => {
   const { email, password, fullname, phone } = req.body;
   if (!email) return res.status(400).json({ error: "Email field is required" });
   if (!password) return res.status(400).json({ error: "Password field is required" });
@@ -147,3 +147,6 @@ exports.uploadPhoto = ( req, res ) => {
     } );
 }
 
+exports.logout = (req, res) => {
+  res.clearCookie("token")
+}
