@@ -20,8 +20,5 @@ exports.create = (req, res, next) => {
     contactFName,
   } = req.body;
 
-  if (!pickupAddress) return res.status(400).json({ error: "Pickup address is required" });
-  if (!pickupState) return res.status(400).json({ error: "Pickup state is required" });
-  if (!pickupCity) return res.status(400).json({ error: "Pickup city is required" });
-  if (!pickupZip) return res.status(400).json({ error: "Pickup zip is required" });
+  
 }
