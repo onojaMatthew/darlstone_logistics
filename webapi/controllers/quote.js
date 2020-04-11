@@ -24,6 +24,24 @@ exports.create = (req, res, next) => {
   // that sends realtime message to the client and pass to it the returned values from the 
   // database. Emit the message from the server while the client listen to the emit call
   // from the server.
+  let shipmentTrackingNumber;
+  const randomNum = Math.floor(10000000 + Math.random() * 90000000);
+  if (pickupState === "Lagos") {
+    shipmentTrackingNumber = 1 + randomNum + pickupState.slice(0,3).toUpperCase();
+  } else if (pickupState === "Port Harcourt") {
+    shipmentTrackingNumber = 2 + randomNum + pickupState.slice(0,3).toUpperCase();
+  } else if (pickupState === "Abuja") {
+    shipmentTrackingNumber = 3 + randomNum + pickupState.slice(0,3).toUpperCase();
+  } else if (pickupState === "Enugu") {
+    shipmentTrackingNumber = 4 + randomNum + pickupState.slice(0,3).toUpperCase();
+  } else if (pickupState === "Delta") {
+    shipmentTrackingNumber = 5 + randomNum + pickupState.slice(0,3).toUpperCase();
+  } else if (pickupState === "Kano") {
+    shipmentTrackingNumber = 6 + randomNum + pickupState.slice(0,3).toUpperCase();
+  } else if (pickupState === "Jos") {
+    shipmentTrackingNumber = 7 + randomNum + pickupState.slice(0,3).toUpperCase();
+  }
+  
   let newQuote = new Quote({
     pickupAddress,
     pickupCity,
@@ -40,7 +58,8 @@ exports.create = (req, res, next) => {
     numOfPieces,
     companyName,
     contactLName,
-    contactFName
+    contactFName,
+    trackingNumber: shipmentTrackingNumber
   });
 
   return newQuote.save()

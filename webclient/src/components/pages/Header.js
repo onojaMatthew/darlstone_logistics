@@ -18,7 +18,9 @@ const Header = (props) => {
   const styles = {
     link: {
       color: "#fff"
-    }
+    },
+
+
   }
   return (
     <div>
@@ -33,7 +35,11 @@ const Header = (props) => {
             
           </Nav>
           <NavbarText>
-            <NavLink style={styles.link} href="/quote">
+            <NavLink style={{
+              color: "#fff",
+              border: "1px solid #fff",
+              padding: 5
+            }} href="/request">
               Request Quote
             </NavLink>
           </NavbarText>

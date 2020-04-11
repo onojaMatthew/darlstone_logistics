@@ -51,7 +51,6 @@ const Quote = () => {
     setDeliveryOption(value);
   }
   
-  console.log(cardOption, " card option", deliveryOption, "Delivery option")
   return (
     <div className="quote">
       <section className="wave-container">

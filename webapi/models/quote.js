@@ -20,6 +20,8 @@ const quoteSchema = new Schema({
   dimension: { type: String, required: true },
   specialInstruction: { type: String, required: true },
   numOfPieces: { type: String, required: true },
+  trackingNumber: { type: String, required: true },
+  delivered: { type: Boolean, default: false }
 });
 
 const Quote = mongoose.model("Quote", quoteSchema);
