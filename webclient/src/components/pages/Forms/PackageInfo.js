@@ -1,8 +1,8 @@
 import React from "react";
 import { Input } from "antd";
-import { Row, Col } from "react";
+import { Row, Col } from "reactstrap";
 
-const { TextArea } = Input;
+// const { TextArea } = Input;
 const PackageInfo = ({
   packageInfo,
   weight,
@@ -18,73 +18,69 @@ const PackageInfo = ({
   return(
     <div>
       <Row>
-        <Col xs="12" xl="6">
+        <Col xs="12" xl="4">
           <div className="mb-3">
             <label htmlFor="packInf">Package Information</label>
-            <Input
-              type="text"
-              placeholder="Company name"
+            <Input 
+              placeholder="Package Information"
               value={packageInfo}
               id="packInf"
-              onChange={(e) => setPackageInfo(e.value)}
+              onChange={(e) => setPackageInfo(e.target.value)}
             />
           </div>
         </Col>
-        <Col xs="12" xl="6">
+        <Col xs="12" xl="4">
           <div className="mb-3">
-            <label htmlFor="num">Number of Pieces</label>
+            <label htmlFor="num">Numer of Pieces</label>
             <Input 
-              type="number"
-              placeholder="Number of pieces"
+              placeholder="Numer of Pieces"
               value={numOfPieces}
               id="num"
-              onChange={(e) => setNumOfPieces(e.value)}
+              onChange={(e) => setNumOfPieces(e.target.value)}
             />
           </div>
         </Col>
-      </Row>
-      <Row>
-        <Col xs="12" xl="6">
+        <Col xs="12" xl="4">
           <div className="mb-3">
             <label htmlFor="weight">Weight</label>
             <Input 
-              type="text"
-              placeholder="Weight"
+              placeholder="Contact last name"
               value={weight}
               id="weight"
-              onChange={(e) => setWeight(e.value)}
+              onChange={(e) => setWeight(e.target.value)}
+            />
+          </div>
+        </Col>
+      </Row>
+      
+      
+      <Row>
+       
+        <Col xs="12" xl="6">
+          <div className="mb-3">
+            <label htmlFor="dim">Dimension</label>
+            <Input
+              id="dim"
+              type="text"
+              placeholder="Dimension"
+              value={dimension}
+              onChange={(e) => setDimension(e.target.value)}
             />
           </div>
         </Col>
         <Col xs="12" xl="6">
-          <div className="mb-3">
-            <label htmlFor="dimension">Dimension</label>
-            <Input
-              id="dimension"
-              type="text"
-              placeholder="Dimension"
-              value={dimension}
-              onChange={(e) => setDimension(e.value)}
-            />
-          </div>
+        <div className="mb-3">
+        <label htmlFor="special">Special Instruction</label>
+        <Input 
+          placeholder="Special Instruction"
+          value={specialInstruction}
+          id="special"
+          onChange={(e) => setSpecialInstruction(e.target.value)}
+        />
+      </div>
         </Col>
       </Row>
-      
-      <Row>
-        <Col xs="12" xl="12">
-          <div className="mb-3">
-            <label htmlFor="instruction">Special Instruction</label>
-            <TextArea 
-              placeholder="Special instruction"
-              value={specialInstruction}
-              id="instruction"
-              row="4"
-              onChange={(e) => setSpecialInstruction(e.value)}
-            />
-          </div>
-        </Col>
-      </Row>
-      
+     
     </div>
   )
 }

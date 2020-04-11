@@ -6,7 +6,6 @@ import PickupInformation from "./Forms/PickupInformation";
 import PackageInfo from "./Forms/PackageInfo";
 import PaymentOption from "./Forms/PaymentOption";
 import RequestSummary from "./Forms/RequestSummary";
-import MyModal from "./Modal";
 
 const { Step } = Steps;
 
@@ -40,7 +39,7 @@ const Quote = () => {
   }
 
   
-
+  console.log(companyName, contactFName, contactLName, email, phone,)
   return (
     <div className="quote">
       <section className="wave-container">
@@ -51,7 +50,7 @@ const Quote = () => {
           </Col>
         </Row>
         <svg id="curve" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-          <path fill="#0099ff" fill-opacity="1" d="M0,192L80,176C160,160,320,128,480,149.3C640,171,800,245,960,256C1120,267,1280,213,1360,186.7L1440,160L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path>
+          <path fill="#0099ff" fillOpacity="1" d="M0,192L80,176C160,160,320,128,480,149.3C640,171,800,245,960,256C1120,267,1280,213,1360,186.7L1440,160L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path>
         </svg>
       </section>
       <Row className="justify-content-center">
@@ -60,7 +59,8 @@ const Quote = () => {
             <Step title={count === 0 ? "In Progess" : "Finished"} description="Company Information" />
             <Step title={count < 1 ? "Waiting" : count === 1 ? "In Progress" : "Finished"}  description="Pick-up and Delivery Information." />
             <Step title={count < 2 ? "Waiting" : count === 2 ? "In Progress" : "Finished"} description="Package Information" />
-            <Step title={count < 3 ? "Waiting" : count === 3 ? "In Progress" : "Finished"} description="Payment Options" />
+            <Step title={count < 3 ? "Waiting" : count === 3 ? "In Progress" : "Finished"} description="Quote Summary" />
+            <Step title={count < 4 ? "Waiting" : count === 4 ? "In Progress" : "Finished"} description="Payment Options" />
           </Steps>
         </Col>
       </Row>
@@ -92,7 +92,6 @@ const Quote = () => {
               setPickupAddress={setPickupAddress}
               setPickupCity={setPickupCity}
               setPickupState={setPickupState}
-              setPickupCity={setPickupCity}
               setPickupZip={setPickupZip}
               setDestination={setDestination}
               setDestinationCity={setDestinationCity}
@@ -151,7 +150,7 @@ const Quote = () => {
             <Col xs="6" xl="6">
               <Button 
                 type="primary"
-                disabled={count === 3}
+                disabled={count === 4}
                 onClick={() => increaseCount()}
                 style={{
                   float: "right"

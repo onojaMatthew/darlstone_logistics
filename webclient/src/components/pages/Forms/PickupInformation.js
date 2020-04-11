@@ -30,7 +30,7 @@ const PickupInformation = ({
               placeholder="Pick-up address"
               value={pickupAddress}
               id="pickadd"
-              onChange={(e) => setPickupAddress(e.value)}
+              onChange={(e) => setPickupAddress(e.target.value)}
             />
           </div>
         </Col>
@@ -41,7 +41,7 @@ const PickupInformation = ({
               placeholder="Pick-up City"
               value={pickupCity}
               id="pickcity"
-              onChange={(e) => setPickupCity(e.value)}
+              onChange={(e) => setPickupCity(e.target.value)}
             />
           </div>
         </Col>
@@ -52,13 +52,11 @@ const PickupInformation = ({
               placeholder="Pick-up State"
               value={pickupState}
               id="pickstate"
-              onChange={(e) => setPickupState(e.value)}
+              onChange={(e) => setPickupState(e.target.value)}
             />
           </div>
         </Col>
       </Row>
-      
-     
       
       <Row>
         <Col xs="12" xl="4">
@@ -69,7 +67,7 @@ const PickupInformation = ({
               type="email"
               placeholder="Pick-up zip"
               value={pickupZip}
-              onChange={(e) => setPickupZip(e.value)}
+              onChange={(e) => setPickupZip(e.target.value)}
             />
           </div>
         </Col>
@@ -80,7 +78,7 @@ const PickupInformation = ({
               placeholder="Destination address"
               value={destinationAddress}
               id="desa"
-              onChange={(e) => setDestination(e.value)}
+              onChange={(e) => setDestination(e.target.value)}
             />
           </div>
         </Col>
@@ -91,7 +89,7 @@ const PickupInformation = ({
               placeholder="Destination address"
               value={destinationCity}
               id="desc"
-              onChange={(e) => setDestinationCity(e.value)}
+              onChange={(e) => setDestinationCity(e.target.value)}
             />
           </div>
         </Col>
@@ -107,7 +105,7 @@ const PickupInformation = ({
               placeholder="Destination address"
               value={destinationState}
               id="desst"
-              onChange={(e) => setDestinationState(e.value)}
+              onChange={(e) => setDestinationState(e.target.value)}
             />
           </div>
         </Col>
@@ -118,7 +116,7 @@ const PickupInformation = ({
               placeholder="Destination zip"
               value={destinationZip}
               id="dessz"
-              onChange={(e) => setDestinationZip(e.value)}
+              onChange={(e) => setDestinationZip(e.target.value)}
             />
           </div>
         </Col>

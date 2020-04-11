@@ -24,7 +24,7 @@ const CompanyInfo = ({
               placeholder="Company name"
               value={companyName}
               id="company"
-              onChange={(e) => setCompanyName(e.value)}
+              onChange={(e) => setCompanyName(e.target.value)}
             />
           </div>
         </Col>
@@ -35,7 +35,7 @@ const CompanyInfo = ({
               placeholder="Contact first name"
               value={contactFName}
               id="firstName"
-              onChange={(e) => setContactFName(e.value)}
+              onChange={(e) => setContactFName(e.target.value)}
             />
           </div>
         </Col>
@@ -50,7 +50,7 @@ const CompanyInfo = ({
               placeholder="Contact last name"
               value={contactLName}
               id="lastName"
-              onChange={(e) => setContactLName(e.value)}
+              onChange={(e) => setContactLName(e.target.value)}
             />
           </div>
         </Col>
@@ -62,7 +62,7 @@ const CompanyInfo = ({
               type="email"
               placeholder="Email"
               value={email}
-              onChange={(e) => setEmail(e.value)}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
         </Col>
@@ -73,7 +73,7 @@ const CompanyInfo = ({
           placeholder="Phone"
           value={phone}
           id="phone"
-          onChange={(e) => setPhone(e.value)}
+          onChange={(e) => setPhone(e.target.value)}
         />
       </div>
       
