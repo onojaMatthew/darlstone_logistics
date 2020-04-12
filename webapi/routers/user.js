@@ -16,9 +16,9 @@ const { upload } = require("../middlware/fileupload");
 const router = express.Router();
 
 router.post("/user", createAccount);
-router.get("/all_users", requireLogin, getAllUsers);
+router.get("/users", requireLogin, getAllUsers);
 router.post("/login", accountLogin);
-router.get("/single_user/:userId", requireLogin, getUser);
+router.get("/user/:userId", requireLogin, getUser);
 router.get("/logout", logout);
 router.delete("/user/:userId", requireLogin, deleteUser);
 router.put("/profile/photo", requireLogin, upload.single("image"), uploadPhoto);

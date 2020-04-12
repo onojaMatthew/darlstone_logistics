@@ -1,4 +1,5 @@
 import Auth from "../../helper/Auth"
+import { localAuth } from "../../helper/authentcate";
 
 export const REGISTRATION_START = "REGISTRATION_START";
 export const REGISTRATION_SUCCESS = "REGISTRATION_SUCCESS";
@@ -9,63 +10,20 @@ export const LOGIN_FAILED = "LOGIN_FAILED";
 export const LOGOUT_START = "LOGOUT_START";
 export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
 export const LOGOUT_FAILED = "LOGOUT_FAILED";
+export const GET_USER_START = "GET-USER_START";
+export const GET_USER_SUCCESS = "GET_USER_SUCCESS";
+export const GET_USER_FAILED = "GET_USER_FAILED";
+export const GET_USERS_START = "GET_USERS_START";
+export const GET_USERS_SUCCESS = "GET_USERS_SUCCESS";
+export const GET_USERS_FAILED = "GET_USERS_FAILED";
+export const UPLOAD_PHOTO_START = "UPLOAD_PHOTO-START";
+export const UPLOAD_PHOTO_SUCCESS = "UPLOAD_PHOTO_SUCCESS";
+export const UPLOAD_PHOTO_FAILED = 'UPLOAD_PHOTO_FAILED';
+export const DELETE_USER_START = "DELETE_USER_SART";
+export const DELETE_USER_SUCCESS = "DELETE_USER_SUCCESS";
+export const DELETE_USER_FAILED = "DELETE_USER_FAILED";
 
 const BASE_URL = process.env.REACT_APP_API_URL;
-
-/**
- * Action types for agent login
- */
-
-export const loginStart = () => {
-   return {
-     type: LOGIN_START
-   }
-}
-
-export const loginSuccess = ( data ) => {
-  return {
-    type: LOGIN_SUCCESS,
-    data
-  }
-}
-
-export const loginFailed = ( error ) => {
-  return {
-    type: LOGIN_FAILED,
-    error
-  }
-}
-
-/**
- * Action creator for agents login
- */
-
-export const onLogin = ( data ) =>{
-  return dispatch => {
-    dispatch( loginStart() );
-    fetch( `${ BASE_URL }/login`, {
-      method: "POST",
-      headers: {
-        ACCEPT: "application/json",
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify( data )
-    } )
-      .then( response => response.json() )
-      .then( resp => {
-        if ( resp.error ) {
-          dispatch( loginFailed( resp.error ) );
-          return;
-        }
-        dispatch( loginSuccess( resp ) );
-        Auth.authenticateUser( JSON.stringify( resp ) );
-      } )
-      .catch( err => {
-        dispatch( loginFailed( "Something went wrong. Please try again" ) );
-      } );
-  }  
-}
-
  
 /**
  * Handles account logout
@@ -150,15 +108,234 @@ export const register = ( data ) => {
     } )
       .then( response => response.json() )
       .then( resp => {
-        if ( resp.error ) {
-          dispatch( registrationFailed( resp.error ) );
-          return;
-        }
-        Auth.authenticateUser( JSON.stringify( resp ) );
+        if ( resp.error ) return dispatch( registrationFailed(resp.error));
+          
+        // Auth.authenticateUser( JSON.stringify( resp ) );
         dispatch( registrationSuccess( resp ) );
       } )
       .catch( err => {
         dispatch( registrationFailed( `Request failed. ${err.message}`));
       } );
+  }
+}
+
+/**
+ * Action types for agent login
+ */
+
+export const loginStart = () => {
+  return {
+    type: LOGIN_START
+  }
+}
+
+export const loginSuccess = ( data ) => {
+ return {
+   type: LOGIN_SUCCESS,
+   data
+ }
+}
+
+export const loginFailed = ( error ) => {
+ return {
+   type: LOGIN_FAILED,
+   error
+ }
+}
+
+/**
+* Action creator for agents login
+*/
+
+export const onLogin = ( data ) =>{
+ return dispatch => {
+   dispatch( loginStart() );
+   fetch( `${ BASE_URL }/login`, {
+     method: "POST",
+     headers: {
+       ACCEPT: "application/json",
+       "Content-Type": "application/json"
+     },
+     body: JSON.stringify( data )
+   } )
+     .then( response => response.json())
+     .then( resp => {
+       if ( resp.error ) {
+         dispatch( loginFailed( resp.error ));
+         return;
+       }
+       dispatch( loginSuccess( resp ));
+       Auth.authenticateUser( JSON.stringify( resp ));
+     })
+     .catch( err => {
+       dispatch( loginFailed(`Failed to logout. ${err.message}`) );
+     });
+ }  
+}
+
+export const getUserStart = () => {
+  return {
+    type: GET_USER_START
+  }
+}
+
+export const getUserSuccess = (data) => {
+  return {
+    type: GET_USER_SUCCESS,
+    data
+  }
+}
+
+export const getUserFailed = (error) => {
+  return {
+    type: GET_USER_FAILED,
+    error
+  }
+}
+
+export const getUser = (userId) => {
+  return dispatch => {
+    dispatch(getUserStart());
+    fetch(`${BASE_URL}/user/:${userId}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        ACCEPT: "application/json",
+        "x-auth-token": localAuth().token
+      }
+    })
+      .then(response => response.json())
+      .then(resp => {
+        if (resp.error) return dispatch(getUserFailed(resp.error));
+        dispatch(getUserSuccess(resp));
+      })
+      .catch(err => {
+        dispatch(getUserFailed(`Request failed. ${err.message}`));
+      });
+  }
+}
+
+export const getUsersStart = () => {
+  return {
+    type: GET_USERS_START
+  }
+}
+
+export const getUsersSuccess = (data) => {
+  return {
+    type: GET_USERS_SUCCESS,
+    data
+  }
+}
+
+export const getUsersFailed = (error) => {
+  return {
+    type: GET_USERS_FAILED,
+    error
+  }
+}
+
+export const getUsers = () => {
+  return dispatch => {
+    dispatch(getUsersStart());
+    fetch(`${BASE_URL}/users`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        ACCEPT: "application/json",
+        "x-auth-token": localAuth().token
+      }
+    })
+      .then(response => response.json())
+      .then(resp => {
+        if (resp.error) return dispatch(getUsersFailed(resp.error));
+        dispatch(getUsersSuccess(resp));
+      })
+      .catch(err => {
+        dispatch(getUsersFailed(`Request failed. ${err.message}`));
+      });
+  }
+}
+
+export const deleteUserStart = () => {
+  return {
+    type: DELETE_USER_START
+  }
+}
+
+export const deleteUserSuccess = (data) => {
+  return {
+    type: DELETE_USER_SUCCESS,
+    data
+  }
+}
+
+export const deleteUserFailed = (error) => {
+  return {
+    type: DELETE_USER_FAILED,
+    error
+  }
+}
+
+export const deleteUser = (userId) => {
+  return dispatch => {
+    dispatch(deleteUserStart());
+    fetch(`${BASE_URL}/user/:${userId}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        ACCEIPT: "application/json",
+        "x-auth-token": localAuth().token
+      }
+    })
+      .then(response => response.json())
+      .then(resp => {
+        if (resp.error) return dispatch(deleteUserFailed(resp.error));
+        dispatch(deleteUserSuccess(resp));
+      })
+      .catch(err => {
+        dispatch(deleteUserFailed(`Failed to delete. ${err.message}`));
+      });
+  }
+}
+
+export const uploadPhotStart = () => {
+  return {
+    type: UPLOAD_PHOTO_START
+  }
+}
+
+export const uploadPhotSuccess = (data) => {
+  return {
+    type: UPLOAD_PHOTO_SUCCESS,
+    data
+  }
+}
+
+export const uploadPhotFailed = (error) => {
+  return {
+    type: UPLOAD_PHOTO_FAILED,
+    error
+  }
+}
+
+export const uploadPhotStart = (userId) => {
+  return dispatch => {
+    dispatch(uploadPhotStart());
+    fetch(`${BASE_URL}/profile/photo/:${userId}`, {
+      method: "PUT",
+      headers: {
+        "x-auth-token": localAuth().token
+      },
+      body: data
+    })
+      .then(response => response.json())
+      .then(resp => {
+        if (resp.error) return dispatch(uploadPhotFailed(resp.error));
+        dispatch(uploadPhotSuccess(resp))
+      })
+      .catch(err => {
+        dispatch(uploadPhotFailed(`Failed to upload. ${err.message}`));
+      });
   }
 }

@@ -21,7 +21,7 @@ class App extends Component{
     loading: true
   }
 
-  componentDidMount = async () => {
+  componentWillMount = async () => {
     this.loaderTimeOut().then(() => {
       this.setState({
         loading: false
