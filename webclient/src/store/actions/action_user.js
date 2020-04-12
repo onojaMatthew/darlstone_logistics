@@ -299,29 +299,29 @@ export const deleteUser = (userId) => {
   }
 }
 
-export const uploadPhotStart = () => {
+export const uploadPhotoStart = () => {
   return {
     type: UPLOAD_PHOTO_START
   }
 }
 
-export const uploadPhotSuccess = (data) => {
+export const uploadPhotoSuccess = (data) => {
   return {
     type: UPLOAD_PHOTO_SUCCESS,
     data
   }
 }
 
-export const uploadPhotFailed = (error) => {
+export const uploadPhotoFailed = (error) => {
   return {
     type: UPLOAD_PHOTO_FAILED,
     error
   }
 }
 
-export const uploadPhotStart = (userId) => {
+export const uploadPhoto = (data, userId) => {
   return dispatch => {
-    dispatch(uploadPhotStart());
+    dispatch(uploadPhotoStart());
     fetch(`${BASE_URL}/profile/photo/:${userId}`, {
       method: "PUT",
       headers: {
@@ -331,11 +331,11 @@ export const uploadPhotStart = (userId) => {
     })
       .then(response => response.json())
       .then(resp => {
-        if (resp.error) return dispatch(uploadPhotFailed(resp.error));
-        dispatch(uploadPhotSuccess(resp))
+        if (resp.error) return dispatch(uploadPhotoFailed(resp.error));
+        dispatch(uploadPhotoSuccess(resp))
       })
       .catch(err => {
-        dispatch(uploadPhotFailed(`Failed to upload. ${err.message}`));
+        dispatch(uploadPhotoFailed(`Failed to upload. ${err.message}`));
       });
   }
 }

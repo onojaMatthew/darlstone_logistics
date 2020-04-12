@@ -30,7 +30,7 @@ const initialState = {
   error: ""
 }
 
-export const shipmentReducer = (state=initialState, action) => {
+export const shipment = (state=initialState, action) => {
   switch(action.type) {
     case CREATE_QUOTE_START:
       return {

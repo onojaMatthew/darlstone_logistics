@@ -41,7 +41,7 @@ const initialState = {
 }
 
 
-export const userReducer = (state=initialState, action) => {
+export const users = (state=initialState, action) => {
   switch(action.type) {
     case REGISTRATION_START:
       return {

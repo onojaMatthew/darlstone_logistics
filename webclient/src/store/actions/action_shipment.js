@@ -166,7 +166,7 @@ export const shipmentDeliveredFailed = (error) => {
 
 export const shipmentDelivered = (shipmentId) => {
   return dispatch => {
-    dispath(shipmentDeliveredStart());
+    dispatch(shipmentDeliveredStart());
     fetch(`${BASE_URL}/quote/${shipmentId}`, {
       method: "PUT",
       headers: {
@@ -208,7 +208,7 @@ export const shipmentDeletedFailed = (error) => {
 
 export const shipmentDelete = (shipmentId) => {
   return dispatch => {
-    dispath(shipmentDeletedStart());
+    dispatch(shipmentDeletedStart());
     fetch(`${BASE_URL}/quote/${shipmentId}`, {
       method: "DELETE",
       headers: {
