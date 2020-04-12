@@ -46,7 +46,8 @@ export const requestShipment = (data) => {
       headers: {
         "Content-Type": "application/json",
         ACCEPT: "application/json"
-      }
+      },
+      body: JSON.stringify(data)
     })
       .then(Response => Response.json())
       .then(resp => {
