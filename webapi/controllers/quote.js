@@ -6,6 +6,8 @@ exports.create = (req, res, next) => {
     pickupCity,
     pickupState,
     pickupZip,
+    email,
+    phone,
     destinationAddress,
     destinationCity,
     destinationState,
@@ -27,19 +29,19 @@ exports.create = (req, res, next) => {
   let shipmentTrackingNumber;
   const randomNum = Math.floor(10000000 + Math.random() * 90000000);
   if (pickupState === "Lagos") {
-    shipmentTrackingNumber = 1 + randomNum + pickupState.slice(0,3).toUpperCase();
+    shipmentTrackingNumber = "1" + randomNum + pickupState.slice(0,3).toUpperCase();
   } else if (pickupState === "Port Harcourt") {
-    shipmentTrackingNumber = 2 + randomNum + pickupState.slice(0,3).toUpperCase();
+    shipmentTrackingNumber = "2" + randomNum + pickupState.slice(0,3).toUpperCase();
   } else if (pickupState === "Abuja") {
-    shipmentTrackingNumber = 3 + randomNum + pickupState.slice(0,3).toUpperCase();
+    shipmentTrackingNumber = "3" + randomNum + pickupState.slice(0,3).toUpperCase();
   } else if (pickupState === "Enugu") {
-    shipmentTrackingNumber = 4 + randomNum + pickupState.slice(0,3).toUpperCase();
+    shipmentTrackingNumber = "4" + randomNum + pickupState.slice(0,3).toUpperCase();
   } else if (pickupState === "Delta") {
-    shipmentTrackingNumber = 5 + randomNum + pickupState.slice(0,3).toUpperCase();
+    shipmentTrackingNumber = "5" + randomNum + pickupState.slice(0,3).toUpperCase();
   } else if (pickupState === "Kano") {
-    shipmentTrackingNumber = 6 + randomNum + pickupState.slice(0,3).toUpperCase();
+    shipmentTrackingNumber = "6" + randomNum + pickupState.slice(0,3).toUpperCase();
   } else if (pickupState === "Jos") {
-    shipmentTrackingNumber = 7 + randomNum + pickupState.slice(0,3).toUpperCase();
+    shipmentTrackingNumber = "7" + randomNum + pickupState.slice(0,3).toUpperCase();
   }
   
   let newQuote = new Quote({
@@ -47,6 +49,8 @@ exports.create = (req, res, next) => {
     pickupCity,
     pickupState,
     pickupZip,
+    email,
+    phone,
     destinationAddress,
     destinationCity,
     destinationState,
@@ -115,7 +119,7 @@ exports.updateQuote = (req, res) => {
   Quote.findByIdAndUpdate({ _id: quoteId}, { $set: { delivered: true }}, { new: true })
     .then(quote => {
       if (!quote) return res.status(400).json({ error: "Request failed. Try again" });
-      res.json({ message: "Request completed" });
+      res.json({ quote, message: "Request completed" });
     })
     .catch(err => {
       res.status(400).json({ error: err.message });

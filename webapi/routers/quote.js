@@ -11,7 +11,7 @@ const { quoteValidationRules, validate} = require("../middlware/validator");
 
 const router = express.Router();
 
-router.post("/post", quoteValidationRules, validate, create);
+router.post("/post", create);
 router.get("/all", requireLogin, getAllQuotes);
 router.get("/single/:quoteId", requireLogin, getQuote);
 router.put("/quote/:quoteId", requireLogin, updateQuote);

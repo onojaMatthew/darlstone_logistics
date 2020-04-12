@@ -1,6 +1,6 @@
 const express = require("express");
 const requireLogin = require("../config/auth");
-const { loginValidationRules, validate, userValidationRules } = require("../middlware/validator");
+const { userValidationRules } = require("../middlware/validator");
 const {
   createAccount,
   accountLogin,
@@ -15,10 +15,10 @@ const { upload } = require("../middlware/fileupload");
 
 const router = express.Router();
 
-router.post("/user", userValidationRules, validate, createAccount);
+router.post("/user", createAccount);
 router.get("/all_users", requireLogin, getAllUsers);
-router.post("/login", loginValidationRules, accountLogin);
-router.get("/single_user", requireLogin, getUser);
+router.post("/login", accountLogin);
+router.get("/single_user/:userId", requireLogin, getUser);
 router.get("/logout", logout);
 router.delete("/user/:userId", requireLogin, deleteUser);
 router.put("/profile/photo", requireLogin, upload.single("image"), uploadPhoto);

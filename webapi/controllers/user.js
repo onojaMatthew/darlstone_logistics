@@ -58,7 +58,6 @@ exports.accountLogin = (req, res) => {
 
 exports.getUser = (req, res) => {
   const { userId } = req.params;
-  if (!communityId) return res.status(400).json({ error: "Invalid parameter values" });
 
   User.findById({ _id: userId})
     .then(user => {
@@ -85,7 +84,7 @@ exports.deleteUser = (req, res) => {
   const { userId } = req.params;
 
   if (!userId) return res.status(400).json({ error: "Invalid parameter values" });
-  Community.findByIdAndDelete({ _id: userId})
+  User.findByIdAndDelete({ _id: userId})
     .then(resp => {
       if (!resp) return res.status(400).json({ error: "Failed to delete" });
       res.json({ message: "Successfully deleted" });
@@ -98,7 +97,7 @@ exports.deleteUser = (req, res) => {
 exports.photo = ( req, res, next ) => {
   const { communityId } = req.params;
 
-  Community.findById( { _id: communityId } )
+  User.findById( { _id: communityId } )
     .then( account => {
       if ( !account ) return res.status( 400 ).json( { error: "User not found" } );
       

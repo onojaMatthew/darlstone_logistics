@@ -5,6 +5,7 @@ const cookieParser = require("cookie-parser");
 const winston = require("winston");
 const db = require("./config/db");
 const path = require("path");
+const validator = require("express-validator");
 // const fs = require("fs");
 
 require("dotenv").config();
@@ -30,6 +31,7 @@ app.use(express.static(path.resolve(__dirname, "/client/build")));
 app.use(morgan("tiny"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ limit : "50mb" , extended : true , parameterLimit : 500000 }))
+app.use(validator());
 app.use(cookieParser());
 
 //==================================================
