@@ -7,21 +7,22 @@ const styles={
     margin: 0
   },
   sidebar: {
-    minWidth: "98vh",
+    minHeight: "98vh",
     border: "1px solid #333"
   },
   content: {
-    
+    minWidth: "100%",
+    minHeight: "98vh"
   }
 }
 export default class Dashboard extends Component{
   render() {
     return (
-      <Row>
-        <Col xs="4" xl="3">
+      <Row style={styles.container}>
+        <Col xs="4" xl="3" style={styles.sidebar}>
 
         </Col>
-        <Col xs="8" xl="9">
+        <Col xs="8" xl="9" style={styles.content}>
 
         </Col>
       </Row>
