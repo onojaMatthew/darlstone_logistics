@@ -1,31 +1,38 @@
-import React from "react";
-import { Row, Col } from "reactstrap";
+import React, { Component } from "react";
+import { Layout, Menu, Breadcrumb } from 'antd';
+import SideBar from "./Sidebar";
 
-const styles={
-  container: {
-    padding: 0,
-    margin: 0
-  },
-  sidebar: {
-    minHeight: "98vh",
-    border: "1px solid #333"
-  },
-  content: {
-    minWidth: "100%",
-    minHeight: "98vh"
-  }
-}
+const { Header, Content, Footer, Sider } = Layout;
+
 export default class Dashboard extends Component{
+  state = {
+    collapsed: false,
+  };
+
+  onCollapse = collapsed => {
+    this.setState({ collapsed });
+  };
+
   render() {
+    const { collapsed } = this.state;
+    
     return (
-      <Row style={styles.container}>
-        <Col xs="4" xl="3" style={styles.sidebar}>
-
-        </Col>
-        <Col xs="8" xl="9" style={styles.content}>
-
-        </Col>
-      </Row>
+      <Layout style={{ minHeight: '100vh' }}>
+        <SideBar onCollapse={this.onCollapse} collapsed={collapsed} />
+        <Layout className="site-layout">
+          <Header className="site-layout-background" style={{ padding: 0 }} />
+          <Content style={{ margin: '0 16px' }}>
+            <Breadcrumb style={{ margin: '16px 0' }}>
+              <Breadcrumb.Item>User</Breadcrumb.Item>
+              <Breadcrumb.Item>Bill</Breadcrumb.Item>
+            </Breadcrumb>
+            <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
+              Bill is a cat.
+            </div>
+          </Content>
+          <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
+        </Layout>
+      </Layout>
     )
   }
 }

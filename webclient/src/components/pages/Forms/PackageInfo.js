@@ -1,6 +1,7 @@
 import React from "react";
-import { Input } from "antd";
+import { Input, Select } from "antd";
 import { Row, Col } from "reactstrap";
+
 
 // const { TextArea } = Input;
 const PackageInfo = ({

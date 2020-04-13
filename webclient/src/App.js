@@ -4,6 +4,7 @@ import Home from './components/pages/Home';
 import Header from './components/pages/Header';
 import Footer from './components/pages/Footer';
 import Quote from './components/pages/Quote';
+import Dashboard from './components/Dashboard/Dashboard';
 
 const styles = {
   ntf: {
@@ -13,7 +14,7 @@ const styles = {
     fontWeight: "bold"
   },
   container: {
-    minHeight: 400
+    // minHeight: 400
   }
 }
 class App extends Component{
@@ -40,18 +41,17 @@ class App extends Component{
     if(loading) { // if your component doesn't have to wait for an async action, remove this block 
       return "Hey loading is happing now"; // render null when app is not ready
     }
- 
+
     return (
       <BrowserRouter>
-        <Header />
-        <div style={styles.container}>
+        {window.location.pathname.slice(0,12).includes("/dashboard") ? null : <Header />}
         <Switch>
           <Route exact path="/" render={(props) => <Home {...props} />} />
           <Route path="/request" render={(props) => <Quote {...props} />} />
+          <Route path="/dashboard" render={(props) => <Dashboard {...props} />} />
           <Route path="/*" render={() => <div style={styles.ntf}>404 Page Not Found!!</div>} />
         </Switch>
-        </div>
-        <Footer />
+        {window.location.pathname.slice(0,12).includes("/dashboard") ? null : <Footer />}
       </BrowserRouter>
     );
   }

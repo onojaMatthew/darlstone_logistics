@@ -62,10 +62,10 @@ section p {
   .carousel {
     display: none;
   }
-  .home, .quote {
+  /* .home, .quote {
     overflow-x: hidden;
     overflow-y: auto;
-  }
+  } */
  
   .how-we-work h4 {
     color: "#000";
@@ -135,9 +135,8 @@ section p {
   color: #fff !important;
   padding: 15px !important;
   position: fixed;
+  width: 100%;
   top: 0;
-  left: 0;
-  right: 0;
   z-index: 9999;
 }
 

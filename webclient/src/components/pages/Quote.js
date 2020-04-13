@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Col, Row } from "reactstrap";
-import { Steps, Button } from "antd";
+import { Steps, Button, Select } from "antd";
+import {  } from ""
 import CompanyInfo from "./Forms/CompanyInfo";
 import PickupInformation from "./Forms/PickupInformation";
 import PackageInfo from "./Forms/PackageInfo";
@@ -9,8 +10,9 @@ import RequestSummary from "./Forms/RequestSummary";
 import Ravepay from "./Ravepay";
 
 const { Step } = Steps;
-
+const { Option } = "Select";
 const Quote = () => {
+  const [ units, setUnits ] = useState([ "kg", "tons" ]);
   const [ count, setCount ] = useState(0);
   const [ companyName, setCompanyName ] = useState("");
   const [ contactFName, setContactFName ] = useState("");
@@ -50,6 +52,14 @@ const Quote = () => {
     setCardOption(false);
     setDeliveryOption(value);
   }
+
+  const selectAfter = (
+    <Select defaultValue=".com" className="select-after">
+     {units.map(unit => (
+       <Option value={unit}>{unit}</Option>
+     ))}
+    </Select>
+  );
   
   return (
     <div className="quote">
