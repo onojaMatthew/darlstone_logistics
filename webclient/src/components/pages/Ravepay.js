@@ -6,7 +6,7 @@ class Ravepay extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      key: "FLWPUBK_TEST-118880f82de7711adda92a77ef895e1f-X", // RavePay PUBLIC KEY
+      
       phone: "0000000000000",
       amount: 2000,
       firstname: "Oluwole",
@@ -33,21 +33,18 @@ class Ravepay extends Component {
   }
  
   render() {
+    const { phone, email, amount } = this.props;
+    const pubkey = process.env.REACT_APP_FLWPUBKEY;
     return (
-      <div className="App">
+      <div className="App" >
         <Rave
-          pay_button_text="Pay With Rave"
-          class="button"
-          metadata={[
-            { metaname: 'Tickets', metavalue: this.state.ticket_number },
-            { metaname: 'Hostel', metavalue: this.state.hostel },
-            { metaname: 'Room', metavalue: this.state.room_number }
-          ]}
+          pay_button_text="Pay With Card"
+          className="button"
           payment_method="card"
-          customer_email={this.state.email}
-          customer_phone={this.state.phone}
-          amount={"" + this.state.amount * this.state.ticket_number + ""}
-          ravePubKey={this.state.key}
+          customer_email={email}
+          customer_phone={phone}
+          amount={amount}
+          ravePubKey={pubkey}
           callback={this.callback}
           onclose={this.close}
         />

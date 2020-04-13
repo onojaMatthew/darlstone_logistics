@@ -164,3 +164,12 @@ section p {
 .branches p {
   line-height: 1;
 }
+
+.App > button{
+  width: 100% !important;
+  background: #1890ff !important;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+}

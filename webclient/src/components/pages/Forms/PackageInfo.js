@@ -1,9 +1,10 @@
 import React from "react";
-import { Input, Select } from "antd";
+import { Input } from "antd";
 import { Row, Col } from "reactstrap";
 
 
 // const { TextArea } = Input;
+
 const PackageInfo = ({
   packageInfo,
   weight,
@@ -15,6 +16,7 @@ const PackageInfo = ({
   setNumOfPieces,
   setDimension,
   setSpecialInstruction,
+  // selectAfter,
 }) => {
   return(
     <div>
@@ -49,6 +51,7 @@ const PackageInfo = ({
               value={weight}
               id="weight"
               onChange={(e) => setWeight(e.target.value)}
+              // addonAfter={selectAfter}
             />
           </div>
         </Col>

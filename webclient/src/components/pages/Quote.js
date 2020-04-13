@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { Col, Row } from "reactstrap";
-import { Steps, Button, Select } from "antd";
-import {  } from ""
+import { Steps, Button } from "antd";
 import CompanyInfo from "./Forms/CompanyInfo";
 import PickupInformation from "./Forms/PickupInformation";
 import PackageInfo from "./Forms/PackageInfo";
 import PaymentOption from "./Forms/PaymentOption";
 import RequestSummary from "./Forms/RequestSummary";
+import { shipmentTotal } from "../../helper/calculator"
 import Ravepay from "./Ravepay";
 
 const { Step } = Steps;
-const { Option } = "Select";
+// const { Option } = "Select";
 const Quote = () => {
-  const [ units, setUnits ] = useState([ "kg", "tons" ]);
+  const [ amount, setAmount ] = useState("");
   const [ count, setCount ] = useState(0);
   const [ companyName, setCompanyName ] = useState("");
   const [ contactFName, setContactFName ] = useState("");
@@ -34,13 +34,16 @@ const Quote = () => {
   const [ specialInstruction, setSpecialInstruction ] = useState("");
   const [ cardOption, setCardOption ] = useState(false);
   const [ deliveryOption, setDeliveryOption ] = useState(false);
-  
+  const units = [ "kg", "tons" ];
+
   const increaseCount = () => {
     setCount(count + 1);
   }
 
   const decreaseCount = () => {
     setCount(count - 1);
+    setCardOption(false);
+    setDeliveryOption(false);
   }
 
   const onCardOption = (value) => {
@@ -53,13 +56,16 @@ const Quote = () => {
     setDeliveryOption(value);
   }
 
-  const selectAfter = (
-    <Select defaultValue=".com" className="select-after">
-     {units.map(unit => (
-       <Option value={unit}>{unit}</Option>
-     ))}
-    </Select>
-  );
+  useEffect(() => {
+    setAmount(shipmentTotal(numOfPieces, weight));
+  }, [])
+  // const selectAfter = (
+  //   <Select onChange={(e) => setUnit(e.target.value)} defaultValue="Select unit" className="select-after">
+  //     {units.map((unit, i) => (
+  //       <Option key={i} value={unit}>{unit}</Option>
+  //     ))}
+  //   </Select>
+  // );
   
   return (
     <div className="quote">
@@ -74,6 +80,7 @@ const Quote = () => {
           <path fill="#0099ff" fillOpacity="1" d="M0,192L80,176C160,160,320,128,480,149.3C640,171,800,245,960,256C1120,267,1280,213,1360,186.7L1440,160L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path>
         </svg>
       </section>
+      {/* {} */}
       <Row className="justify-content-center">
         <Col xs="10" xl="9">
           <Steps current={count} size="small">
@@ -123,6 +130,7 @@ const Quote = () => {
             <PackageInfo
               packageInfo={packageInfo}
               weight={weight}
+              // selectAfter={selectAfter}
               dimension={dimension}
               specialInstruction={specialInstruction}
               numOfPieces={numOfPieces}
@@ -152,8 +160,24 @@ const Quote = () => {
             dimension={dimension}
             specialInstruction={specialInstruction}
             numOfPieces={numOfPieces}
-          /> :
-
+          /> : cardOption === true ? (
+            <Row className="justify-content-center">
+              <Col xs="3" xl="3">
+                <Ravepay 
+                  amount={amount} 
+                  email={email} 
+                  name={companyName}
+                  phone={phone}
+                /> 
+              </Col>
+            </Row>
+          ) : deliveryOption === true ? (
+            <Row className="justify-content-center">
+              <Col xs="3" xl="3">
+              <Button type="primary">Submit</Button>
+              </Col>
+            </Row>
+          ) : 
             <PaymentOption 
               onCardOption={onCardOption}
               onDeliveryOption={onDeliveryOption}
@@ -184,9 +208,7 @@ const Quote = () => {
           </Row>
         </Col>
       </Row>
-      {cardOption === true ? 
-        <Ravepay /> : deliveryOption === true ? 
-        <Button type="primary">Submit</Button> : null}
+      
     </div>
   )
 }
