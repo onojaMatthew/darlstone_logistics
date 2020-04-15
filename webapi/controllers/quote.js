@@ -20,6 +20,7 @@ exports.create = (req, res, next) => {
     companyName,
     contactLName,
     contactFName,
+    amount,
   } = req.body;
 
   // call the create api from the front-end then after saving to database, call the method
@@ -51,6 +52,7 @@ exports.create = (req, res, next) => {
     pickupZip,
     email,
     phone,
+    amount,
     destinationAddress,
     destinationCity,
     destinationState,

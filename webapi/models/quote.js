@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const quoteSchema = new Schema({
+  amount: { type: Number, required: true },
   companyName: { type: String, required: true },
   contactLName: { type: String, required: true },
   contactFName: { type: String, required: true },

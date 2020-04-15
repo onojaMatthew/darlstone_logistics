@@ -40,7 +40,7 @@ const Quote = () => {
   const [ cardOption, setCardOption ] = useState(false);
   const [ deliveryOption, setDeliveryOption ] = useState(false);
   const [ modal, setModal ] = useState(false);
-  let errors = {};
+  const [ errors, setErrors] = useState({});
   const title = "Form validation error";
   const validationMsg = "Your form validation failed. Use the previous button below to go back and fill the form correctly";
 
@@ -78,8 +78,9 @@ const Quote = () => {
 
   const formValidation = () => {
     let formValid = true;
+    let errors = {};
 
-    if (!companyName) {
+    if (companyName === "") {
       formValid = false;
       errors["companyName"] = "Company name is required";
     } else if (typeof companyName === "number") {
@@ -88,7 +89,7 @@ const Quote = () => {
     } else if (!contactFName || typeof contactFName === "number") {
       formValid = false;
       errors["contactFName"] = "Contact first name is required";
-    } else if (!contactLName) {
+    } else if (contactLName === "" || typeof contactLName === "number") {
       formValid = false;
       errors["contactLName"] = "Contact last name is required";
     } else if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
@@ -100,7 +101,7 @@ const Quote = () => {
     } else if (!pickupAddress) {
       formValid = false;
       errors["pickupAddress"] = "Pick-up address is required";
-    } else if (destinationAddress) {
+    } else if (!destinationAddress) {
       formValid = false;
       errors["destinationAddress"] = "Destination address is required";
     } else if (!pickupZip) {
@@ -137,6 +138,8 @@ const Quote = () => {
       formValid = false;
       errors["specialInstruction"] = "Leave a special instruction for the shipment";
     }
+
+    setErrors(errors);
     return formValid;
   }
   
@@ -161,11 +164,35 @@ const Quote = () => {
         amount,
         numOfPieces
       }
-      dispatch(requestShipment(data))
+
+      dispatch(requestShipment(data));
+      onClearFields();
     }
     
   }
-  console.log(shipment, "shipment response")
+
+  const onClearFields = () => {
+    setCompanyName("");
+    setContactFName("");
+    setContactLName("");
+    setEmail("");
+    setPhone("");
+    setPackageInfo("");
+    setPickupAddress("");
+    setPickupCity("");
+    setPickupState("");
+    setPickupZip("");
+    setDestination("");
+    setDestinationState("");
+    setDestinationCity("");
+    setDestinationZip("");
+    setSpecialInstruction("");
+    setNumOfPieces("");
+    setWeight("");
+    setDimension();
+    setCount(0);
+  }
+  console.log(errors, "shipment response")
   return (
     <div className="quote">
       <section className="wave-container">
