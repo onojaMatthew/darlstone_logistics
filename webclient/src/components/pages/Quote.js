@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Col, Row, Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
 import { Steps, Button } from "antd";
 import CompanyInfo from "./Forms/CompanyInfo";
@@ -8,11 +9,14 @@ import PaymentOption from "./Forms/PaymentOption";
 import RequestSummary from "./Forms/RequestSummary";
 import { shipmentTotal } from "../../helper/calculator"
 import Ravepay from "./Ravepay";
+import { requestShipment } from "../../store/actions/action_shipment";
 // import MyModal from "./Modal";
 
 const { Step } = Steps;
 // const { Option } = "Select";
 const Quote = () => {
+  const dispatch = useDispatch();
+  const shipment = useSelector((state) => state.shipment)
   const [ amount, setAmount ] = useState(0);
   const [ count, setCount ] = useState(0);
   const [ companyName, setCompanyName ] = useState("");
@@ -41,9 +45,10 @@ const Quote = () => {
   const validationMsg = "Your form validation failed. Use the previous button below to go back and fill the form correctly";
 
   const increaseCount = () => {
-    if (!formValidation() && count === 4) {
-      return setModal(true);
-    } 
+    // if (!formValidation() && count === 4) {
+    //   setModal(true);
+    //   return;
+    // } 
     setCount(count + 1);
   }
 
@@ -76,66 +81,91 @@ const Quote = () => {
 
     if (!companyName) {
       formValid = false;
-      errors[companyName] = "Company name is required";
+      errors["companyName"] = "Company name is required";
     } else if (typeof companyName === "number") {
       formValid = false;
-      errors[companyName] = "Invalid entry. Company name must be alphabets";
+      errors["companyName"] = "Invalid entry. Company name must be alphabets";
     } else if (!contactFName || typeof contactFName === "number") {
       formValid = false;
-      errors[contactFName] = "Contact first name is required";
+      errors["contactFName"] = "Contact first name is required";
     } else if (!contactLName) {
       formValid = false;
-      errors[contactLName] = "Contact last name is required";
+      errors["contactLName"] = "Contact last name is required";
     } else if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
       formValid = false;
-      errors[email] = "You have entered an invalid email";
+      errors["email"] = "You have entered an invalid email";
     } else if (!phone) {
       formValid = false;
-      errors[phone] = "Phone number is required";
+      errors["phone"] = "Phone number is required";
     } else if (!pickupAddress) {
       formValid = false;
-      errors[pickupAddress] = "Pick-up address is required";
+      errors["pickupAddress"] = "Pick-up address is required";
     } else if (destinationAddress) {
       formValid = false;
-      errors[destinationAddress] = "Destination address is required";
+      errors["destinationAddress"] = "Destination address is required";
     } else if (!pickupZip) {
       formValid = false;
-      errors[pickupZip] = "Pick-up zip code is required";
+      errors["pickupZip"] = "Pick-up zip code is required";
     } else if (!destinationZip) {
       formValid = false;
-      errors[destinationZip] = "Destination zip code is required";
+      errors["destinationZip"] = "Destination zip code is required";
     } else if (!pickupState) {
       formValid = false;
-      errors[pickupState] = "Pick-up state is required";
+      errors["pickupState"] = "Pick-up state is required";
     } else if (!pickupCity) {
       formValid = false;
-      errors[pickupCity] = "Pick-up city is required";
+      errors["pickupCity"] = "Pick-up city is required";
     } else if (!destinationState) {
       formValid = false;
-      errors[destinationState] = "Destination state is required";
+      errors["destinationState"] = "Destination state is required";
     } else if (!destinationCity) {
       formValid = false;
-      errors[destinationCity] = "Destination city is required";
+      errors["destinationCity"] = "Destination city is required";
     } else if (!packageInfo) {
       formValid = false;
-      errors[packageInfo] = "Package description is required";
+      errors["packageInfo"] = "Package description is required";
     } else if (!numOfPieces) {
       formValid = false;
-      errors[numOfPieces] = "Number of pieces is required";
+      errors["numOfPieces"] = "Number of pieces is required";
     } else if (!weight) {
       formValid = false;
-      errors[weight] = "The weight of the shipment in kg or tons is required";
+      errors["weight"] = "The weight of the shipment in kg or tons is required";
     } else if (!dimension) {
       formValid = false;
-      errors[dimension] = "The shipment dimension is required";
+      errors["dimension"] = "The shipment dimension is required";
     } else if (!specialInstruction) {
       formValid = false;
-      errors[specialInstruction] = "Leave a special instruction for the shipment";
+      errors["specialInstruction"] = "Leave a special instruction for the shipment";
     }
     return formValid;
   }
   
-  
+  const handleSubmit = () => {
+    if (formValidation()) {
+      const data = {
+        companyName,
+        contactFName,
+        contactLName,
+        phone,
+        email,
+        pickupAddress,
+        pickupState,
+        pickupCity,
+        pickupZip,
+        destinationState,
+        destinationZip,
+        weight,
+        dimension,
+        packageInfo,
+        specialInstruction,
+        amount,
+        numOfPieces
+      }
+      dispatch(requestShipment(data))
+    }
+    
+  }
+  console.log(shipment, "shipment response")
   return (
     <div className="quote">
       <section className="wave-container">
@@ -246,7 +276,10 @@ const Quote = () => {
           ) : deliveryOption === true ? (
             <Row className="justify-content-center">
               <Col xs="3" xl="3">
-              <Button type="primary">Submit</Button>
+              <Button 
+                type="primary"
+                onClick={() => handleSubmit()}
+              >Submit</Button>
               </Col>
             </Row>
           ) : 

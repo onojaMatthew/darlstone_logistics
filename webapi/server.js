@@ -69,6 +69,7 @@ const io = require("socket.io")(server, {
     res.end();
   }
 });
+
 io.on("connection", socket => {
   socket.on("join", async ({ topicId, username, userId }, callback) => {
     const socketId = socket.id;

@@ -31,7 +31,7 @@ const PackageInfo = ({
               id="packInf"
               onChange={(e) => setPackageInfo(e.target.value)}
             />
-            <span style={{ color: "#ff0000" }}>{errors[packageInfo]}</span>
+            <span style={{ color: "#ff0000" }}>{errors["packageInfo"]}</span>
           </div>
         </Col>
         <Col xs="12" xl="4">
@@ -43,7 +43,7 @@ const PackageInfo = ({
               id="num"
               onChange={(e) => setNumOfPieces(e.target.value)}
             />
-            <span style={{ color: "#ff0000" }}>{errors[numOfPieces]}</span>
+            <span style={{ color: "#ff0000" }}>{errors["numOfPieces"]}</span>
           </div>
         </Col>
         <Col xs="12" xl="4">
@@ -56,14 +56,13 @@ const PackageInfo = ({
               onChange={(e) => setWeight(e.target.value)}
               // addonAfter={selectAfter}
             />
-            <span style={{ color: "#ff0000" }}>{errors[weight]}</span>
+            <span style={{ color: "#ff0000" }}>{errors["weight"]}</span>
           </div>
         </Col>
       </Row>
       
       
       <Row>
-       
         <Col xs="12" xl="6">
           <div className="mb-3">
             <label htmlFor="dim">Dimension</label>
@@ -74,7 +73,7 @@ const PackageInfo = ({
               value={dimension}
               onChange={(e) => setDimension(e.target.value)}
             />
-            <span style={{ color: "#ff0000" }}>{errors[dimension]}</span>
+            <span style={{ color: "#ff0000" }}>{errors["dimension"]}</span>
           </div>
         </Col>
         <Col xs="12" xl="6">
@@ -86,7 +85,7 @@ const PackageInfo = ({
           id="special"
           onChange={(e) => setSpecialInstruction(e.target.value)}
         />
-        <span style={{ color: "#ff0000" }}>{errors[specialInstruction]}</span>
+        <span style={{ color: "#ff0000" }}>{errors["specialInstruction"]}</span>
       </div>
         </Col>
       </Row>
