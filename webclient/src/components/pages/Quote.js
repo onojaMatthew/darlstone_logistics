@@ -41,14 +41,25 @@ const Quote = () => {
   const [ deliveryOption, setDeliveryOption ] = useState(false);
   const [ modal, setModal ] = useState(false);
   const [ errors, setErrors] = useState({});
-  const title = "Form validation error";
-  const validationMsg = "Your form validation failed. Use the previous button below to go back and fill the form correctly";
+  const [ errorMsg, setErrorMsg ] = useState("");
+  const [ message, setMessage ] = useState("");
+  
+  useEffect(() => {
+    if (shipment.createSuccess === true) {
+      setMessage("Your request has been successfully processed");
+      setErrorMsg("");
+      onClearFields();
+      
+      setTimeout(() => {
+        setCount(0);
+      }, 2000);
+    } else if (shipment.error && shipment.error.length > 0) {
+      setErrorMsg(shipment.error);
+      setMessage("");
+    }
+  }, [ shipment ]);
 
   const increaseCount = () => {
-    // if (!formValidation() && count === 4) {
-    //   setModal(true);
-    //   return;
-    // } 
     setCount(count + 1);
   }
 
@@ -71,10 +82,6 @@ const Quote = () => {
   useEffect(() => {
     setAmount(shipmentTotal(numOfPieces, weight));
   }, [numOfPieces, weight]);
-
-  const closeModal = () => {
-    setModal(false);
-  }
 
   const formValidation = () => {
     let formValid = true;
@@ -166,7 +173,6 @@ const Quote = () => {
       }
 
       dispatch(requestShipment(data));
-      onClearFields();
     }
     
   }
@@ -190,9 +196,8 @@ const Quote = () => {
     setNumOfPieces("");
     setWeight("");
     setDimension();
-    setCount(0);
   }
-  console.log(errors, "shipment response")
+
   return (
     <div className="quote">
       <section className="wave-container">
@@ -301,19 +306,25 @@ const Quote = () => {
               </Col>
             </Row>
           ) : deliveryOption === true ? (
-            <Row className="justify-content-center">
-              <Col xs="3" xl="3">
-              <Button 
-                type="primary"
-                onClick={() => handleSubmit()}
-              >Submit</Button>
-              </Col>
-            </Row>
+            <>
+              {errorMsg.length > 0  ? <p style={{ color: "#ff0000", textAlign: "center" }}>{errorMsg}</p> : null}
+              {message.length > 0  ? <p style={{ color: "#00ff00", textAlign: "center" }}>{message}</p> : null}
+              <Row className="justify-content-center">
+                <Col xs="3" xl="3">
+                <Button 
+                  type="primary"
+                  onClick={() => handleSubmit()}
+                >Submit</Button>
+                </Col>
+              </Row>
+            </>
           ) : 
             <PaymentOption 
               onCardOption={onCardOption}
               onDeliveryOption={onDeliveryOption}
               amount={amount}
+              errorMsg={errorMsg}
+              message={message}
             />
           }
         </Col>
@@ -341,23 +352,7 @@ const Quote = () => {
           </Row>
         </Col>
       </Row>
-      <Modal isOpen={modal} toggle={() => setModal()}>
-        <ModalHeader toggle={() => closeModal()}>{title}</ModalHeader>
-        <ModalBody>
-          {validationMsg}
-        </ModalBody>
-        <ModalFooter>
-          <Button color="primary" onClick={() => closeModal()}>Do Something</Button>{' '}
-          <Button color="secondary" onClick={() => closeModal()}>Cancel</Button>
-        </ModalFooter>
-      </Modal>
-      {/* <MyModal 
-        closeModal={closeModal} 
-        modal={modal}
-        validationMsg={validationMsg}
-        title={title}
-        setModal={setModal}
-      /> */}
+      
     </div>
   )
 }

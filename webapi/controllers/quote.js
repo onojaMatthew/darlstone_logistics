@@ -33,7 +33,7 @@ exports.create = (req, res, next) => {
     shipmentTrackingNumber = "1" + randomNum + pickupState.slice(0,3).toUpperCase();
   } else if (pickupState === "Port Harcourt") {
     shipmentTrackingNumber = "2" + randomNum + pickupState.slice(0,3).toUpperCase();
-  } else if (pickupState === "Abuja") {
+  } else if (pickupState === "Abuja Federal Capital Territory") {
     shipmentTrackingNumber = "3" + randomNum + pickupState.slice(0,3).toUpperCase();
   } else if (pickupState === "Enugu") {
     shipmentTrackingNumber = "4" + randomNum + pickupState.slice(0,3).toUpperCase();
@@ -43,6 +43,8 @@ exports.create = (req, res, next) => {
     shipmentTrackingNumber = "6" + randomNum + pickupState.slice(0,3).toUpperCase();
   } else if (pickupState === "Jos") {
     shipmentTrackingNumber = "7" + randomNum + pickupState.slice(0,3).toUpperCase();
+  } else {
+    return res.status(400).json({ error: `We don't have a branch in ${pickupState} state`});
   }
   
   let newQuote = new Quote({

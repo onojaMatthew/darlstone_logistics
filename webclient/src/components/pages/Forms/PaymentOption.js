@@ -5,10 +5,13 @@ import { Row, Col } from "reactstrap";
 const PaymentOption = ({
   onCardOption,
   onDeliveryOption,
-  amount
+  amount,
+  errorMsg,
+  message,
 }) => {
   return(
     <div>
+      
       <Row className="justify-content-center">
         <Col xs="10" xl="5">
           <h3>Select a Payment Option</h3>
