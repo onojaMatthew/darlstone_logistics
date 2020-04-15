@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Col, Row } from "reactstrap";
+import { Col, Row, Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
 import { Steps, Button } from "antd";
 import CompanyInfo from "./Forms/CompanyInfo";
 import PickupInformation from "./Forms/PickupInformation";
@@ -8,6 +8,7 @@ import PaymentOption from "./Forms/PaymentOption";
 import RequestSummary from "./Forms/RequestSummary";
 import { shipmentTotal } from "../../helper/calculator"
 import Ravepay from "./Ravepay";
+// import MyModal from "./Modal";
 
 const { Step } = Steps;
 // const { Option } = "Select";
@@ -34,9 +35,15 @@ const Quote = () => {
   const [ specialInstruction, setSpecialInstruction ] = useState("");
   const [ cardOption, setCardOption ] = useState(false);
   const [ deliveryOption, setDeliveryOption ] = useState(false);
-  // const units = [ "kg", "tons" ];
+  const [ modal, setModal ] = useState(false);
+  let errors = {};
+  const title = "Form validation error";
+  const validationMsg = "Your form validation failed. Use the previous button below to go back and fill the form correctly";
 
   const increaseCount = () => {
+    if (!formValidation() && count === 4) {
+      return setModal(true);
+    } 
     setCount(count + 1);
   }
 
@@ -59,14 +66,76 @@ const Quote = () => {
   useEffect(() => {
     setAmount(shipmentTotal(numOfPieces, weight));
   }, [numOfPieces, weight]);
-  // const selectAfter = (
-  //   <Select onChange={(e) => setUnit(e.target.value)} defaultValue="Select unit" className="select-after">
-  //     {units.map((unit, i) => (
-  //       <Option key={i} value={unit}>{unit}</Option>
-  //     ))}
-  //   </Select>
-  // );
-  console.log(amount, "this is the amount")
+
+  const closeModal = () => {
+    setModal(false);
+  }
+
+  const formValidation = () => {
+    let formValid = true;
+
+    if (!companyName) {
+      formValid = false;
+      errors[companyName] = "Company name is required";
+    } else if (typeof companyName === "number") {
+      formValid = false;
+      errors[companyName] = "Invalid entry. Company name must be alphabets";
+    } else if (!contactFName || typeof contactFName === "number") {
+      formValid = false;
+      errors[contactFName] = "Contact first name is required";
+    } else if (!contactLName) {
+      formValid = false;
+      errors[contactLName] = "Contact last name is required";
+    } else if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+      formValid = false;
+      errors[email] = "You have entered an invalid email";
+    } else if (!phone) {
+      formValid = false;
+      errors[phone] = "Phone number is required";
+    } else if (!pickupAddress) {
+      formValid = false;
+      errors[pickupAddress] = "Pick-up address is required";
+    } else if (destinationAddress) {
+      formValid = false;
+      errors[destinationAddress] = "Destination address is required";
+    } else if (!pickupZip) {
+      formValid = false;
+      errors[pickupZip] = "Pick-up zip code is required";
+    } else if (!destinationZip) {
+      formValid = false;
+      errors[destinationZip] = "Destination zip code is required";
+    } else if (!pickupState) {
+      formValid = false;
+      errors[pickupState] = "Pick-up state is required";
+    } else if (!pickupCity) {
+      formValid = false;
+      errors[pickupCity] = "Pick-up city is required";
+    } else if (!destinationState) {
+      formValid = false;
+      errors[destinationState] = "Destination state is required";
+    } else if (!destinationCity) {
+      formValid = false;
+      errors[destinationCity] = "Destination city is required";
+    } else if (!packageInfo) {
+      formValid = false;
+      errors[packageInfo] = "Package description is required";
+    } else if (!numOfPieces) {
+      formValid = false;
+      errors[numOfPieces] = "Number of pieces is required";
+    } else if (!weight) {
+      formValid = false;
+      errors[weight] = "The weight of the shipment in kg or tons is required";
+    } else if (!dimension) {
+      formValid = false;
+      errors[dimension] = "The shipment dimension is required";
+    } else if (!specialInstruction) {
+      formValid = false;
+      errors[specialInstruction] = "Leave a special instruction for the shipment";
+    }
+    return formValid;
+  }
+  
+  
   return (
     <div className="quote">
       <section className="wave-container">
@@ -106,6 +175,7 @@ const Quote = () => {
               setEmail={setEmail}
               phone={phone}
               setPhone={setPhone}
+              errors={errors}
             /> : 
             count === 1 ? 
             <PickupInformation 
@@ -125,6 +195,7 @@ const Quote = () => {
               setDestinationCity={setDestinationCity}
               setDestinationState={setDestinationState}
               setDestinationZip={setDestinationZip}
+              errors={errors}
             /> : 
             count === 2 ? 
             <PackageInfo
@@ -139,28 +210,29 @@ const Quote = () => {
               setNumOfPieces={setNumOfPieces}
               setDimension={setDimension}
               setSpecialInstruction={setSpecialInstruction}
+              errors={errors}
             /> : 
             count === 3 ?
             <RequestSummary
-            companyName={companyName}
-            contactFName={contactFName}
-            contactLName={contactLName}
-            email={email}
-            phone={phone}
-            pickupAddress={pickupAddress}
-            pickupCity={pickupCity}
-            pickupState={pickupState}
-            pickupZip={pickupZip}
-            destinationAddress={destinationAddress}
-            destinationCity={destinationCity}
-            destinationState={destinationState}
-            destinationZip={destinationZip}
-            packageInfo={packageInfo}
-            weight={weight}
-            dimension={dimension}
-            specialInstruction={specialInstruction}
-            numOfPieces={numOfPieces}
-          /> : cardOption === true ? (
+              companyName={companyName}
+              contactFName={contactFName}
+              contactLName={contactLName}
+              email={email}
+              phone={phone}
+              pickupAddress={pickupAddress}
+              pickupCity={pickupCity}
+              pickupState={pickupState}
+              pickupZip={pickupZip}
+              destinationAddress={destinationAddress}
+              destinationCity={destinationCity}
+              destinationState={destinationState}
+              destinationZip={destinationZip}
+              packageInfo={packageInfo}
+              weight={weight}
+              dimension={dimension}
+              specialInstruction={specialInstruction}
+              numOfPieces={numOfPieces}
+            /> : cardOption === true ? (
             <Row className="justify-content-center">
               <Col xs="3" xl="3">
                 <Ravepay 
@@ -209,7 +281,23 @@ const Quote = () => {
           </Row>
         </Col>
       </Row>
-      
+      <Modal isOpen={modal} toggle={() => setModal()}>
+        <ModalHeader toggle={() => closeModal()}>{title}</ModalHeader>
+        <ModalBody>
+          {validationMsg}
+        </ModalBody>
+        <ModalFooter>
+          <Button color="primary" onClick={() => closeModal()}>Do Something</Button>{' '}
+          <Button color="secondary" onClick={() => closeModal()}>Cancel</Button>
+        </ModalFooter>
+      </Modal>
+      {/* <MyModal 
+        closeModal={closeModal} 
+        modal={modal}
+        validationMsg={validationMsg}
+        title={title}
+        setModal={setModal}
+      /> */}
     </div>
   )
 }

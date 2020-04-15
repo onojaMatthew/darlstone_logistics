@@ -1,6 +1,7 @@
 import React from "react";
 import { Input } from "antd";
 import { Row, Col } from "reactstrap";
+import { ContactsFilled } from "@ant-design/icons";
 
 const CompanyInfo = ({
   companyName,
@@ -12,7 +13,8 @@ const CompanyInfo = ({
   setContactFName,
   setContactLName,
   setEmail,
-  setPhone
+  setPhone,
+  errors,
 }) => {
   return(
     <div>
@@ -26,6 +28,7 @@ const CompanyInfo = ({
               id="company"
               onChange={(e) => setCompanyName(e.target.value)}
             />
+            <span style={{ color: "#ff0000" }}>{errors[companyName]}</span>
           </div>
         </Col>
         <Col xs="12" xl="6">
@@ -37,6 +40,7 @@ const CompanyInfo = ({
               id="firstName"
               onChange={(e) => setContactFName(e.target.value)}
             />
+            <span style={{ color: "#ff0000" }}>{errors[ContactsFilled]}</span>
           </div>
         </Col>
       </Row>
@@ -52,6 +56,7 @@ const CompanyInfo = ({
               id="lastName"
               onChange={(e) => setContactLName(e.target.value)}
             />
+            <span style={{ color: "#ff0000" }}>{errors[contactLName]}</span>
           </div>
         </Col>
         <Col xs="12" xl="6">
@@ -64,6 +69,7 @@ const CompanyInfo = ({
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
+            <span style={{ color: "#ff0000" }}>{errors[email]}</span>
           </div>
         </Col>
       </Row>
@@ -75,6 +81,7 @@ const CompanyInfo = ({
           id="phone"
           onChange={(e) => setPhone(e.target.value)}
         />
+        <span style={{ color: "#ff0000" }}>{errors[phone]}</span>
       </div>
       
     </div>

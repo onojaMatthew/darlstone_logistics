@@ -2,7 +2,6 @@ import React from "react";
 import { Input } from "antd";
 import { Row, Col } from "reactstrap";
 import StateList from "../StateList";
-import StateInfo from "./StateInfo";
 
 const PickupInformation = ({
   pickupAddress,
@@ -20,7 +19,8 @@ const PickupInformation = ({
   setDestination,
   setDestinationCity,
   setDestinationState,
-  setDestinationZip
+  setDestinationZip,
+  errors
 }) => {
   return(
     <div>
@@ -34,6 +34,7 @@ const PickupInformation = ({
               id="pickadd"
               onChange={(e) => setPickupAddress(e.target.value)}
             />
+            <span style={{ color: "#ff0000" }}>{errors[pickupAddress]}</span>
           </div>
         </Col>
         <Col xs="12" xl="4">
@@ -45,18 +46,14 @@ const PickupInformation = ({
               id="pickcity"
               onChange={(e) => setPickupCity(e.target.value)}
             />
+            <span style={{ color: "#ff0000" }}>{errors[pickupCity]}</span>
           </div>
         </Col>
         <Col xs="12" xl="4">
           <div className="mb-3">
             <label htmlFor="pickstate">Pick-up State</label>
-            {/* <Input 
-              placeholder="Pick-up State"
-              value={pickupState}
-              id="pickstate"
-              onChange={(e) => setPickupState(e.target.value)}
-            /> */}
             <StateList stateName={pickupState} setState={setPickupState} />
+            <span style={{ color: "#ff0000" }}>{errors[pickupState]}</span>
           </div>
         </Col>
       </Row>
@@ -72,6 +69,7 @@ const PickupInformation = ({
               value={pickupZip}
               onChange={(e) => setPickupZip(e.target.value)}
             />
+            <span style={{ color: "#ff0000" }}>{errors[pickupZip]}</span>
           </div>
         </Col>
         <Col xs="12" xl="4">
@@ -83,6 +81,7 @@ const PickupInformation = ({
               id="desa"
               onChange={(e) => setDestination(e.target.value)}
             />
+            <span style={{ color: "#ff0000" }}>{errors[destinationAddress]}</span>
           </div>
         </Col>
         <Col xs="12" xl="4">
@@ -94,23 +93,17 @@ const PickupInformation = ({
               id="desc"
               onChange={(e) => setDestinationCity(e.target.value)}
             />
+            <span style={{ color: "#ff0000" }}>{errors[destinationCity]}</span>
           </div>
         </Col>
       </Row>
-      
-      
       
       <Row>
         <Col xs="12" xl="6">
           <div className="mb-3">
             <label htmlFor="desst">Destination State</label>
-            {/* <Input 
-              placeholder="Destination address"
-              value={destinationState}
-              id="desst"
-              onChange={(e) => setDestinationState(e.target.value)}
-            /> */}
-            <StateInfo stateName={destinationState} setState={setDestinationState} />
+            <StateList stateName={destinationState} setState={setDestinationState} />
+            <span style={{ color: "#ff0000" }}>{errors[destinationState]}</span>
           </div>
         </Col>
         <Col xs="12" xl="6">
@@ -122,6 +115,7 @@ const PickupInformation = ({
               id="dessz"
               onChange={(e) => setDestinationZip(e.target.value)}
             />
+            <span style={{ color: "#ff0000" }}>{errors[destinationZip]}</span>
           </div>
         </Col>
       </Row>

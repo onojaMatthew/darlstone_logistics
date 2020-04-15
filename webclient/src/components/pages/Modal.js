@@ -1,58 +1,33 @@
-import React from "react";
-import { Modal, Button } from 'antd';
 
-class MyModal extends React.Component {
-  state = {
-    ModalText: 'Content of the modal',
-    visible: false,
-    confirmLoading: false,
-  };
+import React, { useState } from 'react';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
-  showModal = () => {
-    this.setState({
-      visible: true,
-    });
-  };
+const ModalExample = (props) => {
+  const {
+    buttonLabel,
+    className,
+    setModal,
+    modal,
+    title,
+    validationMsg,
+    closeModal
+  } = props;
 
-  handleOk = () => {
-    this.setState({
-      ModalText: 'The modal will be closed after two seconds',
-      confirmLoading: true,
-    });
-    setTimeout(() => {
-      this.setState({
-        visible: false,
-        confirmLoading: false,
-      });
-    }, 2000);
-  };
-
-  handleCancel = () => {
-    console.log('Clicked cancel button');
-    this.setState({
-      visible: false,
-    });
-  };
-
-  render() {
-    const { visible, confirmLoading, ModalText } = this.state;
-    return (
-      <div>
-        <Button type="primary" onClick={this.showModal}>
-          Open Modal with async logic
-        </Button>
-        <Modal
-          title="Title"
-          visible={visible}
-          onOk={this.handleOk}
-          confirmLoading={confirmLoading}
-          onCancel={this.handleCancel}
-        >
-          <p>{ModalText}</p>
-        </Modal>
-      </div>
-    );
-  }
+  return (
+    <div>
+      {/* <Button color="danger" onClick={() => closeModal()}>{buttonLabel}</Button> */}
+      <Modal isOpen={modal} toggle={() => setModal()} className={className}>
+        <ModalHeader toggle={() => closeModal()}>{title}</ModalHeader>
+        <ModalBody>
+          {validationMsg}
+        </ModalBody>
+        <ModalFooter>
+          <Button color="primary" onClick={() => closeModal()}>Do Something</Button>{' '}
+          <Button color="secondary" onClick={() => closeModal()}>Cancel</Button>
+        </ModalFooter>
+      </Modal>
+    </div>
+  );
 }
 
-export default MyModal
+export default ModalExample;

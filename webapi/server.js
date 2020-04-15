@@ -45,7 +45,7 @@ app.use( ( req, res, next ) => {
 
   next();
 } );
-
+require("./middlware/prod")(app);
 //=============================================================================
 // Serving client files during production
 app.get('/', (req,res) => {
