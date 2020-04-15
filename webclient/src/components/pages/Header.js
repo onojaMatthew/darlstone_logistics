@@ -6,6 +6,7 @@ import {
   NavbarToggler,
   NavbarBrand,
   Nav,
+  NavItem,
   NavLink,
   NavbarText
 } from 'reactstrap';
@@ -32,7 +33,7 @@ const Header = (props) => {
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
-            
+          
           </Nav>
           <NavbarText>
             <NavLink style={{

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Home from './components/pages/Home';
-import Header from './components/pages/Header';
 import Footer from './components/pages/Footer';
 import Quote from './components/pages/Quote';
 import Dashboard from './components/Dashboard/Dashboard';
@@ -44,7 +43,6 @@ class App extends Component{
 
     return (
       <BrowserRouter>
-        {window.location.pathname.slice(0,12).includes("/dashboard") ? null : <Header />}
         <Switch>
           <Route exact path="/" render={(props) => <Home {...props} />} />
           <Route path="/request" render={(props) => <Quote {...props} />} />

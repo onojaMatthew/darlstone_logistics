@@ -2,6 +2,7 @@ import React from "react";
 import { Button, Col, Row, Container } from "reactstrap"
 import HomeCarousel from "./Carousel";
 import Graphic5 from "../../assets/graphic5.jpg"
+import Header from "./Header";
 
 const styles = {
   mobile: {
@@ -39,6 +40,7 @@ const styles = {
 const Home = (props) => {
   return(
     <div className="home">
+      <Header />
       <section className="wave-container">
         <Row className="justify-content-center">
           <Col xs="8" xl="6" className="home-text">

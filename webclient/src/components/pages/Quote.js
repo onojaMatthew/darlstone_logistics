@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Col, Row, Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
+import { Col, Row } from "reactstrap";
+import Header from "./Header";
 import { Steps, Button } from "antd";
 import CompanyInfo from "./Forms/CompanyInfo";
 import PickupInformation from "./Forms/PickupInformation";
@@ -39,20 +40,20 @@ const Quote = () => {
   const [ specialInstruction, setSpecialInstruction ] = useState("");
   const [ cardOption, setCardOption ] = useState(false);
   const [ deliveryOption, setDeliveryOption ] = useState(false);
-  const [ modal, setModal ] = useState(false);
   const [ errors, setErrors] = useState({});
   const [ errorMsg, setErrorMsg ] = useState("");
   const [ message, setMessage ] = useState("");
+  const [ paid, setPaid ] = useState(false);
   
   useEffect(() => {
     if (shipment.createSuccess === true) {
-      setMessage("Your request has been successfully processed");
+      setMessage("Your request has been successfully processed. You'll be contacted soon by one of our representatives. Thank you for choosing us");
       setErrorMsg("");
       onClearFields();
       
       setTimeout(() => {
         setCount(0);
-      }, 2000);
+      }, 4000);
     } else if (shipment.error && shipment.error.length > 0) {
       setErrorMsg(shipment.error);
       setMessage("");
@@ -200,6 +201,7 @@ const Quote = () => {
 
   return (
     <div className="quote">
+      <Header />
       <section className="wave-container">
         <Row className="justify-content-center">
           <Col xs="8" xl="6" className="home-text">
@@ -302,6 +304,7 @@ const Quote = () => {
                   email={email} 
                   name={companyName}
                   phone={phone}
+                  setPaid={setPaid}
                 /> 
               </Col>
             </Row>
@@ -352,7 +355,6 @@ const Quote = () => {
           </Row>
         </Col>
       </Row>
-      
     </div>
   )
 }

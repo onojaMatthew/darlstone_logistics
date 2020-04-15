@@ -5,24 +5,15 @@ import Rave from 'react-flutterwave-rave'
 class Ravepay extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      
-      phone: "0000000000000",
-      amount: 2000,
-      firstname: "Oluwole",
-      lastname: "Adebiyi",
-      email: "test@test.com",
-      room_number: "23A",
-      hostel: "Silver 1",
-      ticket_number: 3,
-    }
+    this.state = {}
     this.callback = this.callback.bind(this);
     this.close = this.close.bind(this);
   }
  
   callback = (response) => {
-    
-    console.log(response);
+    // if (response)
+    console.log(response.data.data.status)
+    // this.props.setPaid(true);
     
     
   }
@@ -55,4 +46,4 @@ class Ravepay extends Component {
  
 export default Ravepay;
  
- 
+   
