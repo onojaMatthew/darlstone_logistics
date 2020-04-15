@@ -12,7 +12,7 @@ import Ravepay from "./Ravepay";
 const { Step } = Steps;
 // const { Option } = "Select";
 const Quote = () => {
-  const [ amount, setAmount ] = useState("");
+  const [ amount, setAmount ] = useState(0);
   const [ count, setCount ] = useState(0);
   const [ companyName, setCompanyName ] = useState("");
   const [ contactFName, setContactFName ] = useState("");
@@ -34,7 +34,7 @@ const Quote = () => {
   const [ specialInstruction, setSpecialInstruction ] = useState("");
   const [ cardOption, setCardOption ] = useState(false);
   const [ deliveryOption, setDeliveryOption ] = useState(false);
-  const units = [ "kg", "tons" ];
+  // const units = [ "kg", "tons" ];
 
   const increaseCount = () => {
     setCount(count + 1);
@@ -58,7 +58,7 @@ const Quote = () => {
 
   useEffect(() => {
     setAmount(shipmentTotal(numOfPieces, weight));
-  }, [])
+  }, [numOfPieces, weight]);
   // const selectAfter = (
   //   <Select onChange={(e) => setUnit(e.target.value)} defaultValue="Select unit" className="select-after">
   //     {units.map((unit, i) => (
@@ -66,7 +66,7 @@ const Quote = () => {
   //     ))}
   //   </Select>
   // );
-  
+  console.log(amount, "this is the amount")
   return (
     <div className="quote">
       <section className="wave-container">
@@ -181,6 +181,7 @@ const Quote = () => {
             <PaymentOption 
               onCardOption={onCardOption}
               onDeliveryOption={onDeliveryOption}
+              amount={amount}
             />
           }
         </Col>

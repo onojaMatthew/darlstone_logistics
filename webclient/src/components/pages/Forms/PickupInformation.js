@@ -1,6 +1,8 @@
 import React from "react";
 import { Input } from "antd";
 import { Row, Col } from "reactstrap";
+import StateList from "../StateList";
+import StateInfo from "./StateInfo";
 
 const PickupInformation = ({
   pickupAddress,
@@ -48,12 +50,13 @@ const PickupInformation = ({
         <Col xs="12" xl="4">
           <div className="mb-3">
             <label htmlFor="pickstate">Pick-up State</label>
-            <Input 
+            {/* <Input 
               placeholder="Pick-up State"
               value={pickupState}
               id="pickstate"
               onChange={(e) => setPickupState(e.target.value)}
-            />
+            /> */}
+            <StateList stateName={pickupState} setState={setPickupState} />
           </div>
         </Col>
       </Row>
@@ -101,12 +104,13 @@ const PickupInformation = ({
         <Col xs="12" xl="6">
           <div className="mb-3">
             <label htmlFor="desst">Destination State</label>
-            <Input 
+            {/* <Input 
               placeholder="Destination address"
               value={destinationState}
               id="desst"
               onChange={(e) => setDestinationState(e.target.value)}
-            />
+            /> */}
+            <StateInfo stateName={destinationState} setState={setDestinationState} />
           </div>
         </Col>
         <Col xs="12" xl="6">
