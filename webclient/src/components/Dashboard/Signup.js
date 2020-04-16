@@ -4,9 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { Input, Button, Spin } from "antd";
 import { Row, Col, Card, CardBody } from "reactstrap";
 import Header from "../pages/Header";
+import Footer from "../pages/Footer";
 import { register } from "../../store/actions/action_user";
 
-const Signup = (props) => {
+const Signup = () => {
   const users = useSelector((state) => state.users);
   const dispatch = useDispatch();
   const [ fullname, setFullname ] = useState("");
@@ -192,6 +193,7 @@ const Signup = (props) => {
           </Card>
         </Col>
       </Row>
+      <Footer />
     </div>
   )
 }

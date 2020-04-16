@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Home from './components/pages/Home';
-import Footer from './components/pages/Footer';
 import Quote from './components/pages/Quote';
 import Dashboard from './components/Dashboard/Dashboard';
 import Signup from './components/Dashboard/Signup';
@@ -23,7 +22,7 @@ class App extends Component{
     loading: true
   }
 
-  componentWillMount = async () => {
+  componentDidMount = async () => {
     this.loaderTimeOut().then(() => {
       this.setState({
         loading: false
@@ -53,7 +52,6 @@ class App extends Component{
           <Route path="/accountl" render={(props) => <SignIn {...props} />} />
           <Route path="/*" render={() => <div style={styles.ntf}>404 Page Not Found!!</div>} />
         </Switch>
-        {window.location.pathname.slice(0,12).includes("/dashboard") ? null : <Footer />}
       </BrowserRouter>
     );
   }

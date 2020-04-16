@@ -5,6 +5,7 @@ import { Input, Button, Spin } from "antd";
 import { Row, Col, Card,  CardBody } from "reactstrap";
 import Header from "../pages/Header";
 import { onLogin } from "../../store/actions/action_user";
+import Footer from "../pages/Footer";
 
 const SignIn = (props) => {
   const users = useSelector(state => state.users);
@@ -149,6 +150,7 @@ const SignIn = (props) => {
           </Card>
         </Col>
       </Row>
+      <Footer />
     </div>
   )
 }

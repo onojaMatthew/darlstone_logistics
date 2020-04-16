@@ -11,6 +11,7 @@ import RequestSummary from "./Forms/RequestSummary";
 import { shipmentTotal } from "../../helper/calculator"
 import Ravepay from "./Ravepay";
 import { requestShipment } from "../../store/actions/action_shipment";
+import Footer from "./Footer";
 // import MyModal from "./Modal";
 
 const { Step } = Steps;
@@ -355,6 +356,7 @@ const Quote = () => {
           </Row>
         </Col>
       </Row>
+      <Footer />
     </div>
   )
 }

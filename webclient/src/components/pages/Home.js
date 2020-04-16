@@ -3,6 +3,7 @@ import { Button, Col, Row, Container } from "reactstrap"
 import HomeCarousel from "./Carousel";
 import Graphic5 from "../../assets/graphic5.jpg"
 import Header from "./Header";
+import Footer from "./Footer";
 
 const styles = {
   mobile: {
@@ -112,6 +113,7 @@ const Home = (props) => {
           </Row>
         </Container>
       </section>
+      <Footer />
     </div>
   )
 }
