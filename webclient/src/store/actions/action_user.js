@@ -98,7 +98,7 @@ export const registrationFailed = ( error ) => {
 export const register = ( data ) => {
   return dispatch => {
     dispatch( registrationStart() );
-    fetch( `${ BASE_URL }/signup`, {
+    fetch( `${ BASE_URL }/user`, {
       method: "POST",
       headers: {
         ACCEPT: "application/json",
@@ -109,8 +109,6 @@ export const register = ( data ) => {
       .then( response => response.json() )
       .then( resp => {
         if ( resp.error ) return dispatch( registrationFailed(resp.error));
-          
-        // Auth.authenticateUser( JSON.stringify( resp ) );
         dispatch( registrationSuccess( resp ) );
       } )
       .catch( err => {

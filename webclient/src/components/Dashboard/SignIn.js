@@ -1,24 +1,69 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { Input, Button } from "antd";
+import { Input, Button, Spin } from "antd";
 import { Row, Col, Card,  CardBody } from "reactstrap";
 import Header from "../pages/Header";
+import { onLogin } from "../../store/actions/action_user";
 
-const SignIn = () => {
-  const [ fullname, setFullname ] = useState("");
+const SignIn = (props) => {
+  const users = useSelector(state => state.users);
+  const dispatch = useDispatch();
   const [ email, setEmail ] = useState("");
   const [ password, setPassword ] = useState("");
-  const [ phone, setPhone ]  = useState("");
   const [ errors, setErrors ] = useState({});
+  const [ message, setMessage ] = useState("");
+
+  const formValidation = () => {
+    let formValid = true;
+    let errors = {};
+
+    if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+      formValid = false;
+      errors["email"] = "Invalid email"
+    } else if (!password || password.length < 5) {
+      formValid = false;
+      errors["password"] = "Password must not be less than 5 chanracters long";
+    } 
+
+    setErrors(errors);
+    return formValid;
+  }
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    if (formValidation()) {
+      const data = {
+        email,
+        password,
+      }
+
+      dispatch(onLogin(data));
+    }
+  }
+
+  useEffect(() => {
+    if (users.loginSuccess === true) {
+      setEmail('');
+      setPassword("");
+      setMessage("Login Success!!!");
+      setInterval(() => {
+        props.history.push("/dashboard");
+      }, 3000);
+    } else if (users.error && users.error.length > 0) {
+      setErrors(users.error);
+    }
+  }, [ users ]);
+
+  const loading = users.loginLoading;
  return(
     <div className="home">
       <Header />
       <section className="wave-container">
         <Row className="justify-content-center">
           <Col xs="8" xl="6" className="home-text">
-            <h1>Hello, world!</h1>
-            <p className="animate-p">Check out my awesome waves!</p>
+            <h1>Login</h1>
+            <p className="animate-p">Login to the admin dashboard</p>
           </Col>
         </Row>
         <svg id="curve" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
@@ -27,6 +72,14 @@ const SignIn = () => {
       </section>
       <Row className="justify-content-center">
         <Col xs="10" xl="6">
+          <Row>
+            {message.length > 0 ? <p style={{ 
+              color: "#00ff00", 
+              fontWeight: "bold",
+              fontsize: "16px"
+              }}>{message}</p> : null}
+            {errors.length > 0 ? <p style={{ color: "#00ff00" }}>{errors}</p> : null}
+          </Row>
           <Card className="mb-5">
             <CardBody>
               <Row>
@@ -67,10 +120,18 @@ const SignIn = () => {
               </Row>
               <Row className="mb-3">
                 <Col xs="12" xl="12">
-                  <Button type="primary" 
-                    style={{ width: "100%",
-                    background: "rgb(9, 7, 36)"
-                    }}>Login</Button>
+                  {loading === true ? (
+                    <div className="text-center">
+                      <Spin tip="Loading..." />
+                    </div>
+                  ) : (
+                    <Button type="primary" 
+                      onClick={(e) => handleLogin(e)}
+                      style={{ width: "100%",
+                      background: "rgb(9, 7, 36)"
+                    }}
+                    >Login</Button>
+                  )}
                 </Col>
               </Row>
               <Row className="mb-2">

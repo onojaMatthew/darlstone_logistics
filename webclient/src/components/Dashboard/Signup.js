@@ -16,9 +16,6 @@ const Signup = (props) => {
   const [ errors, setErrors ] = useState({});
   const [ message, setMessage ] = useState("");
 
-
-  const emailRegex = "/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/";
-
   const formValidation = () => {
     let formValid = true;
     let errors = {};
@@ -26,7 +23,7 @@ const Signup = (props) => {
     if (!fullname || typeof fullname !== "string") {
       formValid = false;
       errors["fullname"] = "Your full name is required";
-    } else if (!emailRegex.test(email)) {
+    } else if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
       formValid = false;
       errors["email"] = "Invalid email"
     } else if (!password || password.length < 5) {
@@ -57,6 +54,10 @@ const Signup = (props) => {
 
   useEffect(() => {
     if (users.registerSuccess === true) {
+      setFullname("");
+      setEmail('');
+      setPassword("");
+      setPhone("");
       setMessage("Account created successfully");
       setInterval(() => {
         props.history.push("/accountl");
@@ -66,6 +67,7 @@ const Signup = (props) => {
     }
   }, [ users ]);
 
+  const loading = users.registerLoading;
   return(
     <div className="home">
       <Header />
@@ -152,12 +154,18 @@ const Signup = (props) => {
               </Row>
               <Row className="mb-3">
                 <Col xs="12" xl="12">
-                  <Button type="primary" 
+                  {loading === true ? (
+                    <div className="text-center">
+                      <Spin tip="Loading..." />
+                    </div>
+                  ) : (
+                    <Button type="primary" 
                     style={{ width: "100%",
                     background: "rgb(9, 7, 36)"
                     }}
                     onClick={(e) => onRegister(e)}
                   >Create Account</Button>
+                  )}
                 </Col>
               </Row>
               <Row className="mb-2">
