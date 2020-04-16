@@ -50,7 +50,7 @@ const Signup = (props) => {
       setPhone(e.target.value);
     }
   }
-  
+
   const onRegister = (e) => {
     e.preventDefault();
     if (formValidation()) {
@@ -73,9 +73,9 @@ const Signup = (props) => {
       setPhone("");
       setMessage("Account created successfully");
       setInterval(() => {
-        props.history.push("/accountl");
+        window.location.href = "/accountl";
       }, 3000);
-    } else if (users.error && users.error.length > 0) {
+    } else if (users.error && users.error.length > 0 && users.registerSuccess === false) {
       setErrors(users.error);
     }
   }, [ users ]);
@@ -99,8 +99,10 @@ const Signup = (props) => {
        <Row className="justify-content-center">
         <Col xs="10" xl="6">
           <Row>
-            {message.length > 0 ? <p style={{ color: "#00ff00", fontWeight: "bold"}}>{message}</p> : null}
-            {errors.length > 0 ? <p style={{ color: "#ff0000" }}>{errors}</p> : null}
+            <Col>
+              {message.length > 0 ? <p style={{ color: "#00ff00", fontWeight: "bold"}}>{message}</p> : null}
+              {errors.length > 0 ? <p style={{ color: "#ff0000" }}>{errors}</p> : null}
+            </Col>
           </Row>
           <Card className="mb-5">
             <CardBody>

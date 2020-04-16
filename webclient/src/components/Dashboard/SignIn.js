@@ -58,7 +58,7 @@ const SignIn = (props) => {
       setInterval(() => {
         props.history.push("/dashboard");
       }, 3000);
-    } else if (users.error && users.error.length > 0) {
+    } else if (users.error && users.error.length > 0 && users.loginSuccess === false) {
       setErrors(users.error);
     }
   }, [ users ]);
@@ -81,12 +81,10 @@ const SignIn = (props) => {
       <Row className="justify-content-center">
         <Col xs="10" xl="6">
           <Row>
-            {message.length > 0 ? <p style={{ 
-              color: "#00ff00", 
-              fontWeight: "bold",
-              fontsize: "16px"
-              }}>{message}</p> : null}
-            {errors.length > 0 ? <p style={{ color: "#ff0000" }}>{errors}</p> : null}
+            <Col>
+              {message.length > 0 ? <p style={{ color: "#00ff00", fontWeight: "bold"}}>{message}</p> : null}
+              {errors.length > 0 ? <p style={{ color: "#ff0000" }}>{errors}</p> : null}
+            </Col>
           </Row>
           <Card className="mb-5">
             <CardBody>
