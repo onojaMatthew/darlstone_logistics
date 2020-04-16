@@ -1,7 +1,6 @@
 import React from "react";
 import { Input } from "antd";
 import { Row, Col } from "reactstrap";
-import { ContactsFilled } from "@ant-design/icons";
 
 const CompanyInfo = ({
   companyName,

@@ -4,6 +4,8 @@ import Home from './components/pages/Home';
 import Footer from './components/pages/Footer';
 import Quote from './components/pages/Quote';
 import Dashboard from './components/Dashboard/Dashboard';
+import Signup from './components/Dashboard/Signup';
+import SignIn from './components/Dashboard/SignIn';
 
 const styles = {
   ntf: {
@@ -47,6 +49,8 @@ class App extends Component{
           <Route exact path="/" render={(props) => <Home {...props} />} />
           <Route path="/request" render={(props) => <Quote {...props} />} />
           <Route path="/dashboard" render={(props) => <Dashboard {...props} />} />
+          <Route path="/accounts" render={(props) => <Signup {...props} />} />
+          <Route path="/accountl" render={(props) => <SignIn {...props} />} />
           <Route path="/*" render={() => <div style={styles.ntf}>404 Page Not Found!!</div>} />
         </Switch>
         {window.location.pathname.slice(0,12).includes("/dashboard") ? null : <Footer />}

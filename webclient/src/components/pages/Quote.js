@@ -80,6 +80,8 @@ const Quote = () => {
     setDeliveryOption(value);
   }
 
+  const emailRegex = "/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/";
+
   useEffect(() => {
     setAmount(shipmentTotal(numOfPieces, weight));
   }, [numOfPieces, weight]);
@@ -100,7 +102,7 @@ const Quote = () => {
     } else if (contactLName === "" || typeof contactLName === "number") {
       formValid = false;
       errors["contactLName"] = "Contact last name is required";
-    } else if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+    } else if (!emailRegex.test(email)) {
       formValid = false;
       errors["email"] = "You have entered an invalid email";
     } else if (!phone) {
