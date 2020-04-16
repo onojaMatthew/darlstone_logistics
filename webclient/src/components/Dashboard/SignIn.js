@@ -30,6 +30,14 @@ const SignIn = (props) => {
     return formValid;
   }
 
+  const handleChange = (e, name) => {
+    setErrors("");
+    if (name === "email") {
+      setEmail(e.target.value);
+    } else if (name === "password") {
+      setPassword(e.target.value);
+    }
+  }
   const handleLogin = (e) => {
     e.preventDefault();
     if (formValidation()) {
@@ -78,7 +86,7 @@ const SignIn = (props) => {
               fontWeight: "bold",
               fontsize: "16px"
               }}>{message}</p> : null}
-            {errors.length > 0 ? <p style={{ color: "#00ff00" }}>{errors}</p> : null}
+            {errors.length > 0 ? <p style={{ color: "#ff0000" }}>{errors}</p> : null}
           </Row>
           <Card className="mb-5">
             <CardBody>
@@ -96,7 +104,7 @@ const SignIn = (props) => {
                       type="email"
                       value={email}
                       id="email"
-                      onChange={(e) => setEmail(e.target.value)}
+                      onChange={(e) => handleChange(e, "email")}
                     />
                     <span style={{ color: "#ff0000" }}>{errors["email"]}</span>
                   </div>
@@ -112,7 +120,7 @@ const SignIn = (props) => {
                       type="password"
                       value={password}
                       id="password"
-                      onChange={(e) => setPassword(e.target.value)}
+                      onChange={(e) => handleChange(e, "password")}
                     />
                     <span style={{ color: "#ff0000" }}>{errors["password"]}</span>
                   </div>
@@ -122,7 +130,7 @@ const SignIn = (props) => {
                 <Col xs="12" xl="12">
                   {loading === true ? (
                     <div className="text-center">
-                      <Spin tip="Loading..." />
+                      <Spin tip="Processing..." />
                     </div>
                   ) : (
                     <Button type="primary" 

@@ -38,6 +38,19 @@ const Signup = (props) => {
     return formValid;
   }
 
+  const handleChange = (e, name) => {
+    setErrors("");
+    if (name === "fullname") {
+      setFullname(e.target.value);
+    } else if (name === "email") {
+      setEmail(e.target.value);
+    } else if (name === "password") {
+      setPassword(e.target.value);
+    } else {
+      setPhone(e.target.value);
+    }
+  }
+  
   const onRegister = (e) => {
     e.preventDefault();
     if (formValidation()) {
@@ -75,7 +88,7 @@ const Signup = (props) => {
         <Row className="justify-content-center">
           <Col xs="8" xl="6" className="home-text">
             <h1>Sign up!</h1>
-            <p className="animate-p">Check out my awesome waves!</p>
+            <p className="animate-p">Sign up to the admin dashboard</p>
           </Col>
         </Row>
         <svg id="curve" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
@@ -87,7 +100,7 @@ const Signup = (props) => {
         <Col xs="10" xl="6">
           <Row>
             {message.length > 0 ? <p style={{ color: "#00ff00", fontWeight: "bold"}}>{message}</p> : null}
-            {errors.length > 0 ? <p style={{ color: "#00ff00" }}>{errors}</p> : null}
+            {errors.length > 0 ? <p style={{ color: "#ff0000" }}>{errors}</p> : null}
           </Row>
           <Card className="mb-5">
             <CardBody>
@@ -104,7 +117,7 @@ const Signup = (props) => {
                       placeholder="Full Name"
                       value={fullname}
                       id="name"
-                      onChange={(e) => setFullname(e.target.value)}
+                      onChange={(e) => handleChange(e, "fullname")}
                     />
                     <span style={{ color: "#ff0000" }}>{errors["fullname"]}</span>
                   </div>
@@ -117,7 +130,7 @@ const Signup = (props) => {
                       type="email"
                       value={email}
                       id="email"
-                      onChange={(e) => setEmail(e.target.value)}
+                      onChange={(e) => handleChange(e, "email")}
                     />
                     <span style={{ color: "#ff0000" }}>{errors["email"]}</span>
                   </div>
@@ -133,7 +146,7 @@ const Signup = (props) => {
                       type="password"
                       value={password}
                       id="password"
-                      onChange={(e) => setPassword(e.target.value)}
+                      onChange={(e) => handleChange(e, "password")}
                     />
                     <span style={{ color: "#ff0000" }}>{errors["password"]}</span>
                   </div>
@@ -146,7 +159,7 @@ const Signup = (props) => {
                       type="text"
                       value={phone}
                       id="phone"
-                      onChange={(e) => setPhone(e.target.value)}
+                      onChange={(e) => handleChange(e, "phone")}
                     />
                     <span style={{ color: "#ff0000" }}>{errors["phone"]}</span>
                   </div>
@@ -156,7 +169,7 @@ const Signup = (props) => {
                 <Col xs="12" xl="12">
                   {loading === true ? (
                     <div className="text-center">
-                      <Spin tip="Loading..." />
+                      <Spin tip="Processing..." />
                     </div>
                   ) : (
                     <Button type="primary" 
