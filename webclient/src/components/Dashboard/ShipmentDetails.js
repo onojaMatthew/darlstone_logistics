@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getShipment } from "../../store/actions/action_shipment";
 import { Row, Col, Card, CardBody } from "reactstrap";
-import { Spin, Input } from "antd"
+import { Spin, Input, Divider } from "antd"
 
+const { TextArea } = Input;
 const ShipmentDetails = () => {
   const shipment = useSelector(state => state.shipment);
   const dispatch = useDispatch();
@@ -11,9 +12,8 @@ const ShipmentDetails = () => {
 
   useEffect(() => {
     dispatch(getShipment(shipmentId));
-  }, [])
+  }, []);
 
-  console.log(shipmentId);
   const shipmentDetails = shipment.shipment
   return (
     <div>
@@ -31,6 +31,7 @@ const ShipmentDetails = () => {
             </div>
           ) : (
             <>
+            <Divider orientation="left">Company Information</Divider>
             <Row>
               <Col xs="12" xl="4">
                 <div className="mb-3">
@@ -87,19 +88,21 @@ const ShipmentDetails = () => {
                   />
                 </div>
               </Col>
+              
+            </Row>
+            <Divider orientation="left">Pick-up Information</Divider>
+            <Row>
               <Col xs="12" xl="4">
                 <div className="mb-3">
                   <label htmlFor="pickadd">Pick-up Address</label>
-                  <Input 
+                  <TextArea 
                     value={shipmentDetails.pickupAddress}
                     id="pickadd"
+                    autoSize={{ minRows: 3, maxRows: 5 }}
                     readOnly
                   />
                 </div>
               </Col>
-            </Row>
-            
-            <Row>
               <Col xs="12" xl="4">
                 <div className="mb-3">
                   <label htmlFor="pickcity">Pick-up City</label>
@@ -134,17 +137,18 @@ const ShipmentDetails = () => {
             </Row>
           
             <Row>
-              <Col xs="12" xl="4">
+              <Col xs="12" xl="3">
                 <div className="mb-3">
                   <label htmlFor="desa">Destination Address</label>
-                  <Input 
+                  <TextArea 
                     value={shipmentDetails.destinationAddress}
                     id="desa"
+                    autoSize={{ minRows: 3, maxRows: 5 }}
                     readOnly
                   />
                 </div>
               </Col>
-              <Col xs="12" xl="4">
+              <Col xs="12" xl="3">
                 <div className="mb-3">
                   <label htmlFor="desc">Destination City</label>
                   <Input 
@@ -154,7 +158,7 @@ const ShipmentDetails = () => {
                   />
                 </div>
               </Col>
-              <Col xs="12" xl="4">
+              <Col xs="12" xl="3">
                 <div className="mb-3">
                   <label htmlFor="desst">Destination State</label>
                   <Input 
@@ -164,9 +168,6 @@ const ShipmentDetails = () => {
                   />
                 </div>
               </Col>
-            </Row>
-            
-            <Row>
               <Col xs="12" xl="4">
                 <div className="mb-3">
                   <label htmlFor="dessz">Destination Zip</label>
@@ -177,13 +178,18 @@ const ShipmentDetails = () => {
                   />
                 </div>
               </Col>
+            </Row>
+            
+            <Divider orientation="left">Package Description</Divider>
+            <Row>
               <Col xs="12" xl="4">
                 <div className="mb-3">
                   <label htmlFor="packInf">Package Information</label>
-                  <Input 
+                  <TextArea 
                     value={shipmentDetails.packageInfo}
                     id="packInf"
                     readOnly
+                    autoSize={{ minRows: 3, maxRows: 5 }}
                   />
                 </div>
               </Col>
@@ -197,8 +203,6 @@ const ShipmentDetails = () => {
                   />
                 </div>
               </Col>
-            </Row>
-            <Row>
               <Col xs="12" xl="4">
               <div className="mb-3">
                 <label htmlFor="weight">Weight</label>
