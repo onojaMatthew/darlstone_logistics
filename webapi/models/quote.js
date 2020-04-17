@@ -22,7 +22,8 @@ const quoteSchema = new Schema({
   specialInstruction: { type: String, required: true },
   numOfPieces: { type: String, required: true },
   trackingNumber: { type: String, required: true },
-  delivered: { type: Boolean, default: false }
+  delivered: { type: Boolean, default: false },
+  createdAt: { type: Date, default: Date.now() }
 });
 
 const Quote = mongoose.model("Quote", quoteSchema);
