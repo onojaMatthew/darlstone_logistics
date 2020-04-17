@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getShipment } from "../../store/actions/action_shipment";
 import { Row, Col, Card, CardBody } from "reactstrap";
-import { Spin } from "antd"
+import { Spin, Input } from "antd"
 
 const ShipmentDetails = () => {
   const shipment = useSelector(state => state.shipment);
@@ -14,6 +14,7 @@ const ShipmentDetails = () => {
   }, [])
 
   console.log(shipmentId);
+  const shipmentDetails = shipment.shipment
   return (
     <div>
       <Card>
@@ -35,7 +36,7 @@ const ShipmentDetails = () => {
                 <div className="mb-3">
                   <label htmlFor="company">Company Name</label>
                   <Input 
-                    value={companyName}
+                    value={shipmentDetails.companyName}
                     id="company"
                     readOnly
                   />
@@ -45,7 +46,7 @@ const ShipmentDetails = () => {
                 <div className="mb-3">
                   <label htmlFor="firstName">Contact first name</label>
                   <Input 
-                    value={contactFName}
+                    value={shipmentDetails.contactFName}
                     id="firstName"
                     readOnly
                   />
@@ -55,7 +56,7 @@ const ShipmentDetails = () => {
                 <div className="mb-3">
                   <label htmlFor="lastName">Contact last name</label>
                   <Input 
-                    value={contactLName}
+                    value={shipmentDetails.contactLName}
                     id="lastName"
                     readOnly
                   />
@@ -71,7 +72,7 @@ const ShipmentDetails = () => {
                   <Input
                     id="email"
                     type="email"
-                    value={email}
+                    value={shipmentDetails.email}
                     readOnly
                   />
                 </div>
@@ -80,7 +81,7 @@ const ShipmentDetails = () => {
                 <div className="mb-3">
                   <label htmlFor="phone">Phone Number</label>
                   <Input 
-                    value={phone}
+                    value={shipmentDetails.phone}
                     id="phone"
                     readOnly
                   />
@@ -90,7 +91,7 @@ const ShipmentDetails = () => {
                 <div className="mb-3">
                   <label htmlFor="pickadd">Pick-up Address</label>
                   <Input 
-                    value={pickupAddress}
+                    value={shipmentDetails.pickupAddress}
                     id="pickadd"
                     readOnly
                   />
@@ -103,7 +104,7 @@ const ShipmentDetails = () => {
                 <div className="mb-3">
                   <label htmlFor="pickcity">Pick-up City</label>
                   <Input 
-                    value={pickupCity}
+                    value={shipmentDetails.pickupCity}
                     id="pickcity"
                     readOnly
                   />
@@ -113,7 +114,7 @@ const ShipmentDetails = () => {
                 <div className="mb-3">
                   <label htmlFor="pickstate">Pick-up State</label>
                   <Input 
-                    value={pickupState}
+                    value={shipmentDetails.pickupState}
                     id="pickstate"
                     readOnly
                   />
@@ -125,7 +126,7 @@ const ShipmentDetails = () => {
                   <Input
                     id="pickzip"
                     type="email"
-                    value={pickupZip}
+                    value={shipmentDetails.pickupZip}
                     readOnly
                   />
                 </div>
@@ -137,7 +138,7 @@ const ShipmentDetails = () => {
                 <div className="mb-3">
                   <label htmlFor="desa">Destination Address</label>
                   <Input 
-                    value={destinationAddress}
+                    value={shipmentDetails.destinationAddress}
                     id="desa"
                     readOnly
                   />
@@ -147,7 +148,7 @@ const ShipmentDetails = () => {
                 <div className="mb-3">
                   <label htmlFor="desc">Destination City</label>
                   <Input 
-                    value={destinationCity}
+                    value={shipmentDetails.destinationCity}
                     id="desc"
                     readOnly
                   />
@@ -157,7 +158,7 @@ const ShipmentDetails = () => {
                 <div className="mb-3">
                   <label htmlFor="desst">Destination State</label>
                   <Input 
-                    value={destinationState}
+                    value={shipmentDetails.destinationState}
                     id="desst"
                     readOnly
                   />
@@ -170,7 +171,7 @@ const ShipmentDetails = () => {
                 <div className="mb-3">
                   <label htmlFor="dessz">Destination Zip</label>
                   <Input 
-                    value={destinationZip}
+                    value={shipmentDetails.destinationZip}
                     id="dessz"
                     readOnly
                   />
@@ -180,7 +181,7 @@ const ShipmentDetails = () => {
                 <div className="mb-3">
                   <label htmlFor="packInf">Package Information</label>
                   <Input 
-                    value={packageInfo}
+                    value={shipmentDetails.packageInfo}
                     id="packInf"
                     readOnly
                   />
@@ -190,7 +191,7 @@ const ShipmentDetails = () => {
                 <div className="mb-3">
                   <label htmlFor="num">Number of Pieces</label>
                   <Input 
-                    value={numOfPieces}
+                    value={shipmentDetails.numOfPieces}
                     id="num"
                     readOnly
                   />
@@ -202,7 +203,7 @@ const ShipmentDetails = () => {
               <div className="mb-3">
                 <label htmlFor="weight">Weight</label>
                 <Input 
-                  value={weight}
+                  value={shipmentDetails.weight}
                   id="weight"
                   readOnly
                 />
@@ -214,7 +215,7 @@ const ShipmentDetails = () => {
                 <Input
                   id="dimension"
                   type="text"
-                  value={dimension}
+                  value={shipmentDetails.dimension}
                   readOnly
                 />
               </div>
@@ -223,7 +224,7 @@ const ShipmentDetails = () => {
                 <div className="mb-3">
                   <label htmlFor="instruction">Special Instruction</label>
                   <Input 
-                    value={specialInstruction}
+                    value={shipmentDetails.specialInstruction}
                     id="instruction"
                     readOnly
                   />
