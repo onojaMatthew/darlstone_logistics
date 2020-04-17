@@ -1,20 +1,27 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getShipment } from "../../store/actions/action_shipment";
-import { Row, Col } from "reactstrap";
+import { Row, Col, Card, CardBody } from "reactstrap";
 
 const ShipmentDetails = () => {
   const shipment = useSelector(state => state.shipment);
   const dispatch = useDispatch();
-  const shipmentId = window.location.pathname.slice(0, 12);
+  const shipmentId = window.location.pathname.slice(11, 35);
 
   useEffect(() => {
     dispatch(getShipment(shipmentId));
-  })
+  }, [])
 
   console.log(shipmentId);
   return (
     <div>
+      <Card>
+        <CardBody>
+          {shipment.getLoading === true ? (
+            <div className="text-center"></div>
+          )}
+        </CardBody>
+      </Card>
       <Row>
         {/* <Col xs="12" xl="4">
           <div className="mb-3">

@@ -48,7 +48,7 @@ class App extends Component{
         <Switch>
           <Route exact path="/" render={(props) => <Home {...props} />} />
           <Route path="/request" render={(props) => <Quote {...props} />} />
-          <PrivateRoute path="/dashboard" render={(props) => <Dashboard {...props} />} />
+          <Route path="/dashboard" render={(props) => <Dashboard {...props} />} />
           <Route path="/accounts" render={(props) => <Signup {...props} />} />
           <Route path="/accountl" render={(props) => <SignIn {...props} />} />
           <Route path="/*" render={() => <div style={styles.ntf}>404 Page Not Found!!</div>} />
