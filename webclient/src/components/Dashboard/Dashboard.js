@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route, Switch, Link  } from "react-router-dom";
+import { Route, Switch, Link, Router  } from "react-router-dom";
 import { Layout, Breadcrumb } from 'antd';
 
 import SideBar from "./Sidebar";
@@ -34,7 +34,7 @@ export default class Dashboard extends Component{
             <div className="site-layout-background" style={{ padding: 4, minHeight: 360 }}>
               <Switch>
                 <Route exact path={`${match.url}`} render={(props) => <Shipments {...props} />} />
-                <Route  path={`${match.url}/:shipmentId`} render={(props) => <ShipmentDetails {...props} />} />
+                <Route  path={`/dashboard/:shipmentId`} render={(props) => <ShipmentDetails {...props} />} />
               </Switch>
             </div>
           </Content>

@@ -5,6 +5,7 @@ import Quote from './components/pages/Quote';
 import Dashboard from './components/Dashboard/Dashboard';
 import Signup from './components/Dashboard/Signup';
 import SignIn from './components/Dashboard/SignIn';
+import PrivateRoute from "./helper/PrivateRoute";
 
 const styles = {
   ntf: {
@@ -47,7 +48,7 @@ class App extends Component{
         <Switch>
           <Route exact path="/" render={(props) => <Home {...props} />} />
           <Route path="/request" render={(props) => <Quote {...props} />} />
-          <Route path="/dashboard" render={(props) => <Dashboard {...props} />} />
+          <PrivateRoute path="/dashboard" render={(props) => <Dashboard {...props} />} />
           <Route path="/accounts" render={(props) => <Signup {...props} />} />
           <Route path="/accountl" render={(props) => <SignIn {...props} />} />
           <Route path="/*" render={() => <div style={styles.ntf}>404 Page Not Found!!</div>} />
