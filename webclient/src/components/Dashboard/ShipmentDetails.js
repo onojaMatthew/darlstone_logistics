@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getShipment } from "../../store/actions/action_shipment";
+import { getShipment, shipmentDelivered } from "../../store/actions/action_shipment";
 import { Row, Col, Card, CardBody } from "reactstrap";
-import { Spin, Input, Divider } from "antd"
+import { Spin, Input, Divider, Button } from "antd"
 
 const { TextArea } = Input;
 const ShipmentDetails = () => {
@@ -14,10 +14,16 @@ const ShipmentDetails = () => {
     dispatch(getShipment(shipmentId));
   }, []);
 
+  const completeDelivery = () => {
+    dispatch(shipmentDelivered(shipmentId));
+  }
+
   const shipmentDetails = shipment.shipment
   return (
     <div>
-      <Card>
+      <Row className="justify-content-center">
+        <Col xl="11">
+        <Card>
         <CardBody>
           {shipment.getLoading === true ? (
             <div className="text-center"
@@ -92,17 +98,20 @@ const ShipmentDetails = () => {
             </Row>
             <Divider orientation="left">Pick-up Information</Divider>
             <Row>
-              <Col xs="12" xl="4">
+              <Col xs="12" xl="12">
                 <div className="mb-3">
                   <label htmlFor="pickadd">Pick-up Address</label>
-                  <TextArea 
+                  <Input 
                     value={shipmentDetails.pickupAddress}
                     id="pickadd"
-                    autoSize={{ minRows: 3, maxRows: 5 }}
+                    // autoSize={{ minRows: 3, maxRows: 5 }}
                     readOnly
                   />
                 </div>
               </Col>
+            </Row>
+            <Row>
+              
               <Col xs="12" xl="4">
                 <div className="mb-3">
                   <label htmlFor="pickcity">Pick-up City</label>
@@ -135,20 +144,21 @@ const ShipmentDetails = () => {
                 </div>
               </Col>
             </Row>
-          
             <Row>
-              <Col xs="12" xl="3">
+              <Col xs="12" xl="12">
                 <div className="mb-3">
                   <label htmlFor="desa">Destination Address</label>
-                  <TextArea 
+                  <Input 
                     value={shipmentDetails.destinationAddress}
                     id="desa"
-                    autoSize={{ minRows: 3, maxRows: 5 }}
+                    // autoSize={{ minRows: 3, maxRows: 5 }}
                     readOnly
                   />
                 </div>
               </Col>
-              <Col xs="12" xl="3">
+            </Row>
+            <Row>
+              <Col xs="12" xl="4">
                 <div className="mb-3">
                   <label htmlFor="desc">Destination City</label>
                   <Input 
@@ -158,7 +168,7 @@ const ShipmentDetails = () => {
                   />
                 </div>
               </Col>
-              <Col xs="12" xl="3">
+              <Col xs="12" xl="4">
                 <div className="mb-3">
                   <label htmlFor="desst">Destination State</label>
                   <Input 
@@ -227,19 +237,44 @@ const ShipmentDetails = () => {
               <Col xs="12" xl="4">
                 <div className="mb-3">
                   <label htmlFor="instruction">Special Instruction</label>
-                  <Input 
+                  <TextArea 
                     value={shipmentDetails.specialInstruction}
                     id="instruction"
                     readOnly
+                    autoSize={{ minRows: 3, maxRows: 5 }}
                   />
                 </div>
+              </Col>
+              <Col xs="12" xl="4">
+                <div className="mb-3">
+                  
+                <label htmlFor="dimension">Shipment status</label>
+                <Input
+                  id="dimension"
+                  type="text"
+                  value={shipmentDetails.delivered}
+                  readOnly
+                />
+                </div>
+              </Col>
+            </Row>
+            <Row>
+              <Col xl="12">
+                {shipmentDetails.deliverLoading === true ? (
+                  <div className="text-center">
+                    <Spin tip="Processing..." />
+                  </div>
+                ) : (
+                  <Button type="primary" style={{}}>Click to Complete Delivery</Button>
+                )}
               </Col>
             </Row>
             </>
           )}
         </CardBody>
       </Card>
-      
+        </Col>
+      </Row>
     </div>
   )
 }

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Layout, Menu } from 'antd';
 import {
   DesktopOutlined,
@@ -20,7 +21,7 @@ const SideBar =({ collapsed, onCollapse }) => {
         <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
           <Menu.Item key="1">
             <PieChartOutlined />
-            <span>Option 1</span>
+            <span><Link to="/dashboard" style={{ color: "#fff"}}>Dashboard</Link></span>
           </Menu.Item>
           <Menu.Item key="2">
             <DesktopOutlined />
