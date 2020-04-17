@@ -18,6 +18,12 @@ const ShipmentDetails = () => {
     dispatch(shipmentDelivered(shipmentId));
   }
 
+  useEffect(() => {
+    if (shipment.deliverSuccess === true) {
+      dispatch(getShipment(shipmentId))
+    }
+  }, [ shipment ]);
+
   const shipmentDetails = shipment.shipment
   return (
     <div>
@@ -265,7 +271,7 @@ const ShipmentDetails = () => {
                     <Spin tip="Processing..." />
                   </div>
                 ) : (
-                  <Button type="primary" style={{}}>Click to Complete Delivery</Button>
+                  <Button type="primary" style={{ width: "100%" }}>Click to Complete Delivery</Button>
                 )}
               </Col>
             </Row>
