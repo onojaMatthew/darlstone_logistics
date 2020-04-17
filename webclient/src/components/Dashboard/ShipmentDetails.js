@@ -5,6 +5,7 @@ import { Row, Col, Card, CardBody } from "reactstrap";
 import { Spin, Input, Divider, Button } from "antd"
 
 const { TextArea } = Input;
+
 const ShipmentDetails = () => {
   const shipment = useSelector(state => state.shipment);
   const dispatch = useDispatch();
@@ -18,12 +19,6 @@ const ShipmentDetails = () => {
     e.preventDefault();
     dispatch(shipmentDelivered(shipmentId));
   }
-
-  useEffect(() => {
-    if (shipment.deliverSuccess === true) {
-      dispatch(getShipment(shipmentId))
-    }
-  }, [ shipment ]);
 
   const shipmentDetails = shipment.shipment
   return (

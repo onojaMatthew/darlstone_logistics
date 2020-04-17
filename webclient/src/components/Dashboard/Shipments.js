@@ -4,16 +4,30 @@ import { getShipments } from "../../store/actions/action_shipment";
 import { Table, Row, Col, Card, CardBody } from 'reactstrap';
 import { Spin } from "antd";
 import { Link } from "react-router-dom";
+import Paginations from "../pages/Pagination";
 
 
 const Shipments = (props) => {
   const shipment = useSelector(state => state.shipment);
   const dispatch = useDispatch();
   const [errors, setErrors ] = useState("");
+  const [ pager, setPager ] = useState({});
+  const [ pageOfItems, setPageOfItems ] = useState([]);
+  const [ data, setData ] = useState([]);
 
   useEffect(() => {
-    dispatch(getShipments())
+    dispatch(getShipments());
   }, []);
+
+  useEffect(() => {
+    setData(shipment.shipments);
+  }, [shipment]);
+  
+  const onChangePage = (pageOfItems, pager) => {
+    // update state with new page of items
+    setPageOfItems(pageOfItems);
+    setPager(pager);
+  }
 
   console.log(shipment);
   const dataSource = shipment.shipments && shipment.shipments;
@@ -29,6 +43,7 @@ const Shipments = (props) => {
                 <Spin tip="Loading..." />
               </div>
             ) : (
+              <>
               <Table hover>
                 <thead>
                   <tr>
@@ -43,7 +58,7 @@ const Shipments = (props) => {
                   </tr>
                 </thead>
                 <tbody>
-                  {dataSource && dataSource.length > 0 ? dataSource.map((data, i) => (
+                  {pageOfItems ? pageOfItems.map((data, i) => (
                     <tr key={data._id}>
                       <th scope="row">{i + 1}</th>
                       <td>{data.companyName}</td>
@@ -59,6 +74,13 @@ const Shipments = (props) => {
                 
                 </tbody>
               </Table>
+              {dataSource && dataSource.length > 0 ? (
+                <Paginations
+                  items={data}
+                  onChangePage={onChangePage}
+                />
+              ) : null}
+              </>
             )}
             </CardBody>
           </Card>

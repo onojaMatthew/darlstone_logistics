@@ -180,6 +180,9 @@ export const shipmentDelivered = (shipmentId) => {
         if (resp.error) return dispatch(shipmentDeliveredFailed(resp.error));
         dispatch(shipmentDeliveredSuccess(resp));
       })
+      .then(() => {
+        dispatch(getShipment(shipmentId));
+      })
       .catch(err => {
         dispatch(shipmentDeliveredFailed(`Request failed. ${err.mesage}`));
       });
