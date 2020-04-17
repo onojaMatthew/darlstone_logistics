@@ -14,7 +14,8 @@ const ShipmentDetails = () => {
     dispatch(getShipment(shipmentId));
   }, []);
 
-  const completeDelivery = () => {
+  const completeDelivery = (e) => {
+    e.preventDefault();
     dispatch(shipmentDelivered(shipmentId));
   }
 
@@ -198,7 +199,7 @@ const ShipmentDetails = () => {
             
             <Divider orientation="left">Package Description</Divider>
             <Row>
-              <Col xs="12" xl="4">
+            <Col xs="12" xl="3">
                 <div className="mb-3">
                   <label htmlFor="packInf">Package Information</label>
                   <TextArea 
@@ -209,7 +210,7 @@ const ShipmentDetails = () => {
                   />
                 </div>
               </Col>
-              <Col xs="12" xl="4">
+              <Col xs="12" xl="3">
                 <div className="mb-3">
                   <label htmlFor="num">Number of Pieces</label>
                   <Input 
@@ -219,7 +220,7 @@ const ShipmentDetails = () => {
                   />
                 </div>
               </Col>
-              <Col xs="12" xl="4">
+              <Col xs="12" xl="3">
               <div className="mb-3">
                 <label htmlFor="weight">Weight</label>
                 <Input 
@@ -229,16 +230,29 @@ const ShipmentDetails = () => {
                 />
               </div>
               </Col>
-              <Col xs="12" xl="4">
+              <Col xs="12" xl="3">
               <div className="mb-3">
-                <label htmlFor="dimension">Dimension</label>
+                <label htmlFor="amount">Amount</label>
                 <Input
-                  id="dimension"
+                  id="amount"
                   type="text"
-                  value={shipmentDetails.dimension}
+                  value={`${shipmentDetails.amount} naira`}
                   readOnly
                 />
               </div>
+              </Col>
+            </Row>
+            <Row>
+              <Col xs="12" xl="3">
+                <div className="mb-3">
+                  <label htmlFor="dimension">Dimension</label>
+                  <Input
+                    id="dimension"
+                    type="text"
+                    value={shipmentDetails.dimension}
+                    readOnly
+                  />
+                </div>
               </Col>
               <Col xs="12" xl="4">
                 <div className="mb-3">
@@ -258,7 +272,7 @@ const ShipmentDetails = () => {
                 <Input
                   id="dimension"
                   type="text"
-                  value={shipmentDetails.delivered}
+                  value={shipmentDetails.delivered === false ? "Pending": "Delivered"}
                   readOnly
                 />
                 </div>
@@ -271,7 +285,11 @@ const ShipmentDetails = () => {
                     <Spin tip="Processing..." />
                   </div>
                 ) : (
-                  <Button type="primary" style={{ width: "100%" }}>Click to Complete Delivery</Button>
+                  <Button 
+                    type="primary" 
+                    style={{ width: "100%" }}
+                    onClick={(e) => completeDelivery(e)}
+                  >Click to Complete Delivery</Button>
                 )}
               </Col>
             </Row>
