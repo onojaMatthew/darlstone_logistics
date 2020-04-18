@@ -9,7 +9,8 @@ const {
   deleteUser,
   logout,
   photo,
-  uploadPhoto
+  uploadPhoto,
+  role
 } = require("../controllers/user");
 const { upload } = require("../middlware/fileupload");
 
@@ -22,6 +23,7 @@ router.get("/user/:userId", requireLogin, getUser);
 router.get("/logout", logout);
 router.delete("/user/:userId", requireLogin, deleteUser);
 router.put("/profile/photo", requireLogin, upload.single("image"), uploadPhoto);
+router.put("/role/:userId/:newRole", requireLogin, role)
 router.get("/photo/:userId", photo);
 
 module.exports = router;

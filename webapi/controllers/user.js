@@ -46,9 +46,9 @@ exports.accountLogin = (req, res) => {
         .then(isMatch => {
           if (!isMatch) return res.status(400).json({ error: "Password do not match"});
           const token = account.generateToken();
-          const { _id, fullname, phone, email } = account;
+          const { _id, fullname, phone, email, role } = account;
           res.cookie("token", token, { expires: new Date(new Date() + 64800000)})
-          res.header("x-auth-token", token).json({token, user: { _id, fullname, phone, email }});
+          res.header("x-auth-token", token).json({token, user: { _id, fullname, phone, email, role }});
         });
     })
     .catch(err => {
