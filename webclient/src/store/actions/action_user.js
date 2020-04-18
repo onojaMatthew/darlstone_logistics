@@ -22,6 +22,9 @@ export const UPLOAD_PHOTO_FAILED = 'UPLOAD_PHOTO_FAILED';
 export const DELETE_USER_START = "DELETE_USER_SART";
 export const DELETE_USER_SUCCESS = "DELETE_USER_SUCCESS";
 export const DELETE_USER_FAILED = "DELETE_USER_FAILED";
+const ASSIGN_ROLE_START = "ASSIGN_ROLE_START";
+const ASSIGN_ROLE_SUCCESS = "ASSIGN_ROLE_SUCCESS";
+const ASSIGN_ROLE_FAILED = "ASSIGN_ROLE_FAILED";
 
 const BASE_URL = process.env.REACT_APP_API_URL;
  
@@ -337,3 +340,46 @@ export const uploadPhoto = (data, userId) => {
       });
   }
 }
+
+export const roleStart = () => {
+  return {
+    type: ASSIGN_ROLE_START
+  }
+}
+
+export const roleSuccess = (data) => {
+  return {
+    type: ASSIGN_ROLE_SUCCESS,
+    data
+  }
+}
+
+export const roleFailed = (error) => {
+  return {
+    type: ASSIGN_ROLE_FAILED,
+    error
+  }
+}
+
+export const role = (userId) => {
+  return dispatch => {
+    dispatch(roleStart());
+    fetch(`${BASE_URL}/role/${userId}/admin`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        ACCEPT: "application/json"
+      }
+    })
+      .then(response => response.json())
+      .then(resp => {
+        if (resp.error) return dispatch(roleFailed(resp.error));
+        dispatch(roleSuccess(resp));
+      })
+      .catch(err => {
+        dispatch(roleFailed(`Request failed. ${err.message}`));
+      });
+  }
+}
+
+

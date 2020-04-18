@@ -20,6 +20,9 @@ import {
   DELETE_USER_START,
   DELETE_USER_SUCCESS,
   DELETE_USER_FAILED,
+  ASSIGN_ROLE_START,
+  ASSIGN_ROLE_SUCCESS,
+  ASSIGN_ROLE_FAILED,
 } from "../actions/action_user";
 
 const initialState = {
@@ -37,6 +40,8 @@ const initialState = {
   uploadSuccess: false,
   logoutLoading: false,
   logoutSuccess: false,
+  roleLoading: false,
+  roleSuccess: false,
   error: ""
 }
 
@@ -175,6 +180,25 @@ export const users = (state=initialState, action) => {
         ...state,
         deleteLoading: false,
         deleteSuccess: false,
+        error: action.error
+      }
+    case ASSIGN_ROLE_START:
+      return {
+        ...state,
+        roleLoading: true,
+      }
+    case ASSIGN_ROLE_SUCCESS:
+      return {
+        ...state,
+        roleLoading: false,
+        roleSuccess: true,
+        user: action.data,
+      }
+    case ASSIGN_ROLE_FAILED:
+      return {
+        ...state,
+        roleLoading: false,
+        roleSuccess: false,
         error: action.error
       }
     default:

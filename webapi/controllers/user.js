@@ -83,10 +83,10 @@ exports.getAllUsers = (req, res) => {
 exports.role = (req, res) => {
   const { userId, newRole } = req.params;
   const { role } = req.user;
-  const roles = [ "admin", "logistics" ];
-  if (!userId || !admin) return res.status(400).json({ error: "Invalid parameter value" });
-  if (!roles.includes(admin)) return res.status(400).json({ error: "Invalid role authorization" });
-  if (role !== "admin") return res.status(400).json({ error: "You are not authorized for this operation" });
+  const roles = [ "super_admin", "admin" ];
+  if (!userId || !newRole) return res.status(400).json({ error: "Invalid parameter value" });
+  if (!roles.includes(role)) return res.status(400).json({ error: "Invalid role authorization" });
+  if (role !== "super_admin") return res.status(400).json({ error: "You are not authorized for this operation" });
 
   User.findByIdAndUpdate({ _id: userId}, { $set: { role: newRole }}, { new: true })
     .then(user => {
