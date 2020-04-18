@@ -22,7 +22,7 @@ const Shipments = (props) => {
   useEffect(() => {
     setData(shipment.shipments);
   }, [shipment]);
-  
+
   const onChangePage = (pageOfItems, pager) => {
     // update state with new page of items
     setPageOfItems(pageOfItems);
@@ -69,9 +69,11 @@ const Shipments = (props) => {
                       <td>{data.delivered === false ? "Pending" : "Delivered"}</td>
                       <td><Link to={`${props.match.url}/${data._id}`}>View</Link></td>
                     </tr>
-                  )) : "No records found"}
-                  
-                
+                  )) : (
+                    <div className="text-center">
+                      <Spin tip="Loading..." />
+                    </div>
+                  )}
                 </tbody>
               </Table>
               {dataSource && dataSource.length > 0 ? (

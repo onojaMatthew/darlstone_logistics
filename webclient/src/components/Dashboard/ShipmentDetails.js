@@ -281,8 +281,8 @@ const ShipmentDetails = () => {
                   </div>
                 ) : (
                   <Button 
-                    type="primary" 
-                    style={{ width: "100%" }}
+                    // type="primary" 
+                    style={{ color: "#fff", width: "100%", background: "rgb(9, 7, 36)" }}
                     onClick={(e) => completeDelivery(e)}
                   >Click to Complete Delivery</Button>
                 )}
