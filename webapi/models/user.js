@@ -9,6 +9,7 @@ const userSchema = new Schema({
   password: { type: String, required: true },
   phone: { type: String, required: true },
   photo: { data: Buffer, ContentType: String },
+  role: { type: String, enum: [ "admin", "logistics" ], default: "logistics" },
   createdAt: { type: Date, default: Date.now }
 });
 

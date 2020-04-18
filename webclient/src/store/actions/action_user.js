@@ -51,7 +51,7 @@ export const logoutFailed = ( error ) => {
 export const logout = () => {
   return dispatch => {
     dispatch( logoutStart() );
-    fetch( `${ BASE_URL }/signout`, {
+    fetch( `${ BASE_URL }/logout`, {
       method: "GET",
       headers: {
         ACCEPT: "application/json",

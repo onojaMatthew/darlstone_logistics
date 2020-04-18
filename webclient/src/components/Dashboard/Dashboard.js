@@ -1,12 +1,13 @@
 import React, { Component } from "react";
-import { Route, Switch, Link, Router  } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import { Layout, Breadcrumb } from 'antd';
 
 import SideBar from "./Sidebar";
 import Shipments from "./Shipments";
 import ShipmentDetails from "./ShipmentDetails";
+import DashboardHeader from "./Header";
 
-const { Header, Content, Footer } = Layout;
+const { Content, Footer } = Layout;
 
 export default class Dashboard extends Component{
   state = {
@@ -25,11 +26,11 @@ export default class Dashboard extends Component{
       <Layout style={{ minHeight: '100vh' }}>
         <SideBar onCollapse={this.onCollapse} collapsed={collapsed} />
         <Layout className="site-layout">
-          <Header className="site-layout-background" style={{ padding: 0 }}>Dashboard header</Header>
+          <DashboardHeader />
           <Content style={{ margin: '0 16px' }}>
             <Breadcrumb style={{ margin: '16px 0' }}>
-              <Breadcrumb.Item>User</Breadcrumb.Item>
-              <Breadcrumb.Item>Bill</Breadcrumb.Item>
+              <Breadcrumb.Item></Breadcrumb.Item>
+              <Breadcrumb.Item></Breadcrumb.Item>
             </Breadcrumb>
             <div className="site-layout-background" style={{ padding: 4, minHeight: 360 }}>
               <Switch>

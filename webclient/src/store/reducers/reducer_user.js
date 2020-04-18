@@ -91,7 +91,7 @@ export const users = (state=initialState, action) => {
         ...state,
         logoutLoading: false,
         logoutSuccess: true,        
-        user:action.data,
+        user: action.data,
       }
     case LOGOUT_FAILED:
       return {

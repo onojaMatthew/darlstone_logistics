@@ -10,8 +10,6 @@ import Paginations from "../pages/Pagination";
 const Shipments = (props) => {
   const shipment = useSelector(state => state.shipment);
   const dispatch = useDispatch();
-  const [errors, setErrors ] = useState("");
-  const [ pager, setPager ] = useState({});
   const [ pageOfItems, setPageOfItems ] = useState([]);
   const [ data, setData ] = useState([]);
 
@@ -24,12 +22,9 @@ const Shipments = (props) => {
   }, [shipment]);
 
   const onChangePage = (pageOfItems, pager) => {
-    // update state with new page of items
     setPageOfItems(pageOfItems);
-    setPager(pager);
   }
 
-  console.log(shipment);
   const dataSource = shipment.shipments && shipment.shipments;
   return (
     <div>
@@ -69,11 +64,7 @@ const Shipments = (props) => {
                       <td>{data.delivered === false ? "Pending" : "Delivered"}</td>
                       <td><Link to={`${props.match.url}/${data._id}`}>View</Link></td>
                     </tr>
-                  )) : (
-                    <div className="text-center">
-                      <Spin tip="Loading..." />
-                    </div>
-                  )}
+                  )) : "No records found"}
                 </tbody>
               </Table>
               {dataSource && dataSource.length > 0 ? (

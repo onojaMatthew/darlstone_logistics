@@ -80,6 +80,24 @@ exports.getAllUsers = (req, res) => {
     });
 }
 
+exports.role = (req, res) => {
+  const { userId, newRole } = req.params;
+  const { role } = req.user;
+  const roles = [ "admin", "logistics" ];
+  if (!userId || !admin) return res.status(400).json({ error: "Invalid parameter value" });
+  if (!roles.includes(admin)) return res.status(400).json({ error: "Invalid role authorization" });
+  if (role !== "admin") return res.status(400).json({ error: "You are not authorized for this operation" });
+
+  User.findByIdAndUpdate({ _id: userId}, { $set: { role: newRole }}, { new: true })
+    .then(user => {
+      if (!user) return res.status(400).json({ error: "Failed to assign role" });
+      res.json(user);
+    })
+    .catch(err => {
+      res.status(400).json({ error: err.message });
+    });
+}
+
 exports.deleteUser = (req, res) => {
   const { userId } = req.params;
 
@@ -131,5 +149,5 @@ exports.uploadPhoto = ( req, res ) => {
 }
 
 exports.logout = (req, res) => {
-  res.clearCookie("token")
+  res.clearCookie("token").json("You have logged out");
 }
