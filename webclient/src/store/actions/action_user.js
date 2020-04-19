@@ -169,7 +169,7 @@ export const onLogin = ( data ) =>{
        Auth.authenticateUser( JSON.stringify( resp ));
      })
      .catch( err => {
-       dispatch( loginFailed(`Failed to logout. ${err.message}`) );
+       dispatch( loginFailed(err.message) );
      });
  }  
 }
