@@ -6,23 +6,21 @@ import {
   NavbarToggler,
   NavbarBrand,
   Nav,
-  NavItem,
   NavLink,
   NavbarText
 } from 'reactstrap';
-import Logo from "../../assets/logo-dark.png"
+import Logo from "../../assets/logo-dark.png";
 
-const Header = (props) => {
+const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
   const styles = {
     link: {
       color: "#fff"
-    },
-
-
+    }
   }
+
   return (
     <div>
       <Navbar className="light" expand="md">

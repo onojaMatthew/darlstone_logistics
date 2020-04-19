@@ -13,7 +13,7 @@ const ShipmentDetails = () => {
 
   useEffect(() => {
     dispatch(getShipment(shipmentId));
-  }, []);
+  }, [ dispatch, shipmentId ]);
 
   const completeDelivery = (e) => {
     e.preventDefault();

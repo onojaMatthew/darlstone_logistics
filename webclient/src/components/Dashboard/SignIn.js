@@ -62,7 +62,7 @@ const SignIn = (props) => {
     } else if (users.error && users.error.length > 0 && users.loginSuccess === false) {
       setErrors(users.error);
     }
-  }, [ users ]);
+  }, [ users, props.history ]);
 
   const loading = users.loginLoading;
  return(

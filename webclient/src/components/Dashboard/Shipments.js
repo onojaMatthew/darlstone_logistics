@@ -15,17 +15,18 @@ const Shipments = (props) => {
 
   useEffect(() => {
     dispatch(getShipments());
-  }, []);
+  }, [ dispatch ]);
 
   useEffect(() => {
     setData(shipment.shipments);
   }, [shipment]);
 
-  const onChangePage = (pageOfItems, pager) => {
+  const onChangePage = (pageOfItems) => {
     setPageOfItems(pageOfItems);
   }
 
   const dataSource = shipment.shipments && shipment.shipments;
+  
   return (
     <div>
       <Row className="justify-content-center">
