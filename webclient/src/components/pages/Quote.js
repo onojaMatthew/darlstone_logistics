@@ -1,8 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Col, Row } from "reactstrap";
+import { 
+  Col, 
+  Row, 
+  // Button, 
+  Modal, 
+  ModalHeader, 
+  ModalBody, 
+  ModalFooter, 
+} from "reactstrap";
 import Header from "./Header";
-import { Steps, Button } from "antd";
+import { Steps, Radio, Button } from "antd";
 import CompanyInfo from "./Forms/CompanyInfo";
 import PickupInformation from "./Forms/PickupInformation";
 import PackageInfo from "./Forms/PackageInfo";
@@ -44,8 +52,13 @@ const Quote = () => {
   const [ errors, setErrors] = useState({});
   const [ errorMsg, setErrorMsg ] = useState("");
   const [ message, setMessage ] = useState("");
+  const [modal, setModal] = useState(false);
+  const [ modal1, setModal1 ] = useState(false);
   const [ paid, setPaid ] = useState(false);
   
+  const toggle = () => setModal(!modal);
+  const toggle1 = () => setModal1(!modal1);
+
   useEffect(() => {
     if (shipment.createSuccess === true) {
       setMessage("Your request has been successfully processed. You'll be contacted soon by one of our representatives. Thank you for choosing us");
@@ -152,7 +165,7 @@ const Quote = () => {
     return formValid;
   }
   
-  const handleSubmit = () => {
+  const handleSubmit = (paid="") => {
     if (formValidation()) {
       const data = {
         companyName,
@@ -171,7 +184,8 @@ const Quote = () => {
         packageInfo,
         specialInstruction,
         amount,
-        numOfPieces
+        numOfPieces,
+        paid: paid ? paid : false
       }
 
       dispatch(requestShipment(data));
@@ -299,13 +313,7 @@ const Quote = () => {
             /> : cardOption === true ? (
             <Row className="justify-content-center">
               <Col xs="3" xl="3">
-                <Ravepay 
-                  amount={amount} 
-                  email={email} 
-                  name={companyName}
-                  phone={phone}
-                  setPaid={setPaid}
-                /> 
+                
               </Col>
             </Row>
           ) : deliveryOption === true ? (
@@ -321,14 +329,59 @@ const Quote = () => {
                 </Col>
               </Row>
             </>
-          ) : 
-            <PaymentOption 
-              onCardOption={onCardOption}
-              onDeliveryOption={onDeliveryOption}
-              amount={amount}
-              errorMsg={errorMsg}
-              message={message}
-            />
+          ) : (
+            <Row className="justify-content-center">
+              <Col xs="10" xl="5">
+                <h3>Select a Payment Option</h3>
+                <p>Your total shipping cost is: <span style={{ 
+                    color: "#ff0000",
+                    fontSize: "14px"
+                  }}>{amount}</span></p>
+                <Row>
+                  <Col xs="6" xl="6">
+                    <Button color="danger" onClick={toggle1}>Pay with card</Button>
+                    <Modal isOpen={modal1} toggle1={toggle1}>
+                      <ModalHeader toggle={toggle}>Modal title</ModalHeader>
+                      <ModalBody>
+                        <h5>You will be charged <strong>&#8358;{amount}</strong> from your card as your shipping cost. Click OK to continue or CANCEL to abort request. </h5>
+                      </ModalBody>
+                      <ModalFooter>
+                        <Ravepay 
+                          amount={amount} 
+                          email={email} 
+                          name={companyName}
+                          handleSubmit={handleSubmit}
+                          phone={phone}
+                          setPaid={setPaid}
+                        /> {' '}
+                        <Button color="secondary" onClick={toggle1}>Cancel</Button>
+                      </ModalFooter>
+                    </Modal>
+                  </Col>
+                  <Col xs="6" xl="6">
+                    <Button color="danger" onClick={toggle}>Pay on Delivery</Button>
+                    <Modal isOpen={modal} toggle={toggle}>
+                      <ModalHeader toggle={toggle}>Modal title</ModalHeader>
+                      <ModalBody>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                      </ModalBody>
+                      <ModalFooter>
+                        <Button color="primary" onClick={toggle}>Do Something</Button>{' '}
+                        <Button color="secondary" onClick={toggle}>Cancel</Button>
+                      </ModalFooter>
+                    </Modal>
+                  </Col>
+                </Row>
+              </Col>
+            </Row>
+          )
+            // <PaymentOption 
+            //   onCardOption={onCardOption}
+            //   onDeliveryOption={onDeliveryOption}
+            //   amount={amount}
+            //   errorMsg={errorMsg}
+            //   message={message}
+            // />
           }
         </Col>
       </Row>

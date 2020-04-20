@@ -11,11 +11,9 @@ class Ravepay extends Component {
   }
  
   callback = (response) => {
-    // if (response)
-    console.log(response.data.data.status)
-    // this.props.setPaid(true);
-    
-    
+    if (response.data.data.status === "successful") {
+      this.props.handleSubmit(true);
+    }
   }
  
  
