@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { 
   Col, 
   Row, 
-  // Button, 
   Modal, 
   ModalHeader, 
   ModalBody, 
@@ -14,16 +13,13 @@ import { Steps, Radio, Button } from "antd";
 import CompanyInfo from "./Forms/CompanyInfo";
 import PickupInformation from "./Forms/PickupInformation";
 import PackageInfo from "./Forms/PackageInfo";
-import PaymentOption from "./Forms/PaymentOption";
 import RequestSummary from "./Forms/RequestSummary";
 import { shipmentTotal } from "../../helper/calculator"
 import Ravepay from "./Ravepay";
 import { requestShipment } from "../../store/actions/action_shipment";
 import Footer from "./Footer";
-// import MyModal from "./Modal";
 
 const { Step } = Steps;
-// const { Option } = "Select";
 const Quote = () => {
   const dispatch = useDispatch();
   const shipment = useSelector((state) => state.shipment)
@@ -343,7 +339,7 @@ const Quote = () => {
                     <Modal isOpen={modal1} toggle1={toggle1}>
                       <ModalHeader toggle={toggle}>Modal title</ModalHeader>
                       <ModalBody>
-                        <h5>You will be charged <strong>&#8358;{amount}</strong> from your card as your shipping cost. Click OK to continue or CANCEL to abort request. </h5>
+                        <p>You will be charged <strong>&#8358;{amount}</strong> from your card as your shipping cost. Click OK to continue or CANCEL to abort request. </p>
                       </ModalBody>
                       <ModalFooter>
                         <Ravepay 
@@ -363,10 +359,12 @@ const Quote = () => {
                     <Modal isOpen={modal} toggle={toggle}>
                       <ModalHeader toggle={toggle}>Modal title</ModalHeader>
                       <ModalBody>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        <p>
+                          You will be charged <strong>&#8358;{amount}</strong> from your card as your shipping cost. Click OK to continue or CANCEL to abort request.
+                        </p>
                       </ModalBody>
                       <ModalFooter>
-                        <Button color="primary" onClick={toggle}>Do Something</Button>{' '}
+                        <Button color="primary" onClick={() => handleSubmit(false)}>Send Request</Button>{' '}
                         <Button color="secondary" onClick={toggle}>Cancel</Button>
                       </ModalFooter>
                     </Modal>
@@ -374,15 +372,7 @@ const Quote = () => {
                 </Row>
               </Col>
             </Row>
-          )
-            // <PaymentOption 
-            //   onCardOption={onCardOption}
-            //   onDeliveryOption={onDeliveryOption}
-            //   amount={amount}
-            //   errorMsg={errorMsg}
-            //   message={message}
-            // />
-          }
+          )}
         </Col>
       </Row>
       <Row className="justify-content-center mb-5 mt-5">

@@ -27,8 +27,7 @@ const RequestSummary = ({
       <Card className="mb-3">
         <CardBody>
           <h6 style={{ color: "#ff0000" }} className="text-center">
-            Please confirm that the information below is the same as what you have filled. If not, click on the
-            Previous Button below to go back else, click the Next Button to continue.
+            Please confirm that the information below is the same as what you have filled and every field is filled. If not, click on the Previous Button below to go back otherwise, click on the Next Button to continue.
           </h6>
         </CardBody>
       </Card>
