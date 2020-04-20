@@ -50,7 +50,7 @@ const Shipments = (props) => {
       <Row className="justify-content-center">
         
         <Col xs="10" xl="11">
-          <Card>
+          <Card style={{ minHeight: 450 }}>
             <CardBody>
             {shipment.getLoading === true ? (
               <div className="text-center">

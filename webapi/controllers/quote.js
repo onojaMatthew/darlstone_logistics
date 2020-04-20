@@ -1,5 +1,6 @@
 const { Quote } = require("../models/quote");
-
+const Mailgun = require("mailgun").Mailgun;
+const msg = new Mailgun("fa1334232ec6dfa6d3b303c4d273adba-ed4dc7c4-26421b6e");
 exports.create = (req, res, next) => {
   const {
     pickupAddress,
@@ -70,10 +71,41 @@ exports.create = (req, res, next) => {
     trackingNumber: shipmentTrackingNumber
   });
 
+
   return newQuote.save()
     .then(quote => {
       if (!quote) return res.status(400).json({ error: "Failed to process request" });
       res.json(quote);
+      const message = 
+      `
+        <p><strong>Company Name:</strong> ${quote.companyName}</p>
+        <p><strong>Contact First Name:</strong> ${quote.contactFName}</p>
+        <p><strong>Contact Last Name:</strong> ${quote.contactLName}</p>
+        <p><strong>Pick-up Address:</strong> ${quote.pickupAddress}</p>
+        <p><strong>Pick-up City:</strong> ${quote.pickupCity}</p>
+        <p><strong>Pick-up State:</strong> ${quote.pickupState}</p>
+        <p><strong>Pick-up zip:</strong> ${quote.pickupZip}</p>
+        <p><strong>Destination Address:</strong> ${quote.destinationAddress}</p>
+        <p><strong>Destination State:</strong> ${quote.destinationState}</p>
+        <p><strong>Destination City:</strong> ${quote.destinationCity}</p>
+        <p><strong>Destination Zip:</strong> ${quote.destinationZip}</p>
+        <p><strong>Weight:</strong> ${quote.weight}</p>
+        <p><strong>Dimension:</strong> ${quote.dimension}</p>
+        <p><strong>Amount:</strong> ${quote.amount}</p>
+        <p><strong>Tracking Number:</strong> ${quote.trackingNumber}</p>
+      `
+      return msg.sendText(
+        'onojamatthew59@gmail.com', 
+        quote.email,
+        "New shipping request",
+        message,
+        (err) => {
+          if (err){ 
+            console.log(err);
+            return;
+          }
+          console.log("Message sent");
+        });
     })
     .catch(err => {
       res.status(400).json({ error: err.message });

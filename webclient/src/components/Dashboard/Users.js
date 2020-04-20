@@ -40,6 +40,8 @@ const Users = () => {
   const onDelete = (id) => {
     dispatch(deleteUser(id));
   }
+
+  const userList = users.users && users.users;
   return (
     <div style={{ position: "relative"}}>
       <Row className="justify-content-center">
@@ -52,9 +54,10 @@ const Users = () => {
               <Spin tip="Loading..." />
             </div>
           ) : (
-            <Card>
+            <Card style={{ minHeight: 450 }}>
               <CardBody>
-                <Table className="table-hovered">
+                {users.getLoading === true ? <Spin tip="Loading..." /> : (
+                  <Table className="table-hovered">
                   <thead>
                     <tr>
                       <th>Name</th>
@@ -67,7 +70,7 @@ const Users = () => {
                     </tr>
                   </thead>
                   <tbody>
-                  {users.users ? users.users.map(user => (
+                  {userList && userList.length > 0 ? userList.map(user => (
                     <tr key={user._id}>
                       <td style={{ fontSize: 10 }}>{user.fullname}</td>
                       <td style={{ fontSize: 10 }}>{user.email}</td>
@@ -92,6 +95,8 @@ const Users = () => {
                   }
                   </tbody>
                 </Table>
+                
+                )}
                 
               </CardBody>
             </Card>

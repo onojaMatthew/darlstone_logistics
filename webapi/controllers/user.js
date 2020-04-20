@@ -102,13 +102,13 @@ exports.deleteUser = (req, res) => {
   const { userId } = req.params;
 
   if (!userId) return res.status(400).json({ error: "Invalid parameter values" });
-  User.findByIdAndDelete({ _id: userId})
-    .then(resp => {
-      if (!resp) return res.status(400).json({ error: "Failed to delete" });
-      res.json({ message: "Successfully deleted" });
+  User.findByIdAndRemove({ _id: userId })
+    .then(user => {
+      if (!user) return res.status(400).json({ error: "User not found" });
+      res.json(user);
     })
     .catch(err => {
-      res.status(400).json({ error: err.message });
+      return res.status(400).json({ error: err.message });
     });
 }
 

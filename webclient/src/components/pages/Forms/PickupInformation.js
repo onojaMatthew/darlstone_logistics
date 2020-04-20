@@ -64,7 +64,7 @@ const PickupInformation = ({
             <label htmlFor="pickzip">Pick-up Zip</label>
             <Input
               id="pickzip"
-              type="email"
+              type="text"
               placeholder="Pick-up zip"
               value={pickupZip}
               onChange={(e) => setPickupZip(e.target.value)}

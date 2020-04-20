@@ -21,9 +21,9 @@ router.get("/users", requireLogin, getAllUsers);
 router.post("/login", accountLogin);
 router.get("/user/:userId", requireLogin, getUser);
 router.get("/logout", logout);
-router.delete("/user/delete/:userId", requireLogin, deleteUser);
 router.put("/profile/photo", requireLogin, upload.single("image"), uploadPhoto);
 router.put("/role/:userId/:newRole", requireLogin, role)
 router.get("/photo/:userId", photo);
+router.delete("/user/delete/:userId", requireLogin, deleteUser);
 
 module.exports = router;

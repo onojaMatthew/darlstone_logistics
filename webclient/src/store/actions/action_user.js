@@ -281,11 +281,11 @@ export const deleteUserFailed = (error) => {
 export const deleteUser = (userId) => {
   return dispatch => {
     dispatch(deleteUserStart());
-    fetch(`${BASE_URL}/user/delete/:${userId}`, {
+    fetch(`${BASE_URL}/user/delete/${userId}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        ACCEIPT: "application/json",
+        ACCEPT: "application/json",
         "x-auth-token": localAuth().token
       }
     })
@@ -293,6 +293,9 @@ export const deleteUser = (userId) => {
       .then(resp => {
         if (resp.error) return dispatch(deleteUserFailed(resp.error));
         dispatch(deleteUserSuccess(resp));
+      })
+      .then(() => {
+        dispatch(getUsers());
       })
       .catch(err => {
         dispatch(deleteUserFailed(`Failed to delete. ${err.message}`));

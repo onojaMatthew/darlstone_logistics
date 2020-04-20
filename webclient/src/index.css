@@ -19,7 +19,7 @@ code {
   position: relative;
   margin: 0;
   padding: 0;
-  background: rgb(9, 7, 36);
+  background: rgb(9, 7, 36) url("./assets/shippingman.jpg");
   width: 100%;
   min-height: 600px;
 }
