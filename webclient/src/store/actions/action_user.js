@@ -281,7 +281,7 @@ export const deleteUserFailed = (error) => {
 export const deleteUser = (userId) => {
   return dispatch => {
     dispatch(deleteUserStart());
-    fetch(`${BASE_URL}/user/:${userId}`, {
+    fetch(`${BASE_URL}/user/delete/:${userId}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -368,7 +368,8 @@ export const role = (userId) => {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        ACCEPT: "application/json"
+        ACCEPT: "application/json",
+        "x-auth-token": localAuth().token
       }
     })
       .then(response => response.json())

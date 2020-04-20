@@ -14,7 +14,11 @@ const userSchema = new Schema({
 });
 
 userSchema.methods.generateToken = function() {
-  const token = jwt.sign({ _id: this._id, email: this.email, password: this.password }, process.env.SECRETKEY);
+  const token = jwt.sign({ _id: this._id, 
+    email: this.email, 
+    password: this.password,
+    role: this.role
+  }, process.env.SECRETKEY);
   return token;
 }
 

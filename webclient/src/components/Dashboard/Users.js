@@ -1,26 +1,44 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Card, CardBody, Col, Row, Table } from "reactstrap";
-import { getUsers, role } from "../../store/actions/action_user";
-import { Spin, Button } from "antd";
+import { getUsers, role, deleteUser } from "../../store/actions/action_user";
+import { Spin, message } from "antd";
 import { localAuth } from "../../helper/authentcate";
+import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 
 const Users = () => {
   const users = useSelector(state => state.users);
   const dispatch = useDispatch();
-  const [ message, setMessage ] = useState("");
   const userRole = localAuth().user && localAuth().user.role;
+  
+  const error = (msg) => {
+    message.error(msg);
+  }
+
+  const success = (msg) => {
+    message.success(msg);
+  }
 
   useEffect(() => {
     dispatch(getUsers());
   }, [ dispatch ]);
+
+  useEffect(() => {
+    if (users.error) {
+      error(users.error);
+    } else if (users.deleteSuccess === true) {
+      success("User deleted!");
+    } else if (users.roleSuccess === true) {
+      success("User role updated");
+    }
+  }, [ users ]);
 
   const onRoleChange = (id) => {
     dispatch(role(id));
   }
 
   const onDelete = (id) => {
-    dispatch()
+    dispatch(deleteUser(id));
   }
   return (
     <div style={{ position: "relative"}}>
@@ -51,13 +69,16 @@ const Users = () => {
                   <tbody>
                   {users.users ? users.users.map(user => (
                     <tr key={user._id}>
-                      <td>{user.fullname}</td>
-                      <td>{user.email}</td>
-                      <td>{user.phone}</td>
-                      <td>{user.role}</td>
+                      <td style={{ fontSize: 10 }}>{user.fullname}</td>
+                      <td style={{ fontSize: 10 }}>{user.email}</td>
+                      <td style={{ fontSize: 10 }}>{user.phone}</td>
+                      <td style={{ fontSize: 10 }}>{user.role}</td>
                       {userRole !== "super_admin" ? null : (
                         <td>
-                          <Button onClick={() => onRoleChange(user._id)}>Change role</Button> <Button onClick={() => onDelete(user._id)}>Delete</Button>
+                         {users.roleLoading === true ? <Spin /> :
+                            <EditOutlined onClick={() => onRoleChange(user._id)} title="Change role" />
+                          } 
+                          {users.deleteLoading === true ? <Spin /> : <DeleteOutlined onClick={() => onDelete(user._id)} style={{ marginLeft: 20, color: "#ff0000" }} title="Delete user" />}
                         </td>
                       )}
                       
