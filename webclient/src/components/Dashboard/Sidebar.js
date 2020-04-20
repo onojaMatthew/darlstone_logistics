@@ -2,12 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Layout, Menu } from 'antd';
 import {
-  DesktopOutlined,
-  PieChartOutlined,
-  FileOutlined,
-  TeamOutlined,
   UserOutlined,
-  CarryOutFilled,
   CarOutlined,
   DashboardOutlined,
 } from '@ant-design/icons';

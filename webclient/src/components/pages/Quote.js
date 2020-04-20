@@ -206,8 +206,7 @@ const Quote = () => {
       <section className="wave-container">
         <Row className="justify-content-center">
           <Col xs="8" xl="6" className="home-text">
-            <h1>Hello, world!</h1>
-            <p className="animate-p">Check out my awesome waves!</p>
+            <h1>Request a Shipping Quote Here</h1>
           </Col>
         </Row>
         <svg id="curve" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">

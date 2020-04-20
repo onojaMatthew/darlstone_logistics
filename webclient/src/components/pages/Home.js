@@ -45,7 +45,7 @@ const Home = (props) => {
       <section className="wave-container">
         <Row className="justify-content-center">
           <Col xs="8" xl="6" className="home-text">
-            <h1>Hello, world!</h1>
+            <h1>Welcome to Swissdarl Express</h1>
             <p className="animate-p">Check out my awesome waves!</p>
           </Col>
         </Row>

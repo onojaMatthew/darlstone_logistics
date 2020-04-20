@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Layout } from "antd";
 import Auth from "../../helper/Auth";
@@ -23,11 +24,14 @@ const DashboardHeader = () => {
     }
   }, [ user ]);
   return (
-    <Header className="site-layout-background" style={{ paddingRight: 15 }}>
+    <Header className="site-layout-background" style={{ paddingRight: 25 }}>
+      <div><Link to="/" style={{
+          color: "#fff"
+        }}>Home</Link></div>
       <div className="text-right" style={{
         color: "#fff"
       }}>
-        <span>{username}</span> <LogoutOutlined onClick={() => onLogout()} />
+        <span>{username}</span> <LogoutOutlined style={{ marginLeft: "15px" }} onClick={() => onLogout()} />
       </div>
     </Header>
   );

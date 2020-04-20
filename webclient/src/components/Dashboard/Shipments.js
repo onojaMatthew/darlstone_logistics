@@ -53,7 +53,13 @@ const Shipments = (props) => {
           <Card style={{ minHeight: 450 }}>
             <CardBody>
             {shipment.getLoading === true ? (
-              <div className="text-center">
+              <div className="text-center"
+                style={{
+                  position: "absolute",
+                  top: "50%",
+                  left: "43%"
+                }}
+              >
                 <Spin tip="Loading..." />
               </div>
             ) : (
