@@ -24,10 +24,7 @@ const DashboardHeader = () => {
     }
   }, [ user ]);
   return (
-    <Header className="site-layout-background" style={{ paddingRight: 25 }}>
-      <div><Link to="/" style={{
-          color: "#fff"
-        }}>Home</Link></div>
+    <Header className="site-layout-background" style={{ paddingRight: 15 }}>
       <div className="text-right" style={{
         color: "#fff"
       }}>

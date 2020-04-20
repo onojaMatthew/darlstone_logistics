@@ -55,8 +55,18 @@ const Home = (props) => {
       </section>
       <section className="sec2">
         <Container>
+          <Row className="justify-content-center">
+          <Col xs="6" xl="5"
+              style={{
+                marginTop: -200,
+                maxHeight: "250px"
+              }}
+            >
+              <HomeCarousel />
+            </Col>
+          </Row>
           <Row>
-            <Col xs="12" xl="4" 
+            <Col xs="12" xl="6" 
               className="how-we-work"
             >
               <h4 style={{ 
@@ -73,15 +83,8 @@ const Home = (props) => {
                 At Darlstone Logistics, we are committed to providing smart and effective Logistics Solutions for every business. With timed deliveries that offer complete flexibility.
               </p>
             </Col>
-            <Col xs="6" xl="4"
-              style={{
-                marginTop: -200,
-                maxHeight: "200px"
-              }}
-            >
-              <HomeCarousel />
-            </Col>
-            <Col xs="12" xl="4" className="home-sideimg">
+            
+            <Col xs="12" xl="6" className="home-sideimg">
             <img 
                 src={Graphic5} 
                 alt=""

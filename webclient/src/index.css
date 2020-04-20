@@ -21,12 +21,12 @@ code {
   padding: 0;
   background: rgb(9, 7, 36) url("./assets/shippingman.jpg");
   width: 100%;
-  min-height: 600px;
+  min-height: 700px;
 }
 
 section h1 {
   font-size: 5rem;
-  margin: 12.2rem 1.25rem 2.5rem 1.25rem;
+  margin: 14.2rem 1.25rem 2.5rem 1.25rem;
   text-align: center;
   color: #fff;
 }
@@ -35,6 +35,14 @@ section p {
   margin: 0 1.25rem 5rem 1.25rem;
   text-align: center;
   color: #fff;
+}
+
+.page-loader {
+  background: rgb(9, 7, 36);
+  background-attachment: fixed;
+  background-size: cover;
+  height: 100vh;
+  width: 100%;
 }
 
 .sec-cont {
@@ -53,7 +61,7 @@ section p {
     min-height: 250px;
   }
   .home-text h1 {
-    font-size: 28px;
+    font-size: 28px !important;
     margin-bottom: 15px;
   }
   .home-text p {

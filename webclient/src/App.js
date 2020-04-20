@@ -6,6 +6,7 @@ import Dashboard from './components/Dashboard/Dashboard';
 import Signup from './components/Dashboard/Signup';
 import SignIn from './components/Dashboard/SignIn';
 import Auth from "./helper/Auth";
+import { Spin } from 'antd';
 
 const styles = {
   ntf: {
@@ -41,7 +42,22 @@ class App extends Component{
   render() {
     const { loading } = this.state;
     if(loading) { // if your component doesn't have to wait for an async action, remove this block 
-      return "Hey loading is happing now"; // render null when app is not ready
+      return (
+        <div className="page-loader"
+          // style={{
+          //   paddingTop: "50%",
+          //   // paddingLeft: "50%"
+          // }}
+        >
+          <div style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%"
+          }}>
+            <Spin size="large" />
+          </div>
+        </div>
+      );
     }
 
     return (
