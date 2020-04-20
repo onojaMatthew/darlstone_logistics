@@ -1,6 +1,8 @@
 const { Quote } = require("../models/quote");
+const mailer = require("../services/mailer");
 const Mailgun = require("mailgun").Mailgun;
 const msg = new Mailgun("fa1334232ec6dfa6d3b303c4d273adba-ed4dc7c4-26421b6e");
+
 exports.create = (req, res, next) => {
   const {
     pickupAddress,
@@ -78,6 +80,7 @@ exports.create = (req, res, next) => {
     .then(quote => {
       if (!quote) return res.status(400).json({ error: "Failed to process request" });
       res.json(quote);
+      const subject = "Quote summary"
       const message = 
       `
         <p><strong>Company Name:</strong> ${quote.companyName}</p>
@@ -96,18 +99,7 @@ exports.create = (req, res, next) => {
         <p><strong>Amount:</strong> ${quote.amount}</p>
         <p><strong>Tracking Number:</strong> ${quote.trackingNumber}</p>
       `
-      return msg.sendText(
-        'onojamatthew59@gmail.com', 
-        quote.email,
-        "New shipping request",
-        message,
-        (err) => {
-          if (err){ 
-            console.log(err);
-            return;
-          }
-          console.log("Message sent");
-        });
+      mailer("onojamatthew59@gmail.com", quote.email, subject, message);
     })
     .catch(err => {
       res.status(400).json({ error: err.message });
