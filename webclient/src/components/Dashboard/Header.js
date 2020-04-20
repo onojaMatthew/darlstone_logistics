@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Layout } from "antd";
 import Auth from "../../helper/Auth";
+import { localAuth } from "../../helper/authentcate";
 import { LogoutOutlined } from "@ant-design/icons";
 import { logout } from "../../store/actions/action_user";
 
@@ -10,7 +11,7 @@ const { Header } = Layout;
 const DashboardHeader = () => {
   const user = useSelector((state) => state.users);
   const dispatch = useDispatch();
-
+  const username = localAuth().user && localAuth().user.fullname
   const onLogout = () => {
     dispatch(logout());
   }
@@ -18,7 +19,7 @@ const DashboardHeader = () => {
   useEffect(() => {
     if (user.logoutSuccess === true) {
       Auth.deauthenticateUser();
-      window.location.href = "/";
+      window.location.href = "/accountl";
     }
   }, [ user ]);
   return (
@@ -26,7 +27,7 @@ const DashboardHeader = () => {
       <div className="text-right" style={{
         color: "#fff"
       }}>
-        <LogoutOutlined onClick={() => onLogout()} />
+        <span>{username}</span> <LogoutOutlined onClick={() => onLogout()} />
       </div>
     </Header>
   );

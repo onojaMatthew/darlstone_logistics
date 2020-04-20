@@ -109,7 +109,7 @@ exports.deleteQuote = (req, res) => {
   if (!quoteId) return res.status(400).json({ error: "Invalid parameter values" });
   Quote.findByIdAndDelete({ _id: quoteId})
     .then(quote => {
-      if (!quote) return res.status(400).json({ error: "Failed to delete" });
+      if (!quote) return res.status(400).json({ error: "Request failed. Shipment not found" });
       res.json({ message: "Deleted successfully" });
     })
     .catch(err => {

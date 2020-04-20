@@ -225,8 +225,11 @@ export const shipmentDelete = (shipmentId) => {
         if (resp.error) return dispatch(shipmentDeletedFailed(resp.error));
         dispatch(shipmentDeletedSuccess(resp));
       })
+      .then(() => {
+        dispatch(getShipments());
+      })
       .catch(err => {
-        dispatch(shipmentDeletedFailed(`Request failed. ${err.mesage}`));
+        dispatch(shipmentDeletedFailed(err.mesage));
       });
   }
 }
