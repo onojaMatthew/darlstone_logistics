@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Col, Row, Container } from "reactstrap"
 import HomeCarousel from "./Carousel";
-import Graphic5 from "../../assets/graphic5.jpg"
+import Graphic5 from "../../assets/pallet-in-warehouse.jpg"
 import Header from "./Header";
 import Footer from "./Footer";
 
@@ -56,7 +56,7 @@ const Home = (props) => {
       <section className="sec2">
         <Container>
           <Row className="justify-content-center">
-          <Col xs="6" xl="5"
+            <Col xs="6" xl="5"
               style={{
                 marginTop: -200,
                 maxHeight: "250px"
@@ -65,40 +65,44 @@ const Home = (props) => {
               <HomeCarousel />
             </Col>
           </Row>
-          <Row>
-            <Col xs="12" xl="6" 
-              className="how-we-work"
-            >
-              <h4 style={{ 
-                color: "#000",
-                textDecoration: "underline"
-              }}>How We Work</h4>
-              <p style={{ 
-                  color: "#000",
-                  fontSize: 20,
-                  textAlign: "justify",
-                  lineHeight: 2
-                }}
+        </Container>
+          <div className="fix-img">
+            <Row>
+              <Col xs="12" xl="6" 
+                className="how-we-work"
               >
-                At Darlstone Logistics, we are committed to providing smart and effective Logistics Solutions for every business. With timed deliveries that offer complete flexibility.
-              </p>
-            </Col>
-            
-            <Col xs="12" xl="6" className="home-sideimg">
-            <img 
-                src={Graphic5} 
-                alt=""
-                style={navigator.userAgent.match(/Android/i) ? styles.img : 
-                  navigator.userAgent.match(/webOS/i) ? styles.img : 
-                  navigator.userAgent.match(/iPhone/i) ? styles.img : 
-                  navigator.userAgent.match(/iPad/i) ? styles.img : 
-                  navigator.userAgent.match(/BlackBerry/i) ? styles.img :
-                  navigator.userAgent.match(/Windows Phone/i) ? styles.img :
-                  { maxWidth: "100%" }}
-              />
-            </Col>
-          </Row>
-          <Row className="justify-content-center">
+                <h4 style={{ 
+                  color: "#000",
+                  textDecoration: "underline"
+                }}>How We Work</h4>
+                <p style={{ 
+                    color: "#000",
+                    fontSize: 20,
+                    textAlign: "justify",
+                    lineHeight: 2
+                  }}
+                >
+                  At Darlstone Logistics, we are committed to providing smart and effective Logistics Solutions for every business. With timed deliveries that offer complete flexibility.
+                </p>
+              </Col>
+              
+              <Col xs="12" xl="6" className="home-sideimg">
+              <img 
+                  src={Graphic5} 
+                  alt=""
+                  style={navigator.userAgent.match(/Android/i) ? styles.img : 
+                    navigator.userAgent.match(/webOS/i) ? styles.img : 
+                    navigator.userAgent.match(/iPhone/i) ? styles.img : 
+                    navigator.userAgent.match(/iPad/i) ? styles.img : 
+                    navigator.userAgent.match(/BlackBerry/i) ? styles.img :
+                    navigator.userAgent.match(/Windows Phone/i) ? styles.img :
+                    { maxWidth: "100%" }}
+                />
+              </Col>
+            </Row>
+          </div>
+          
+          <Row className="justify-content-center mt-5 mb-5">
             <Col xs="4" xl="3">
               <Button className="quote-btn" style={
                 navigator.userAgent.match(/Android/i) ? styles.mobile : 
@@ -110,11 +114,11 @@ const Home = (props) => {
                 styles.desktop}
                 onClick={() => props.history.push("/request")}
               >
-                Request Quote
+                Request a Quote
               </Button>
             </Col>
           </Row>
-        </Container>
+        {/* </Container> */}
       </section>
       <Footer />
     </div>

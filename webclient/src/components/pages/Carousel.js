@@ -5,9 +5,9 @@ import {
   CarouselControl,
   CarouselIndicators,
 } from 'reactstrap';
-import Logistic1 from "../../assets/logistics4.jpeg";
-import Logistic2 from "../../assets/logistic2.jpg";
-import Logistic3 from "../../assets/logistic3.jpeg";
+import Logistic1 from "../../assets/trolley.jpg";
+import Logistic2 from "../../assets/man-shipping-box.jpg";
+import Logistic3 from "../../assets/shipping-cost.jpg";
 
 const items = [
   {

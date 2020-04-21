@@ -19,9 +19,18 @@ code {
   position: relative;
   margin: 0;
   padding: 0;
-  background: rgb(9, 7, 36) url("./assets/shippingman.jpg");
+  background: rgb(9, 7, 36) url("./assets/signing-shipping.jpg") no-repeat;
+  background-size: cover;
+  opacity: 0.9;
   width: 100%;
   min-height: 700px;
+}
+
+.fix-img {
+  background: url("./assets/Liebherr-LRS-545-reach-stacker.jpg") no-repeat;
+  background-size: cover;
+  margin-top: 20px;
+  background-attachment: fixed;
 }
 
 section h1 {
