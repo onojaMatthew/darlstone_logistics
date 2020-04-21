@@ -45,7 +45,7 @@ exports.create = (req, res, next) => {
     shipmentTrackingNumber = "5" + randomNum + pickupState.slice(0,3).toUpperCase();
   } else if (pickupState === "Kano") {
     shipmentTrackingNumber = "6" + randomNum + pickupState.slice(0,3).toUpperCase();
-  } else if (pickupState === "Jos") {
+  } else if (pickupState === "Plateau") {
     shipmentTrackingNumber = "7" + randomNum + pickupState.slice(0,3).toUpperCase();
   } else {
     return res.status(400).json({ error: `We don't have a branch in ${pickupState} state`});
