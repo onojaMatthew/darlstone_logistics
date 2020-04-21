@@ -13,11 +13,6 @@ const transport = {
     // do not fail on invalid certs
     rejectUnauthorized: false
   }
-  // host: 'smtp.gmail.com',
-  // auth: {
-  //   user: process.env.USER,
-  //   pass: process.env.PASS
-  // }
 }
 
 let transporter = nodemailer.createTransport(transport);
