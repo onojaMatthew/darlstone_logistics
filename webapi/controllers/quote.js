@@ -80,7 +80,8 @@ exports.create = (req, res, next) => {
     .then(quote => {
       if (!quote) return res.status(400).json({ error: "Failed to process request" });
       res.json(quote);
-      const subject = "Quote summary"
+      const subject = "New Quote Request";
+      const name = "Swissdarl Express";
       const message = 
       `
         <p><strong>Company Name:</strong> ${quote.companyName}</p>
@@ -97,9 +98,10 @@ exports.create = (req, res, next) => {
         <p><strong>Weight:</strong> ${quote.weight}</p>
         <p><strong>Dimension:</strong> ${quote.dimension}</p>
         <p><strong>Amount:</strong> ${quote.amount}</p>
+        <p><strong>Amount:</strong> ${quote.amount}</p>
         <p><strong>Tracking Number:</strong> ${quote.trackingNumber}</p>
       `
-      mailer("onojamatthew59@gmail.com", quote.email, subject, message);
+      mailer(name, quote.email, subject, message);
     })
     .catch(err => {
       res.status(400).json({ error: err.message });

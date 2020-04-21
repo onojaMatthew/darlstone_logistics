@@ -28,9 +28,9 @@ module.exports = (name, to, subject, content) => {
   
   return transporter.sendMail(mail, (err, data) => {
     if (err) {
-      res.json({ message: 'failed' });
+      console.log({ message: err.message });
     } else {
-      res.json({ message: 'success'});
+      console.log({ message: data});
     }
   });
 }
