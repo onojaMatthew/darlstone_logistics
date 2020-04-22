@@ -28,7 +28,7 @@ const Header = () => {
         <NavbarBrand style={styles.link} href="/">
           <img src={Logo} alt="Logo" height="50" />
         </NavbarBrand>
-        <NavbarToggler onClick={toggle} />
+        <NavbarToggler onClick={toggle} style={{ background: "#fff"}}/>
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
           

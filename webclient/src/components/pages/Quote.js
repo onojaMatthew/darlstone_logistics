@@ -9,7 +9,7 @@ import {
   ModalFooter, 
 } from "reactstrap";
 import Header from "./Header";
-import { Steps, Radio, Button } from "antd";
+import { Steps, Button } from "antd";
 import CompanyInfo from "./Forms/CompanyInfo";
 import PickupInformation from "./Forms/PickupInformation";
 import PackageInfo from "./Forms/PackageInfo";
@@ -50,7 +50,6 @@ const Quote = () => {
   const [ message, setMessage ] = useState("");
   const [modal, setModal] = useState(false);
   const [ modal1, setModal1 ] = useState(false);
-  const [ paid, setPaid ] = useState(false);
   
   const toggle = () => setModal(!modal);
   const toggle1 = () => setModal1(!modal1);
@@ -80,15 +79,6 @@ const Quote = () => {
     setDeliveryOption(false);
   }
 
-  const onCardOption = (value) => {
-    setCardOption(value);
-    setDeliveryOption(false);
-  }
-
-  const onDeliveryOption = (value) => {
-    setCardOption(false);
-    setDeliveryOption(value);
-  }
 
   useEffect(() => {
     setAmount(shipmentTotal(numOfPieces, weight));
@@ -348,7 +338,6 @@ const Quote = () => {
                           name={companyName}
                           handleSubmit={handleSubmit}
                           phone={phone}
-                          setPaid={setPaid}
                         /> {' '}
                         <Button color="secondary" onClick={toggle1}>Cancel</Button>
                       </ModalFooter>

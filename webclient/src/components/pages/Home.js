@@ -1,7 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Button, Col, Row, Container } from "reactstrap"
 import HomeCarousel from "./Carousel";
-import Graphic5 from "../../assets/pallet-in-warehouse.jpg"
+// import Graphic5 from ""
 import Header from "./Header";
 import Footer from "./Footer";
 
@@ -11,7 +12,7 @@ const styles = {
     marginBottom: 40,
     background: "rgb(9, 7, 36)",
     padding: 5,
-    fontSize: 10,
+    fontSize: 13,
     color: "#fff",
     width: "100%",
     borderRadius: 25
@@ -44,9 +45,8 @@ const Home = (props) => {
       <Header />
       <section className="wave-container">
         <Row className="justify-content-center">
-          <Col xs="8" xl="6" className="home-text">
+          <Col xs="11" xl="6" className="home-text">
             <h1>Welcome to Swissdarl Express</h1>
-            <p className="animate-p">Check out my awesome waves!</p>
           </Col>
         </Row>
         <svg id="curve" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
@@ -55,7 +55,7 @@ const Home = (props) => {
       </section>
       <section className="sec2">
         <Container>
-          <Row className="justify-content-center">
+          <Row className="justify-content-center carou">
             <Col xs="6" xl="5"
               style={{
                 marginTop: -200,
@@ -67,26 +67,17 @@ const Home = (props) => {
           </Row>
         </Container>
           <div className="fix-img">
-            <Row>
+            <Row className="justify-content-center">
               <Col xs="12" xl="6" 
                 className="how-we-work"
               >
-                <h4 style={{ 
-                  color: "#000",
-                  textDecoration: "underline"
-                }}>How We Work</h4>
-                <p style={{ 
-                    color: "#000",
-                    fontSize: 20,
-                    textAlign: "justify",
-                    lineHeight: 2
-                  }}
-                >
+                <h4>How We Work</h4>
+                <p>
                   At Darlstone Logistics, we are committed to providing smart and effective Logistics Solutions for every business. With timed deliveries that offer complete flexibility.
                 </p>
               </Col>
               
-              <Col xs="12" xl="6" className="home-sideimg">
+              {/* <Col xs="12" xl="6" className="home-sideimg">
               <img 
                   src={Graphic5} 
                   alt=""
@@ -98,12 +89,12 @@ const Home = (props) => {
                     navigator.userAgent.match(/Windows Phone/i) ? styles.img :
                     { maxWidth: "100%" }}
                 />
-              </Col>
+              </Col> */}
             </Row>
           </div>
           
-          <Row className="justify-content-center mt-5 mb-5">
-            <Col xs="4" xl="3">
+          <Row className="justify-content-center btn-cont">
+            <Col xs="5" xl="3" style={{ minHeight: 250 }}>
               <Button className="quote-btn" style={
                 navigator.userAgent.match(/Android/i) ? styles.mobile : 
                 navigator.userAgent.match(/webOS/i) ? styles.mobile : 
@@ -112,9 +103,8 @@ const Home = (props) => {
                 navigator.userAgent.match(/BlackBerry/i) ? styles.mobile :
                 navigator.userAgent.match(/Windows Phone/i) ? styles.mobile :
                 styles.desktop}
-                onClick={() => props.history.push("/request")}
               >
-                Request a Quote
+                <Link style={{ color: "#fff" }} to="/request">Request a Quote</Link>  
               </Button>
             </Col>
           </Row>
