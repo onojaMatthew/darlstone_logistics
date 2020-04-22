@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Card, CardBody, Col, Row, Table } from "reactstrap";
 import { getUsers, role, deleteUser } from "../../store/actions/action_user";

@@ -39,8 +39,9 @@ const Quote = () => {
   const [ destinationState, setDestinationState ] = useState("");
   const [ destinationCity, setDestinationCity ] = useState("");
   const [ packageInfo, setPackageInfo ] = useState("");
-  const [ numOfPieces, setNumOfPieces ] = useState("");
-  const [ weight, setWeight ] = useState("");
+  const [ numOfPieces, setNumOfPieces ] = useState(0);
+  const [ weight, setWeight ] = useState(0);
+  const [ unit, setUnit ] = useState("");
   const [ dimension, setDimension ] = useState("");
   const [ specialInstruction, setSpecialInstruction ] = useState("");
   const [ cardOption, setCardOption ] = useState(false);
@@ -50,7 +51,7 @@ const Quote = () => {
   const [ message, setMessage ] = useState("");
   const [modal, setModal] = useState(false);
   const [ modal1, setModal1 ] = useState(false);
-  
+  const units = [ "Kg", "Ton" ];
   const toggle = () => setModal(!modal);
   const toggle1 = () => setModal1(!modal1);
 
@@ -72,7 +73,7 @@ const Quote = () => {
   const increaseCount = () => {
     setCount(count + 1);
   }
-
+console.log(unit, " this is the unit")
   const decreaseCount = () => {
     setCount(count - 1);
     setCardOption(false);
@@ -81,7 +82,7 @@ const Quote = () => {
 
 
   useEffect(() => {
-    setAmount(shipmentTotal(numOfPieces, weight));
+    setAmount(shipmentTotal(numOfPieces, weight, unit));
   }, [numOfPieces, weight]);
 
   const formValidation = () => {
@@ -145,6 +146,9 @@ const Quote = () => {
     } else if (!specialInstruction) {
       formValid = false;
       errors["specialInstruction"] = "Leave a special instruction for the shipment";
+    } else if (!unit) {
+      formValid = false;
+      errors["unit"] = "The unit of the weight is required";
     }
 
     setErrors(errors);
@@ -271,6 +275,9 @@ const Quote = () => {
               numOfPieces={numOfPieces}
               setPackageInfo={setPackageInfo}
               setWeight={setWeight}
+              setUnit={setUnit}
+              units={units}
+              unit={unit}
               setNumOfPieces={setNumOfPieces}
               setDimension={setDimension}
               setSpecialInstruction={setSpecialInstruction}

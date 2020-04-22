@@ -9,9 +9,6 @@ import {
 
 const { Sider } = Layout;
 
-const { SubMenu } = Menu;
-
-
 const SideBar =({ collapsed, onCollapse }) => {
   return (
     <Sider collapsible collapsed={collapsed} onCollapse={onCollapse}>

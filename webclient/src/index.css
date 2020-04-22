@@ -229,3 +229,11 @@ section p {
   border-radius: 5px;
   padding: 5px;
 }
+
+.btn-secondary {
+  color: #333;
+  background-color: #fff;
+  border-color: #6c757d;
+  min-width: 50px;
+  padding-right: 5px;
+}

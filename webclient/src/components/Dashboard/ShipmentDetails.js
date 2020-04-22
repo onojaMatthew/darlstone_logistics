@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getShipment, shipmentDelivered } from "../../store/actions/action_shipment";
 import { Row, Col, Card, CardBody } from "reactstrap";
