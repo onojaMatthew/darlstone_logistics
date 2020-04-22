@@ -73,7 +73,9 @@ const Quote = () => {
   const increaseCount = () => {
     setCount(count + 1);
   }
-console.log(unit, " this is the unit")
+  
+  console.log(unit, " this is the unit");
+
   const decreaseCount = () => {
     setCount(count - 1);
     setCardOption(false);
