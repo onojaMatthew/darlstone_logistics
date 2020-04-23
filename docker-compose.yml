@@ -7,7 +7,7 @@ services:
       - ./webapi/mongo.env
     volumes:
       - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
-      - ./mongo-volume:/data/db
+      - /private/var:/data/db
     ports:
       - "27017-27019:27017-27019"
   nginx:
@@ -17,13 +17,13 @@ services:
         context: ./nginx
       ports:
         - "3020:80"
-  client:
+  webclient:
     build:
       dockerfile: Dockerfile.dev
-      context: ./client
+      context: ./webclient
     volumes:
       - /app/node_modules
-      - ./client:/app
+      - ./webclient:/app
   webapi:
     build:
       context: ./webapi
