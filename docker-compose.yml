@@ -2,7 +2,7 @@ version: '2'
 services:
   database:
     image: "mongo"
-    container_name: "mongo-database"
+    container_name: "database"
     env_file: 
       - ./webapi/mongo.env
     volumes:
@@ -17,15 +17,13 @@ services:
         context: ./nginx
       ports:
         - "3020:80"
-  webclient:
+  client:
     build:
       dockerfile: Dockerfile.dev
-      context: ./webclient
-    environment:
-      - REACT_APP_API_URL=http:localhost:5255/api/v1
+      context: ./client
     volumes:
       - /app/node_modules
-      - ./webclient:/app
+      - ./client:/app
   webapi:
     build:
       context: ./webapi
