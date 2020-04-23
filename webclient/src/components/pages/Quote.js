@@ -331,7 +331,7 @@ const Quote = () => {
                 <p>Your total shipping cost is: <span style={{ 
                     color: "#ff0000",
                     fontSize: "14px"
-                  }}>{amount}</span></p>
+                  }}>&#8358;{amount}</span></p>
                 <Row>
                   <Col xs="6" xl="6">
                     <Button color="danger" onClick={toggle1}>Pay with card</Button>
