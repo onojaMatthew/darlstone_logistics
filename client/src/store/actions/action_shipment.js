@@ -41,7 +41,7 @@ export const createFailed = (error) => {
 export const requestShipment = (data) => {
   return dispatch => {
     createStart();
-    fetch(`/api/v1/post`, {
+    fetch(`${BASE_URL}/post`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -83,7 +83,7 @@ export const getShipmentFailed = (error) => {
 export const getShipment = (quoteId) => {
   return dispatch => {
     dispatch(getShipmentStart());
-    fetch(`/api/v1/single/${quoteId}`, {
+    fetch(`${BASE_URL}/single/${quoteId}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -167,7 +167,7 @@ export const shipmentDeliveredFailed = (error) => {
 export const shipmentDelivered = (shipmentId) => {
   return dispatch => {
     dispatch(shipmentDeliveredStart());
-    fetch(`/api/v1/quote/${shipmentId}`, {
+    fetch(`${BASE_URL}/quote/${shipmentId}`, {
       method: "PUT",
       headers: {
         "Content-type": "application/json",
@@ -212,7 +212,7 @@ export const shipmentDeletedFailed = (error) => {
 export const shipmentDelete = (shipmentId) => {
   return dispatch => {
     dispatch(shipmentDeletedStart());
-    fetch(`/api/v1/quote/${shipmentId}`, {
+    fetch(`${BASE_URL}/quote/${shipmentId}`, {
       method: "DELETE",
       headers: {
         "Content-type": "application/json",

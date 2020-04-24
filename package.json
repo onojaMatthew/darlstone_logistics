@@ -29,8 +29,12 @@
     "winston": "2.4.0",
     "winston-mongodb": "3.0.0"
   },
+  "engines": {
+    "node": "10.18.1"
+  },
   "scripts": {
     "start": "npm start",
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "heroku-postbuild": "cd client && npm install && npm run build"
   }
 }
