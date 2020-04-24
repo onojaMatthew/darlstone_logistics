@@ -54,7 +54,7 @@ export const logoutFailed = ( error ) => {
 export const logout = () => {
   return dispatch => {
     dispatch( logoutStart() );
-    fetch( `/api/v1/logout`, {
+    fetch( `${BASE_URL}/logout`, {
       method: "GET",
       headers: {
         ACCEPT: "application/json",
@@ -101,7 +101,7 @@ export const registrationFailed = ( error ) => {
 export const register = ( data ) => {
   return dispatch => {
     dispatch( registrationStart() );
-    fetch( `/api/v1/user`, {
+    fetch( `${BASE_URL}/user`, {
       method: "POST",
       headers: {
         ACCEPT: "application/json",
@@ -151,7 +151,7 @@ export const loginFailed = ( error ) => {
 export const onLogin = ( data ) =>{
  return dispatch => {
    dispatch( loginStart() );
-   fetch( `/api/v1/login`, {
+   fetch( `${BASE_URL}/login`, {
      method: "POST",
      headers: {
        ACCEPT: "application/json",
@@ -197,7 +197,7 @@ export const getUserFailed = (error) => {
 export const getUser = (userId) => {
   return dispatch => {
     dispatch(getUserStart());
-    fetch(`/api/v1/user/:${userId}`, {
+    fetch(`${BASE_URL}/user/:${userId}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -239,7 +239,7 @@ export const getUsersFailed = (error) => {
 export const getUsers = () => {
   return dispatch => {
     dispatch(getUsersStart());
-    fetch(`/api/v1/users`, {
+    fetch(`${BASE_URL}/users`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -326,7 +326,7 @@ export const uploadPhotoFailed = (error) => {
 export const uploadPhoto = (data, userId) => {
   return dispatch => {
     dispatch(uploadPhotoStart());
-    fetch(`/api/v1/profile/photo/:${userId}`, {
+    fetch(`${BASE_URL}/profile/photo/:${userId}`, {
       method: "PUT",
       headers: {
         "x-auth-token": localAuth().token
@@ -367,7 +367,7 @@ export const roleFailed = (error) => {
 export const role = (userId) => {
   return dispatch => {
     dispatch(roleStart());
-    fetch(`/api/v1/role/${userId}/admin`, {
+    fetch(`${BASE_URL}/role/${userId}/admin`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
